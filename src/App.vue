@@ -8,8 +8,8 @@
 
 export default {
   name: 'app',
-  mounted() {
-    this.$router.push({path: '/web-home'})
+  mounted () {
+    this.$router.push({ path: '/web-home' })
   }
 }
 </script>
