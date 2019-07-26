@@ -15,7 +15,7 @@ pipeline {
     }
     stage('Deploy Prod') {
       steps {
-        sh '/root/downloads/deploy.exp'
+        sh '/root/downloads/deploy.sh'
       }
     }
   }
