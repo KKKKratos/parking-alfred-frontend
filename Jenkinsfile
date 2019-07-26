@@ -9,7 +9,8 @@ pipeline {
     }
     stage('Deploy Local') {
       steps {
-        sh '''cp -r /var/lib/jenkins/workspace/test_master/dist/* /usr/share/nginx/html
+        sh '''cp -r /var/lib/jenkins/workspace/parking-alfred-frontend_master
+/dist/* /usr/share/nginx/html
 '''
       }
     }
