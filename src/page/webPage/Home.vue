@@ -1,10 +1,14 @@
 <template>
-    <div>Web Home Page</div>
+  <div>Web Home page</div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+  data: function () {
+    return {
+    }
+  }
 }
 </script>
 
