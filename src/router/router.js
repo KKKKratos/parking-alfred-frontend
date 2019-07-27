@@ -4,8 +4,8 @@ import Login from '../page/Login'
 import MobileHome from '../page/mobilePage/Home'
 import WebHome from '../page/webPage/Home'
 import CustomerOrder from '../page/mobilePage/CustomerOrder'
-import CreatedOrder from '../page/mobilePage/CreatedOrder'
-import GrabbedOrder from '../page/mobilePage/GrabbedOrder'
+import CreatingOrder from '../page/mobilePage/CreatingOrder'
+import GrabbingOrder from '../page/mobilePage/GrabbingOrder'
 
 Vue.use(VueRouter)
 
@@ -16,8 +16,8 @@ const routes = [
     component: MobileHome,
     children: [
       { path: '/customer-order', name: 'customer-order', component: CustomerOrder },
-      { path: '/created-order', name: 'created-order', component: CreatedOrder },
-      { path: '/grabbed-order', name: 'grabbed-order', component: GrabbedOrder }
+      { path: '/created-order', name: 'created-order', component: CreatingOrder },
+      { path: '/grabbed-order', name: 'grabbed-order', component: GrabbingOrder }
     ]
   },
   { path: '/web-home', name: 'web-home', component: WebHome }
