@@ -1,17 +1,17 @@
 <template>
 <div>
     <div>
-      <orderListItem/>
+      <ParkingLotItem/>
    </div>
 </div>
 </template>
 
 <script>
-import orderListItem from './OrderListItem'
+import ParkingLotItem from '../../components/common/ParkingLotItem'
 export default {
-  name: 'OrderList',
+  name: 'ParkingLot',
   components: {
-    'orderListItem': orderListItem
+    ParkingLotItem
   }
 }
 </script>
