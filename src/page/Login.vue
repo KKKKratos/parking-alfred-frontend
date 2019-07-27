@@ -13,7 +13,6 @@
     </div>
   </div> 
 
-  
 <!--  <div id="login" style="margin-top:200px">-->
 <!--    <div style="margin: 20px;"></div>-->
 <!--    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">-->
@@ -25,7 +24,7 @@
 <!--      </el-form-item>-->
 <!--    </el-form>-->
 <!--    <el-button type="info">登录</el-button>--> 
-<!--  </div>--> 
+<!--  </div>-->
 </template>
 
 <script>
