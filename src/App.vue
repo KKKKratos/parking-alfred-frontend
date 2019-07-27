@@ -9,11 +9,11 @@
 export default {
   name: 'app',
   mounted () {
-    this.$router.push({ path: '/web-home' })
+    this.$router.push({ path: '/mobile-home' })
   }
 }
 </script>
 
-<style>
-@import "assets/css/common.css";
+<style >
+
 </style>

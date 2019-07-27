@@ -1,10 +1,17 @@
 <template>
-    <div>Mobile Home Page</div>
+    <div>
+     <orderList/>
+    </div>
+    
 </template>
 
 <script>
+import orderList from '../../component/orderList.vue'
 export default {
-  name: 'Login'
+  name: 'Login',
+   components: {
+      "orderList": orderList,
+  },
 }
 </script>
 
