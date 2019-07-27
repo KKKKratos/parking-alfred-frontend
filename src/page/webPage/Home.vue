@@ -1,5 +1,5 @@
 <template>
-    <div>2</div>
+    <div>Web Home Page</div>
 </template>
 
 <script>

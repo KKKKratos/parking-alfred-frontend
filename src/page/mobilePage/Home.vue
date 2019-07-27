@@ -1,5 +1,5 @@
 <template>
-    <div>1</div>
+    <div>Mobile Home Page</div>
 </template>
 
 <script>
