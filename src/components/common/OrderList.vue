@@ -7,12 +7,12 @@
 </template>
 
 <script>
-import orderListItem from './orderListItem'
+import orderListItem from './OrderListItem'
 export default {
-  name: 'Login',
+  name: 'OrderList',
   components: {
-      "orderListItem": orderListItem,
-  },
+    'orderListItem': orderListItem
+  }
 }
 </script>
 
