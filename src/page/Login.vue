@@ -5,13 +5,15 @@
         v-for="item in selectedOptions"
         :key="item.value"
         :label="item.label"
-        :value="item.value">
+        :value="item.value"> 
       </el-option>
-    </el-select>
+    </el-select>   
     <div class="login-body-button-div">
       <el-button type="primary" @click="clickLogin">Login</el-button>
     </div>
-  </div>
+  </div> 
+
+  
 <!--  <div id="login" style="margin-top:200px">-->
 <!--    <div style="margin: 20px;"></div>-->
 <!--    <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">-->
@@ -22,8 +24,8 @@
 <!--        <el-input v-model="formLabelAlign.region" placeholder="请输入密码"></el-input>-->
 <!--      </el-form-item>-->
 <!--    </el-form>-->
-<!--    <el-button type="info">登录</el-button>-->
-<!--  </div>-->
+<!--    <el-button type="info">登录</el-button>--> 
+<!--  </div>--> 
 </template>
 
 <script>

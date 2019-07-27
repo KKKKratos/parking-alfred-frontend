@@ -10,7 +10,7 @@
           <el-input v-model="formLabelAlign.region" placeholder="香洲区红星路5号"></el-input>
       </el-form-item>
       <el-form-item label="预约时间：">
-          <el-input v-model="formLabelAlign.region" placeholder="9：00"></el-input>
+          <el-input v-model="formLabelAlign.time" placeholder="9：00"></el-input>
       </el-form-item>
       </el-form>
       <el-button type="primary" @click="clickReservation">提交预约</el-button>
@@ -26,7 +26,7 @@ export default {
       labelPosition: 'right',
       formLabelAlign: {
         name: '',
-        region: ''
+        time: ''
       }
     }
   },
@@ -37,6 +37,7 @@ export default {
     clickReset () {
       this.formLabelAlign.name = ''
       this.formLabelAlign.region = ''
+       this.formLabelAlign.time = ''
     }
   }
 }

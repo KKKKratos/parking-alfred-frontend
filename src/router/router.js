@@ -23,8 +23,8 @@ const routes = [
   { path: '/web-home', name: 'web-home', component: WebHome }
 ]
 
-const router = new VueRouter({
+const router = new VueRouter({  
   routes
 })
 
-export default router
+export default router 
