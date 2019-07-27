@@ -54,5 +54,12 @@ export default {
 </script>
 
 <style scoped>
+  .login-body {
+    margin: 300px auto;
+  }
 
+  .login-body-button-div {
+    width: 100%;
+    margin-top: 50px;
+  }
 </style>

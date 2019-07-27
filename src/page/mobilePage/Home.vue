@@ -1,7 +1,7 @@
 <template>
   <div>
     <MobileHeader></MobileHeader>
-    <OrderList></OrderList>
+    <router-view></router-view>
     <MobileParkingBoyFooter v-if="$store.state.roleSelected === 'parkingBoy'"></MobileParkingBoyFooter>
     <MobileCustomerFooter v-else></MobileCustomerFooter>
   </div>
@@ -10,17 +10,15 @@
 import MobileHeader from '../../components/header/MobileHeader'
 import MobileParkingBoyFooter from '../../components/footer/MobileParkingBoyFooter'
 import MobileCustomerFooter from '../../components/footer/MobileCustomerFooter'
-import OrderList from '../../components/common/OrderList'
-export default {  
+export default {
   name: 'Home',
-  components: { OrderList, MobileCustomerFooter, MobileParkingBoyFooter, MobileHeader },
+  components: { MobileCustomerFooter, MobileParkingBoyFooter, MobileHeader },
   data: function () {
     return {
     }
   }
 }
 </script>
-
 
 <style scoped>
 

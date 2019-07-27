@@ -34,7 +34,7 @@ export default {
   name: 'MobileFooter',
   data: function () {
     return {
-      selectedId: '抢单',
+      selectedId: DEFAULT_MOBILE_BOY_TAB_ITEM,
       grabOrderValue: 0,
       isGrabOrderHidden: true,
       orderValue: 0,
@@ -43,6 +43,9 @@ export default {
   },
   watch: {
     selectedId: function (newValue, oldValue) {
+      if (newValue === DEFAULT_MOBILE_BOY_TAB_ITEM) {
+        this.$router.push('/grabbed-order')
+      }
       this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: newValue })
     },
     grabOrderValue: function (newValue) {
@@ -57,6 +60,7 @@ export default {
     }
   },
   mounted () {
+    this.$router.push('/grabbed-order')
     this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: DEFAULT_MOBILE_BOY_TAB_ITEM })
   }
 }

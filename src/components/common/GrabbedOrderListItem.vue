@@ -1,22 +1,25 @@
 <template>
   <div>
-    <div class="orderListItem">
-    <div style="float: left;">
-        <img slot="icon" src="../../assets/img/car.png" width="50" height="50" />
+    <div class="img-div">
+        <img slot="icon" src="../../assets/img/car.png" width="40" height="40" />
     </div>
-    <div>
+    <div class="text-div">
         <mt-cell title="湘A88888" label="停车时间：19：00" is-link>
         <span>详情</span>
       </mt-cell>
-    </div>
     </div>
   </div>
 </template>
 <script>
 export default {
-  name: 'OrderListItem'
+  name: 'GrabbedOrderListItem'
 }
 </script>
 <style scoped>
-@import "../../assets/css/orderList.css";
+  .img-div {
+    float: left;
+  }
+  .text-div {
+    text-align: left;
+  }
 </style>
