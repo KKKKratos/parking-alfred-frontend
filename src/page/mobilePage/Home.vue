@@ -14,6 +14,7 @@
 </template>
 
 <script>
+import orderList from '../../component/orderList.vue'
 export default {
   name: 'Login',
   data () {
