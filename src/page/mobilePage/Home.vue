@@ -6,13 +6,12 @@
     <MobileCustomerFooter v-else></MobileCustomerFooter>
   </div>
 </template>
-
 <script>
 import MobileHeader from '../../components/header/MobileHeader'
 import MobileParkingBoyFooter from '../../components/footer/MobileParkingBoyFooter'
 import MobileCustomerFooter from '../../components/footer/MobileCustomerFooter'
 import OrderList from '../../components/common/OrderList'
-export default {
+export default {  
   name: 'Home',
   components: { OrderList, MobileCustomerFooter, MobileParkingBoyFooter, MobileHeader },
   data: function () {
@@ -21,6 +20,7 @@ export default {
   }
 }
 </script>
+
 
 <style scoped>
 
