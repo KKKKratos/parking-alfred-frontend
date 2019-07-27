@@ -1,5 +1,5 @@
 <template>
-  <div @click="turnToPageParkingLot">
+  <div @click="turnToPageOrderDetail">
     <div class="img-div" >
       <img slot="icon" src="../../assets/img/car.png" width="40" height="40" />
     </div>
@@ -14,8 +14,8 @@
 export default {
   name: 'GrabbedOrderListItem',
   methods: {
-    turnToPageParkingLot () {
-      this.$router.push("/prking-lot")
+    turnToPageOrderDetail () {
+      this.$router.push("/order-details")
     }
   }
 }

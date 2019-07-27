@@ -7,7 +7,7 @@ import CustomerOrder from '../page/mobilePage/CustomerOrder'
 import CreatedOrder from '../page/mobilePage/CreatedOrder'
 import GrabbedOrder from '../page/mobilePage/GrabbedOrder'
 import ParkingLotList from '../page/mobilePage/ParkingLotList'
-
+import OrderDetails from '../page/mobilePage/OrderDetails'
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,11 +18,13 @@ const routes = [
     children: [
       { path: '/customer-order', name: 'customer-order', component: CustomerOrder },
       { path: '/created-order', name: 'created-order', component: CreatedOrder },
-      { path: '/grabbed-order', name: 'grabbed-order', component: GrabbedOrder }      
+      { path: '/grabbed-order', name: 'grabbed-order', component: GrabbedOrder },
+      { path: '/parking-lot', name: 'parking-lot', component: ParkingLotList },
+      { path: '/order-details', name: 'order-details', component: OrderDetails }     
     ]
   },
   { path: '/web-home', name: 'web-home', component: WebHome },
-  { path: '/prking-lot', name: 'prking-lot', component: ParkingLotList }
+
 ]
 
 const router = new VueRouter({
