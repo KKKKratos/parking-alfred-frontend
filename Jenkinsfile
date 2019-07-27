@@ -13,5 +13,10 @@ pipeline {
 '''
       }
     }
+    stage('Copy') {
+      steps {
+        sh 'cp -r /var/lib/jenkins/workspace/parking-alfred-frontend_master/dist/* /downloads/frontend'
+      }
+    }
   }
 }
