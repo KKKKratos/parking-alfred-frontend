@@ -1,0 +1,2 @@
+export const DEFAULT_MOBILE_BOY_TAB_ITEM = '抢单'
+export const DEFAULT_MOBILE_CUSTOMER_TAB_ITEM = '预约'
