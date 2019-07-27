@@ -6,3 +6,12 @@
     color: #2c3e50;
     margin-top: 60px;
 }
+
+.login-body {
+    margin: 300px auto;
+}
+
+.login-body-button-div {
+    width: 100%;
+    margin-top: 50px;
+}
