@@ -13,10 +13,5 @@ pipeline {
 '''
       }
     }
-    stage('Deploy Prod') {
-      steps {
-        sh '/root/downloads/deploy.sh'
-      }
-    }
   }
 }
