@@ -9,22 +9,25 @@
 </template>
 
 <script>
-import OrderListItem from "../../components/common/GrabbedOrderListItem";
+import OrderListItem from '../../components/common/GrabbedOrderListItem'
 export default {
-  name: "GrabbingOrderList",
+  name: 'GrabbingOrderList',
   components: {
     OrderListItem
   },
   computed: {
     itemsShow() {
-      return this.$store.state.grabbingOrders;
+      return this.$store.state.grabbingOrders
     }
+  },
+  created() {
+    this.$store.dispatch("getOders")
   }
-};
+}
 </script>
 
 <style scoped>
- .grab-main-div {
-   margin-top: 10px;
- }
+.grab-main-div {
+  margin-top: 10px;
+}
 </style>
