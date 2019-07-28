@@ -25,6 +25,7 @@
 </template>
 
 <script>
+import { MessageBox } from 'mint-ui';
 export default {
   name: 'CustomerInformation',
   data: function () {
@@ -34,7 +35,10 @@ export default {
   },
   methods: {
     clickExitLogin () {
-      this.$router.push('/login')
+      MessageBox.confirm('是否要退出登录？').then(action => {
+        this.$router.push('/login')
+      })
+        .catch(action => console.log('1'))
     }
   }
 }
