@@ -2,6 +2,7 @@ import axios from 'axios'
 
 axios.defaults.baseURL = process.env.NODE_ENV !== 'development' ? '/parking-lot' : 'http://localhost:8082'
 axios.defaults.timeout = 5000
+axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
 // Add a request interceptor
 axios.interceptors.request.use(function (config) {

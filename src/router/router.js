@@ -10,6 +10,7 @@ import ParkingLotList from '../page/mobilePage/ParkingLotList'
 import OrderDetails from '../page/mobilePage/ParkingBoyOrderDetails'
 import CustomerOrders from '../page/mobilePage/CustomerOrders'
 import CustomerInfo from '../page/mobilePage/CustomerInformation'
+import RoleLogin from '../components/RoleLogin'
 
 Vue.use(VueRouter)
 
@@ -28,8 +29,8 @@ const routes = [
       { path: '/customer-info', name: 'customer-info', component: CustomerInfo }
     ]
   },
-  { path: '/web-home', name: 'web-home', component: WebHome }
-
+  { path: '/web-home', name: 'web-home', component: WebHome },
+  { path: '/role-login/:selectedRole', name: 'role-login', component: RoleLogin }
 ]
 
 const router = new VueRouter({

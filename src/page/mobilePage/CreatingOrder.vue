@@ -28,7 +28,7 @@
 import { createOrder } from '../../api/order'
 
 export default {
-  name: 'CreatedOrder',
+  name: 'CreatingOrder',
   data () {
     return {
       loding: false,
