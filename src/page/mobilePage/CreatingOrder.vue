@@ -37,7 +37,7 @@ export default {
     clickReset () {
       this.formLabelAlign.name = ''
       this.formLabelAlign.region = ''
-       this.formLabelAlign.time = ''
+      this.formLabelAlign.time = ''
     }
   }
 }
