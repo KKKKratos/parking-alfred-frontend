@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-axios.defaults.baseURL = 'http://localhost:3001'
+axios.defaults.baseURL = 'http://39.98.60.164/parking_lot'
 axios.defaults.timeout = 5000
 
 // Add a request interceptor
