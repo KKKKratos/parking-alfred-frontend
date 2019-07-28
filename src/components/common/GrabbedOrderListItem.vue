@@ -26,7 +26,7 @@ export default {
       return `${this.grabbingOrder.carNumber}`
     },
     reservationTime() {
-      return `停车时间：${this.grabbingOrder.reservationTime}`
+      return `${this.grabbingOrder.reservationTime}`
     }
   }
 }

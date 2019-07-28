@@ -10,7 +10,6 @@ export default {
   name: 'app',
   mounted () {
     this.$router.push({ path: '/login' })
-    this.$store.dispatch("getOders")
   }
 }
 
