@@ -9,7 +9,7 @@
       </mt-cell>
     </div>
   </div>
-</template>
+</template>  
 <script>
 export default {
   name: 'GrabbedOrderListItem'
