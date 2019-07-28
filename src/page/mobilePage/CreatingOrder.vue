@@ -1,5 +1,5 @@
 <template>
-    <div style="margin-top: 100px">
+    <div class="creating-body-div">
       <el-form label-position="right" label-width="100px" :model="formLabelAlign">
         <el-form-item label="预约类型：">
           <el-radio v-model="formLabelAlign.selectedRadio" label="park">停车</el-radio>
@@ -56,5 +56,7 @@ export default {
 </script>
 
 <style scoped>
-
+.creating-body-div {
+  margin-top: 100px;
+}
 </style>
