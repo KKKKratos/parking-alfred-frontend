@@ -1,6 +1,7 @@
 const state = {
   tabItemsSelected: '',
-  roleSelected: ''
+  roleSelected: '',
+  grabbingOrders: []
 }
 
 export default state
