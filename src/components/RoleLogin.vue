@@ -21,7 +21,7 @@ export default {
     return {
       role: this.$route.params.selectedRole,
       labelPosition: "right",
-      formLabelAlign: {
+      formLabelAlign: {  
         name: "",
         password: ""
       }
