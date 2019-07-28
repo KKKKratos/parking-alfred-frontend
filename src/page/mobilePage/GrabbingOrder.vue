@@ -1,6 +1,6 @@
 <template>
 <div>
-    <div>
+    <div class="grab-main-div">
       <OrderListItem/>
    </div>
 </div>
@@ -17,4 +17,7 @@ export default {
 </script>
 
 <style scoped>
+ .grab-main-div {
+   margin-top: 10px;
+ }
 </style>

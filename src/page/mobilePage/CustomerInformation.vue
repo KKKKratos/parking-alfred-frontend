@@ -1,20 +1,30 @@
 <template>
   <div>
     <div class="info-main-div">
-      <el-card class="box-card">
+      <el-card class="box-card-user">
         <div style="float: left; margin-right: 10px">
           <el-avatar :size="50" :src="circleUrl"></el-avatar>
         </div>
         <p>username</p>
       </el-card>
-      <el-card class="box-card">
-        地址管理
-        <i class="el-icon-arrow-right" style="float: right"></i>
-      </el-card>
-      <el-card class="box-card">
-        车辆管理
-        <i class="el-icon-arrow-right" style="float: right"></i>
-      </el-card>
+      <el-button type="text" class="box-card">
+        <el-card >
+            基本信息
+          <i class="el-icon-arrow-right" style="float: right"></i>
+        </el-card>
+      </el-button>
+      <el-button type="text" class="box-card">
+        <el-card >
+          地址管理
+          <i class="el-icon-arrow-right" style="float: right"></i>
+        </el-card>
+      </el-button>
+      <el-button type="text" class="box-card">
+        <el-card >
+          车辆管理
+          <i class="el-icon-arrow-right" style="float: right"></i>
+        </el-card>
+      </el-button>
     </div>
     <div class="box-card-exit" >
       <el-button style="width:100%; color: red" size="medium" @click="clickExitLogin">
@@ -49,13 +59,26 @@ export default {
   text-align: left;
 }
 
-.box-card {
+.box-card-user {
   margin-top: 10px;
+  width: 100%;
+  text-align: left;
+  margin-bottom: 10px;
+}
+
+.box-card {
+  padding: 5px 0;
+  width: 100%;
+  text-align: left;
 }
 
 .box-card-exit {
   margin-top: 20px;
   text-align: center;
   width: 100%;
+}
+
+.el-button+.el-button {
+  margin-left: 0;
 }
 </style>
