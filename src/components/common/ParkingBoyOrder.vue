@@ -1,7 +1,7 @@
 <template>
   <div>
     <mt-cell :title="carNumber" :label="addressWithTIme" >
-      <el-button v-if="!isSure" type="primary" size='mini' @click="toMakeSure">待确认</el-button>
+      <el-button v-if="isConfirm" type="primary" size='mini' @click="toMakeSure">待确认</el-button>
       <img style='float:right' type="info" slot="icon" src="../../assets/img/tick.png" width="40" height="40" v-else/>
     </mt-cell>
   </div>
@@ -27,6 +27,9 @@ export default {
     addressWithTIme () {
       const time = new Date(this.$store.state.parkingBoyOrders[this.index].reservationTime * 1000)
       return `(${this.$store.state.parkingBoyOrders[this.index].customerAddress})${time.getHours()}:${time.getMinutes()}`
+    },
+    isConfirm () {
+      return this.$store.state.parkingBoyOrders[this.index].status === 2
     }
   },
   methods: {
