@@ -18,7 +18,7 @@ const routes = [
     children: [
       { path: '/customer-order', name: 'customer-order', component: CustomerOrder },
       { path: '/created-order', name: 'created-order', component: CreatingOrder },
-      { path: '/grabbed-order', name: 'grabbed-order', component: GrabbedOrder },
+      { path: '/grabbed-order', name: 'grabbed-order', component: GrabbingOrder },
       { path: '/parking-lot', name: 'parking-lot', component: ParkingLotList },
       { path: '/order-details', name: 'order-details', component: OrderDetails }     
     ]
