@@ -26,7 +26,7 @@ export default {
 </script>
 
 <style scoped>
- .grab-main-div {
-   margin-top: 10px;
- }
+.grab-main-div {
+  margin-top: 10px;
+}
 </style>

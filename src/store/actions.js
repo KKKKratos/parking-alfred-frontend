@@ -5,6 +5,7 @@ import {
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER} from './const-types'
 import axios from '../api/config'
+// import { resolveCname } from 'dns';
 const actions = {
   [GET_GRABBING_ORDERS] ({ commit }) {
     axios.get('/orders', {params: {status: 1}})
@@ -40,6 +41,13 @@ const actions = {
   [UPDATE_PARKING_BOY_ORDER] ({ commit }, payload) {
     axios.put(`/orders/${payload.id}`, payload.order)
       .then(response => { commit(UPDATE_PARKING_BOY_ORDER, { order: response.data.data }) })
+  },
+  getLoginInfo({commit},employeeLoginInfo) {
+    const data = {
+      name: employeeLoginInfo.name,
+      password: employeeLoginInfo.password
+    }
+    return axios.post('/login', data)
       .catch(error => {})
   }
 }

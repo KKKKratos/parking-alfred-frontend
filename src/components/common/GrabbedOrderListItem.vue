@@ -5,11 +5,13 @@
     </div>
     <div class="text-div" @click="clickGrabItem">
       <mt-cell :title=carNumber :label="orderType" is-link>
+          
         <span>详情</span>
       </mt-cell>
     </div>
   </div>
 </template>
+
 <script>
 import { GET_TARGET_ORDER } from '../../store/const-types'
 import { PARK_CAR_ORDER, FETCH_CAR_ORDER } from '../../config/const-values'
@@ -36,6 +38,7 @@ export default {
   }
 }
 </script>
+
 <style scoped>
 .img-div {
   float: left;
