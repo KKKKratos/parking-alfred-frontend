@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="height: 60px">
     <mt-tabbar v-model="selectedId">
       <mt-tab-item id="预约">
         <div>
@@ -25,7 +25,7 @@
 
 <script>
 import { CHANGE_MOBILE_TAB_ITEM } from '../../store/const-types'
-import { DEFAULT_MOBILE_CUSTOMER_TAB_ITEM, MOBILE_TAB_ITEM_ORDER } from '../../config/const-values'
+import { DEFAULT_MOBILE_CUSTOMER_TAB_ITEM, MOBILE_TAB_ITEM_ORDER, MOBILE_TAB_ITEM_MY_INFO } from '../../config/const-values'
 export default {
   name: 'MobileCustomerFooter',
   data: function () {
@@ -38,7 +38,9 @@ export default {
       if (newValue === DEFAULT_MOBILE_CUSTOMER_TAB_ITEM) {
         this.$router.push('/created-order')
       } else if (newValue === MOBILE_TAB_ITEM_ORDER) {
-        this.$router.push('/customer-order')
+        this.$router.push('/customer-orders')
+      } else if (newValue === MOBILE_TAB_ITEM_MY_INFO) {
+        this.$router.push('/customer-info')
       }
       this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: newValue })
     }

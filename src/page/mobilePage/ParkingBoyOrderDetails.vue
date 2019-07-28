@@ -20,16 +20,16 @@
 </template>
 <script>
 export default {
-  name: "OderDetails",
+  name: 'OderDetails',
   methods: {
-    turnToPageParkingLot() {
-      this.$router.push("/parking-lot");
+    turnToPageParkingLot () {
+      this.$router.push('/parking-lot')
     },
-    turnToPageGrabbingOrder(){
-      this.$router.push("/grabbed-order");
+    turnToPageGrabbingOrder () {
+      this.$router.push('/grabbed-order')
     }
   }
-};
+}
 </script>
 <style scoped>
 .img-div {
@@ -51,12 +51,12 @@ export default {
   margin-left: 63px;
 }
 .grab-button,.cancel-button{
-			width: 140px;
-			height: 40px;
-			color: #fff;
-			background-color: #26a2ff;
-			border:none;
-			margin-left: 10px;
-			margin-top: 80px;
-		}
+  width: 140px;
+  height: 40px;
+  color: #fff;
+  background-color: #26a2ff;
+  border:none;
+  margin-left: 10px;
+  margin-top: 80px;
+}
 </style>

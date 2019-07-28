@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div style="height: 60px">
       <mt-tabbar v-model="selectedId">
         <mt-tab-item id="抢单">
           <el-badge :value="grabOrderValue" :hidden="isGrabOrderHidden">
@@ -29,7 +29,7 @@
 
 <script>
 import { CHANGE_MOBILE_TAB_ITEM } from '../../store/const-types'
-import { DEFAULT_MOBILE_BOY_TAB_ITEM } from '../../config/const-values'
+import { DEFAULT_MOBILE_BOY_TAB_ITEM, MOBILE_TAB_ITEM_ORDER, MOBILE_TAB_ITEM_MY_INFO } from '../../config/const-values'
 export default {
   name: 'MobileFooter',
   data: function () {
@@ -45,6 +45,10 @@ export default {
     selectedId: function (newValue, oldValue) {
       if (newValue === DEFAULT_MOBILE_BOY_TAB_ITEM) {
         this.$router.push('/grabbed-order')
+      } else if (newValue === MOBILE_TAB_ITEM_ORDER) {
+        this.$router.push('/parking-boy-orders')
+      } else {
+        this.$router.push('/customer-info')
       }
       this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: newValue })
     },
