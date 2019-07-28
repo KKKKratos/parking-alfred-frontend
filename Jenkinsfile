@@ -13,9 +13,9 @@ pipeline {
 '''
       }
     }
-    stage('Deploy Prod') {
+    stage('Copy') {
       steps {
-        sh '/root/downloads/deploy.sh'
+        sh 'cp -r /var/lib/jenkins/workspace/parking-alfred-frontend_master/dist /root/release'
       }
     }
   }

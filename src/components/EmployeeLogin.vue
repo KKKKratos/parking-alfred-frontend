@@ -1,13 +1,14 @@
 <template>
 <div id="login" style="margin-top:200px">
-<!--    <img src="/i/eg_tulip.jpg" />-->
+    <!-- <img src="/i/eg_tulip.jpg" /> -->
+    <img src="/i/eg_tulip.jpg" />
 <div style="margin: 20px;"></div>
-<el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
+<el-form :label-position="labelPosition" label-width="80px"  :model="formLabelAlign">
   <el-form-item label="用户名">
     <el-input v-model="formLabelAlign.name" placeholder="请输入用户名"></el-input>
   </el-form-item>
   <el-form-item label="密码">
-    <el-input v-model="formLabelAlign.region" placeholder="请输入密码"></el-input>
+    <el-input v-model="formLabelAlign.password" placeholder="请输入密码"></el-input>
   </el-form-item>
 </el-form>
   <el-button type="info">登录</el-button>
@@ -20,11 +21,14 @@ export default {
   data () {
     return {
       labelPosition: 'right',
-      formLabelAlign: {
+        formLabelAlign: { 
         name: '',
-        region: ''
+        password: ''
       }
     }
+  },
+  methods:{
+     
   }
 }
 </script>

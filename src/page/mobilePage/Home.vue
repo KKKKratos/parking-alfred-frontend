@@ -14,7 +14,7 @@ export default {
   name: 'Home',
   components: { MobileCustomerFooter, MobileParkingBoyFooter, MobileHeader },
   data: function () {
-    return {
+    return {  
     }
   }
 }
