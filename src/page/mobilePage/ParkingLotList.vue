@@ -2,8 +2,8 @@
 <div class="orders-div">
     <div :style="{height: fullHeight + 'px'}">
       <el-radio-group v-model="radioSelected" @change="clickSelectedParkingLot" class="item-div">
-        <div v-for="n in 5" :key="n" >
-          <ParkingLotItem :index="n"></ParkingLotItem>
+        <div v-for="(parkingLot, index) in parkingLots" :key="index" style="margin-top: 10px">
+          <ParkingLotItem :index="index"></ParkingLotItem>
         </div>
       </el-radio-group>
       <el-button style="margin-top: 20px" type="primary" @click="clickConfirmSelected">确认选择</el-button>
@@ -12,6 +12,8 @@
 </template>
 
 <script>
+import { MOBILE_TAB_ITEM_ORDER } from '../../config/const-values'
+import { GET_GRABBING_PARKING_LOTS, UPDATE_GRABBING_ORDER, UPDATE_TARGET_ORDER, CHANGE_MOBILE_TAB_ITEM, GET_PARKING_BOY_ORDERS } from '../../store/const-types'
 import ParkingLotItem from '../../components/common/ParkingLotItem'
 export default {
   name: 'ParkingLot',
@@ -26,18 +28,34 @@ export default {
   computed: {
     fullHeight: function () {
       return document.documentElement.clientHeight - 140
+    },
+    parkingLots: function () {
+      return this.$store.state.grabbingParkingLots
     }
   },
+  mounted () {
+    this.$store.dispatch(GET_GRABBING_PARKING_LOTS, { employeeId: 1 })
+  },
   methods: {
-    clickConfirmSelected () {
-      this.$message({
-        message: '预约成功',
-        type: 'success'
-      })
-      this.$router.push('/parking-boy-orders')
+    async clickConfirmSelected () {
+      this.$store.commit(UPDATE_TARGET_ORDER, { parkingLot: this.$store.state.grabbingParkingLots[this.radioSelected] })
+      this.$store.dispatch(UPDATE_GRABBING_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
+        .then(() => {
+          this.$message({
+            message: '预约成功',
+            type: 'success'
+          })
+          this.$store.dispatch(GET_PARKING_BOY_ORDERS)
+            .then(response => {
+              this.$router.push('/parking-boy-orders')
+              this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
+            })
+            .catch(error => console.log(error))
+
+        })
+        .catch(error => console.log(error))
     },
     clickSelectedParkingLot (index) {
-      console.log(index)
     }
   }
 }

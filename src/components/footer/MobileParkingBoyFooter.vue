@@ -1,7 +1,7 @@
 <template>
     <div style="height: 60px">
-      <mt-tabbar v-model="selectedId">
-        <mt-tab-item id="抢单">
+      <mt-tabbar :value="selectedId" >
+        <mt-tab-item id="抢单" @click.native="clickGrabOrderTab">
           <el-badge :value="grabOrderValue" :hidden="isGrabOrderHidden">
             <div>
               <img slot="icon" src="../../assets/img/book.png" style="height: 30px; width: 30px;"/>
@@ -9,15 +9,13 @@
             抢单
           </el-badge>
         </mt-tab-item>
-        <mt-tab-item id="订单">
-          <el-badge :value="orderValue" :hidden="isOrderHidden">
+        <mt-tab-item id="订单" @click.native="clickOrderTab">
             <div>
               <img slot="icon" src="../../assets/img/order.png" style="height: 30px; width: 30px;"/>
             </div>
             订单
-          </el-badge>
         </mt-tab-item>
-        <mt-tab-item id="我的">
+        <mt-tab-item id="我的" @click.native="clickMyInfoTab">
           <div>
             <img slot="icon" src="../../assets/img/user.png" style="height: 30px; width: 30px;"/>
           </div>
@@ -34,33 +32,37 @@ export default {
   name: 'MobileFooter',
   data: function () {
     return {
-      selectedId: DEFAULT_MOBILE_BOY_TAB_ITEM,
       grabOrderValue: 0,
-      isGrabOrderHidden: true,
-      orderValue: 0,
-      isOrderHidden: true
+      isGrabOrderHidden: true
+    }
+  },
+  computed: {
+    selectedId: function () {
+      return this.$store.state.tabItemsSelected
     }
   },
   watch: {
     selectedId: function (newValue, oldValue) {
-      if (newValue === DEFAULT_MOBILE_BOY_TAB_ITEM) {
-        this.$router.push('/grabbed-order')
-      } else if (newValue === MOBILE_TAB_ITEM_ORDER) {
-        this.$router.push('/parking-boy-orders')
-      } else {
-        this.$router.push('/customer-info')
-      }
       this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: newValue })
     },
     grabOrderValue: function (newValue) {
       if (newValue > 0) {
         this.isGrabOrderHidden = false
       }
+    }
+  },
+  methods: {
+    clickGrabOrderTab () {
+      this.$router.push('/grabbed-order')
+      this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: DEFAULT_MOBILE_BOY_TAB_ITEM })
     },
-    orderValue: function (newValue) {
-      if (newValue > 0) {
-        this.isOrderHidden = false
-      }
+    clickOrderTab () {
+      this.$router.push('/parking-boy-orders')
+      this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
+    },
+    clickMyInfoTab () {
+      this.$router.push('/customer-info')
+      this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_MY_INFO })
     }
   },
   mounted () {

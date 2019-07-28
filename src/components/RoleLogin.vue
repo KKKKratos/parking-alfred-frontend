@@ -14,37 +14,41 @@
 </template>
 
 <script>
-import { SELECT_ROLE } from "../store/const-types";
+import { SELECT_ROLE } from '../store/const-types'
 export default {
-  name: "RoleLogin",
-  data() {
+  name: 'RoleLogin',
+  data () {
     return {
       role: this.$route.params.selectedRole,
-      labelPosition: "right",
-      formLabelAlign: {  
-        name: "",
-        password: ""
+      labelPosition: 'right',
+      formLabelAlign: {
+        name: '',
+        password: ''
       }
-    };
+    }
   },
   methods: {
-    clickLogin() {
-      this.$store
-        .dispatch("getLoginInfo", this.formLabelAlign)
+    clickLogin () {
+      const self = this
+      this.$store.dispatch('getLoginInfo', this.formLabelAlign)
         .then(response => {
+          console.log(response)
           if (response.data.code === 200) {
-            if (this.role === "customer" || this.role === "parkingBoy") {
-              this.$router.push("/mobile-home");
-            } else if (this.role === "manager") {
-              this.$router.push("/web-home");
+            self.$store.commit(SELECT_ROLE, { roleSelected: self.$route.params.selectedRole })
+            if (self.role === 'customer' || self.role === 'parkingBoy') {
+              self.$router.push('/mobile-home')
+            } else if (self.role === 'manager') {
+              self.$router.push('/web-home')
             }
           }
-        });
+        })
+        .catch(error => {
+          console.log(error)
+        })
     }
   }
-};
+}
 </script>
-
 
 <style scoped>
 </style>

@@ -1,26 +1,31 @@
 <template>
-    <div id ='item'>
-        <div id = 'parkingBoyOrders' style="text-align: left;">
-            <mt-cell title="粤C17278K" label="(香洲区快乐停车场2号)8:00" >
-                <el-button v-if="!isSure" type="primary" size='mini' @click="toMakeSure">待确认</el-button>
-                <img style='float:right' type="info" slot="icon" src="../../assets/img/tick.png" width="40" height="40" v-else/>
-            </mt-cell>
-        </div>
+  <div id ='item'>
+    <div id = 'parkingBoyOrders' v-for="(order, index) in orders" :key="index">
+      <ParkingBoyOrder :index="index"></ParkingBoyOrder>
     </div>
+  </div>
 </template>
 
 <script>
+import ParkingBoyOrder from '../../components/common/ParkingBoyOrder'
+import { GET_PARKING_BOY_ORDERS } from '../../store/const-types'
 export default {
   name: 'parkingBoyOrders',
+  components: { ParkingBoyOrder },
   data () {
     return {
       isSure: false
     }
   },
-  methods: {
-    toMakeSure: function () {
-      this.isSure = true
+  computed: {
+    orders () {
+      return this.$store.state.parkingBoyOrders
     }
+  },
+  mounted () {
+    this.$store.dispatch(GET_PARKING_BOY_ORDERS)
+  },
+  methods: {
   }
 }
 </script>
@@ -28,5 +33,8 @@ export default {
 <style scoped>
 #item {
   margin-top: 10px;
+}
+#parkingBoyOrders {
+  text-align: left;
 }
 </style>

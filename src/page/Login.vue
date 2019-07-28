@@ -16,31 +16,31 @@
 </template>
 
 <script>
-import { SELECT_ROLE } from '../store/const-types' 
+import { SELECT_ROLE } from '../store/const-types'
 export default {
   name: 'Login',
-  methods:{
-    toRoleLogin(){
-      this.$router.push({path:`/role-login/${this.selectedRole}`})
-    }  
+  methods: {
+    toRoleLogin () {
+      this.$router.push({ path: `/role-login/${this.selectedRole}` })
+    }
   },
-  data: function () { 
+  data: function () {
     return {
       selectedRole: '',
       selectedOptions: [
         { value: 'customer', label: 'Customer' },
         { value: 'parkingBoy', label: 'Parking Boy' },
-        { value: 'manager', label: 'Manager/Admin' } 
+        { value: 'manager', label: 'Manager/Admin' }
       ]
     }
   }
 
   // methods: {
-  //   clickLogin () { 
+  //   clickLogin () {
   //     this.$store.commit(SELECT_ROLE, { roleSelected: this.selectedRole })
   //     if (this.selectedRole === 'customer' || this.selectedRole === 'parkingBoy') {
   //       this.$router.push('/mobile-home')
-  //     } else if (this.selectedRole === 'manager'){ 
+  //     } else if (this.selectedRole === 'manager'){
   //       this.$router.push('/web-home')
   //     }
   //   }
