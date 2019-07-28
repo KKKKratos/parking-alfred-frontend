@@ -12,16 +12,16 @@
 <script>
 export default {
   name: 'parkingBoyOrders',
-   data() {
-       return {
-            isSure:false,
-       }
-   },
-   methods:{
-       toMakeSure:function(){
-           this.isSure=true;
-       }
-   }
+  data () {
+    return {
+      isSure: false
+    }
+  },
+  methods: {
+    toMakeSure: function () {
+      this.isSure = true
+    }
+  }
 }
 </script>
 

@@ -30,6 +30,10 @@ export default {
   },
   methods: {
     clickConfirmSelected () {
+      this.$message({
+        message: '预约成功',
+        type: 'success'
+      })
       this.$router.push('/parking-boy-orders')
     },
     clickSelectedParkingLot (index) {
