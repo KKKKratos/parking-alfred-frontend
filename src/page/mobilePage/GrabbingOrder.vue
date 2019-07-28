@@ -24,8 +24,8 @@ export default {
 </script>
 
 <style scoped>
-li {
-  margin: auto;
-  list-style: none;
+ .grab-main-div {
+   margin-top: 10px;
+ }
 }
 </style>

@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="home-main-div">
     <MobileHeader></MobileHeader>
     <router-view></router-view>
     <MobileParkingBoyFooter v-if="$store.state.roleSelected === 'parkingBoy'"></MobileParkingBoyFooter>
@@ -21,5 +21,8 @@ export default {
 </script>
 
 <style scoped>
-
+  .home-main-div {
+    margin-left: 10px;
+    margin-right: 10px;
+  }
 </style>

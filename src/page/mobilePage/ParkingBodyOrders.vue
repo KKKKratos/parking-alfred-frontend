@@ -26,5 +26,7 @@ export default {
 </script>
 
 <style scoped>
-
+#item {
+  margin-top: 10px;
+}
 </style>
