@@ -4,7 +4,7 @@
       <img slot="icon" src="../../assets/img/car.png" width="40" height="40" />
     </div>
     <div class="text-div">
-      <mt-cell title="湘A88888" label="停车时间：19：00" is-link>
+      <mt-cell :title=carNumber :label="reservationTime" is-link>
         <span>详情</span>
       </mt-cell>
     </div>
@@ -16,6 +16,17 @@ export default {
   methods: {
     turnToPageOrderDetail () {
       this.$router.push("/order-details")
+    }
+  },
+  props:{
+    grabbingOrder:Object,
+  },
+  computed: {
+    carNumber(){
+      return `${this.grabbingOrder.carNumber}`
+    },
+    reservationTime() {
+      return `停车时间：${this.grabbingOrder.reservationTime}`
     }
   }
 }
