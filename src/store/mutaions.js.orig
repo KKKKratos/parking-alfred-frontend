@@ -1,13 +1,17 @@
 import { CHANGE_MOBILE_TAB_ITEM, SELECT_ROLE } from './const-types'
 
 const mutations = {
-  [CHANGE_MOBILE_TAB_ITEM]: function (state, payload) {
+  [CHANGE_MOBILE_TAB_ITEM]: function(state, payload) {
     state.tabItemsSelected = payload.tabItemsSelected
   },
+<<<<<<< Updated upstream
+  [SELECT_ROLE]: function(state, payload) {
+=======
   [SELECT_ROLE]: function (state, payload) {
+>>>>>>> Stashed changes
     state.roleSelected = payload.roleSelected
   },
-  getOders (state, orders) {
+  getOders(state, orders) {
     console.log(orders.data)
     let result = orders.data.map(order => ({
       carNumber: order.car.carNumber,
