@@ -1,7 +1,10 @@
 const state = {
   tabItemsSelected: '',
   roleSelected: '',
-  grabbingOrders: []
+  grabbingOrders: [],
+  targetOrder: {},
+  grabbingParkingLots: [],
+  parkingBoyOrders: []
 }
 
 export default state

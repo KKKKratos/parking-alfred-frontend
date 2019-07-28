@@ -1,26 +1,28 @@
 <template>
-  <div>
-    <ul>
-      <li  v-for="item in itemsShow" v-bind:key="item.key">
+  <div style="margin-top: 20px">
+      <div v-for="item in itemsShow" v-bind:key="item.key" style="margin-top: 10px">
         <OrderListItem :grabbingOrder="item"/>
-      </li>
-    </ul>
+      </div>
   </div>
 </template>
 
 <script>
-import OrderListItem from "../../components/common/GrabbedOrderListItem";
+import { GET_GRABBING_ORDERS } from '../../store/const-types'
+import OrderListItem from '../../components/common/GrabbedOrderListItem'
 export default {
-  name: "GrabbingOrderList",
+  name: 'GrabbingOrderList',
   components: {
     OrderListItem
   },
   computed: {
-    itemsShow() {
-      return this.$store.state.grabbingOrders;
+    itemsShow () {
+      return this.$store.state.grabbingOrders
     }
+  },
+  mounted () {
+    this.$store.dispatch(GET_GRABBING_ORDERS)
   }
-};
+}
 </script>
 
 <style scoped>
