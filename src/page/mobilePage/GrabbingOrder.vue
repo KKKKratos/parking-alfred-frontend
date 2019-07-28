@@ -27,5 +27,4 @@ export default {
  .grab-main-div {
    margin-top: 10px;
  }
-}
 </style>
