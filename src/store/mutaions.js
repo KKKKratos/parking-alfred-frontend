@@ -1,4 +1,8 @@
-import { CHANGE_MOBILE_TAB_ITEM, SELECT_ROLE } from './const-types'
+import {
+  CHANGE_MOBILE_TAB_ITEM,
+  SELECT_ROLE,
+  SET_GRABBING_ORDER_ID
+} from './const-types'
 
 const mutations = {
   [CHANGE_MOBILE_TAB_ITEM]: function(state, payload) {
@@ -14,12 +18,16 @@ const mutations = {
       return date.toLocaleString()
     }
     let result = orders.data.map(order => ({
+      id: order.id,
       carNumber: order.car.carNumber,
       customerAddress: order.customerAddress,
       reservationTime: toDisplayTime(order.reservationTime)
     }))
     state.grabbingOrders.splice(0)
     state.grabbingOrders.push(...result)
+  },
+  [SET_GRABBING_ORDER_ID](state, orderID) {
+    state.grabbingOrderID = orderID
   }
 }
 

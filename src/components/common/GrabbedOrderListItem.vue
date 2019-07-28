@@ -11,10 +11,12 @@
   </div>
 </template>  
 <script>
+import { SET_GRABBING_ORDER_ID } from '../../store/const-types.js'
 export default {
   name: 'GrabbedOrderListItem',
   methods: {
     turnToPageOrderDetail () {
+      this.$store.commit(SET_GRABBING_ORDER_ID,this.grabbingOrder.id)
       this.$router.push("/order-details")
     }
   },

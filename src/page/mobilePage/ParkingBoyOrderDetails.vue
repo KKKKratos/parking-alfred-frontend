@@ -3,15 +3,15 @@
     <ul class="order-details">
       <li>
         车牌号：
-        <span class="car-number">湘A66666</span>
+        <span class="car-number">{{item.car.carNumber}}</span>
       </li>
       <li>
         车辆地址：
-        <span class="car-address">南方软件园</span>
+        <span class="car-address">{{item.customerAddress}}</span>
       </li>
       <li>
         预约时间：
-        <span class="appoint-time">2019/07/28 10：23</span>
+        <span class="appoint-time">{{item.customerAddress}}</span>
       </li>
     </ul>
     <mt-button class="grab-button" type="primary" @click="turnToPageParkingLot">抢单</mt-button>
@@ -22,11 +22,18 @@
 export default {
   name: 'OderDetails',
   methods: {
-    turnToPageParkingLot () {
+    turnToPageParkingLot() {
       this.$router.push('/parking-lot')
     },
-    turnToPageGrabbingOrder () {
+    turnToPageGrabbingOrder() {
       this.$router.push('/grabbed-order')
+    }
+  },
+  computed: {
+    item() {
+      return this.$store.state.grabbingOrders.filter(
+        x => x.id === this.$store.state.grabbingOrderID
+      )[0]
     }
   }
 }
@@ -47,15 +54,17 @@ export default {
 .order-details .car-number {
   margin-left: 78px;
 }
-.order-details .car-address,.order-details .appoint-time {
+.order-details .car-address,
+.order-details .appoint-time {
   margin-left: 63px;
 }
-.grab-button,.cancel-button{
+.grab-button,
+.cancel-button {
   width: 140px;
   height: 40px;
   color: #fff;
   background-color: #26a2ff;
-  border:none;
+  border: none;
   margin-left: 10px;
   margin-top: 80px;
 }
