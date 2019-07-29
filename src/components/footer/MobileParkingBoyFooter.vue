@@ -15,11 +15,11 @@
             </div>
             订单
         </mt-tab-item>
-        <mt-tab-item id="我的" @click.native="clickMyInfoTab">
+        <mt-tab-item id="用户信息" @click.native="clickMyInfoTab">
           <div>
             <img slot="icon" src="../../assets/img/user.png" style="height: 30px; width: 30px;"/>
           </div>
-          我的
+          用户信息
         </mt-tab-item>
       </mt-tabbar>
     </div>

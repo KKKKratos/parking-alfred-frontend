@@ -37,21 +37,21 @@ export default {
     this.$store.dispatch(GET_GRABBING_PARKING_LOTS, { employeeId: 1 })
   },
   methods: {
-    async clickConfirmSelected () {
+    clickConfirmSelected () {
+      const self = this
       this.$store.commit(UPDATE_TARGET_ORDER, { parkingLot: this.$store.state.grabbingParkingLots[this.radioSelected] })
       this.$store.dispatch(UPDATE_GRABBING_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
         .then(() => {
           this.$message({
-            message: '预约成功',
+            message: '抢单成功',
             type: 'success'
           })
           this.$store.dispatch(GET_PARKING_BOY_ORDERS)
             .then(response => {
-              this.$router.push('/parking-boy-orders')
-              this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
+              self.$router.push('/parking-boy-orders')
+              self.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
             })
             .catch(error => console.log(error))
-
         })
         .catch(error => console.log(error))
     },

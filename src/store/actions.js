@@ -7,7 +7,14 @@ import {
   GET_LOGIN_INFO,
   ADD_LIST
 } from './const-types'
+  GET_EMPLOYEES_LIST,
+  CREATE_EMPLOYEE,
+  GET_CUSTOMER_ORDERS,
+  UPDATE_CUSTOMER_ORDER,
+  GET_LOGIN_INFO
+} from './const-types'
 import axios from '../api/config'
+import { requestOrders } from '../api/order'
 
 // import { resolveCname } from 'dns';
 const actions = {
@@ -17,7 +24,7 @@ const actions = {
       .catch(error => { })
   },
   [GET_GRABBING_PARKING_LOTS] ({ commit }, payload) {
-    axios.get(`/employee/${payload.employeeId}/parking-lots`)
+    axios.get(`/employees/${payload.employeeId}/parking-lots`)
       .then(response => { commit(GET_GRABBING_PARKING_LOTS, response.data) })
       .catch(error => { })
   },
@@ -31,20 +38,24 @@ const actions = {
         .catch(error => reject(error))
     })
   },
-  [GET_PARKING_BOY_ORDERS] ({ commit }) {
-    let result = []
+  [UPDATE_CUSTOMER_ORDER] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.get('/orders', { params: { status: 2 } })
+      axios.put(`/orders/${payload.id}`, payload.order)
         .then(response => {
-          result = response.data.data
-          commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: response.data.data })
-          axios.get('/orders', { params: { status: 3 } })
-            .then(response => {
-              result.push(...response.data.data)
-              commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: result })
-              resolve(response)
-            })
-            .catch(error => { reject(error) })
+          commit(UPDATE_CUSTOMER_ORDER, { order: response.data.data })
+          resolve(response)
+        })
+        .catch(error => reject(error))
+    })
+  },
+  [GET_PARKING_BOY_ORDERS] ({ commit }) {
+    return new Promise((resolve, reject) => {
+      requestOrders('reservationTime', 'desc')
+        .then(response => {
+          let orders = response.data.data
+          orders = orders.filter(o => o.status !== 1)
+          commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: orders })
+          resolve(response)
         })
         .catch(error => { reject(error) })
     })
@@ -52,11 +63,19 @@ const actions = {
   [UPDATE_PARKING_BOY_ORDER] ({ commit }, payload) {
     axios.put(`/orders/${payload.id}`, payload.order)
       .then(response => { commit(UPDATE_PARKING_BOY_ORDER, { order: response.data.data }) })
+      .catch(error => {})
   },
-  [GET_LOGIN_INFO] ({ commit }, employeeLoginInfo) {
+  [GET_CUSTOMER_ORDERS] ({ commit }) {
+    requestOrders('reservationTime', 'desc')
+      .then(response => {
+        commit(GET_CUSTOMER_ORDERS, response.data.data)
+      })
+      .catch(error => { reject(error) })
+  },
+  [GET_LOGIN_INFO] ({ commit }, payload) {
     const data = {
-      mail: employeeLoginInfo.email,
-      password: employeeLoginInfo.password
+      mail: payload.email,
+      password: payload.password
     }
     return axios.post('/login', data)
   },
@@ -68,6 +87,32 @@ const actions = {
       .catch(function (error) {
         console.log(error)
       })
+  [GET_EMPLOYEES_LIST] ({ commit }, payload) {
+    if (payload !== undefined) {
+      axios.get('/employees', { params: { page: payload.page } })
+        .then(response => {
+          commit(GET_EMPLOYEES_LIST, response.data.data)
+        })
+        .catch(error => {})
+    } else {
+      axios.get('/employees')
+        .then(response => {
+          commit(GET_EMPLOYEES_LIST, response.data.data)
+        })
+        .catch(error => {})
+    }
+  },
+  [CREATE_EMPLOYEE] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios.post('/employees', payload.employee)
+        .then(response => {
+          // commit(CREATE_EMPLOYEE, response.data.data)
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
 
