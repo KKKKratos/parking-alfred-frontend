@@ -3,19 +3,23 @@ import {
   GET_GRABBING_PARKING_LOTS,
   UPDATE_GRABBING_ORDER,
   GET_PARKING_BOY_ORDERS,
-  UPDATE_PARKING_BOY_ORDER } from './const-types'
+  UPDATE_PARKING_BOY_ORDER,
+  GET_LOGIN_INFO,
+  ADD_LIST
+} from './const-types'
 import axios from '../api/config'
+
 // import { resolveCname } from 'dns';
 const actions = {
   [GET_GRABBING_ORDERS] ({ commit }) {
     axios.get('/orders', { params: { status: 1 } })
       .then(response => commit(GET_GRABBING_ORDERS, response.data))
-      .catch(error => {})
+      .catch(error => { })
   },
   [GET_GRABBING_PARKING_LOTS] ({ commit }, payload) {
     axios.get(`/employee/${payload.employeeId}/parking-lots`)
       .then(response => { commit(GET_GRABBING_PARKING_LOTS, response.data) })
-      .catch(error => {})
+      .catch(error => { })
   },
   [UPDATE_GRABBING_ORDER] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
@@ -49,12 +53,21 @@ const actions = {
     axios.put(`/orders/${payload.id}`, payload.order)
       .then(response => { commit(UPDATE_PARKING_BOY_ORDER, { order: response.data.data }) })
   },
-  getLoginInfo ({ commit }, employeeLoginInfo) {
+  [GET_LOGIN_INFO] ({ commit }, employeeLoginInfo) {
     const data = {
       mail: employeeLoginInfo.email,
       password: employeeLoginInfo.password
     }
     return axios.post('/login', data)
+  },
+  [ADD_LIST]: ({ commit }) => {
+    axios.get('/parking-lots')
+      .then(response => {
+        commit(ADD_LIST, response.data.data.parkingLots)
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 }
 

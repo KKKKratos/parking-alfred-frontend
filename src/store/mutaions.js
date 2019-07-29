@@ -9,7 +9,8 @@ import {
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
   LOGIN_RESPONSE,
-  SAVE_TOKEN
+  SAVE_TOKEN,
+  ADD_LIST
 } from './const-types'
 
 const mutations = {
@@ -68,6 +69,9 @@ const mutations = {
   },
   [SAVE_TOKEN] (state, payload) {
     state.token = payload
+  },
+  [ADD_LIST] (state, items) {
+    state.tableData.push(...items)
   }
 }
 

@@ -6,7 +6,8 @@ const state = {
   grabbingParkingLots: [],
   parkingBoyOrders: [],
   token: '',
-  loginResponse: ' '
+  loginResponse: ' ',
+  tableData: []
 }
 
 export default state

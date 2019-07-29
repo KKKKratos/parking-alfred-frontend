@@ -6,8 +6,8 @@
       </div>
     </div>
   </div>
-
 </template>
+
 
 <script>
 import CustomerOrderCard from '../../components/common/CustomerOrderCard'

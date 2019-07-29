@@ -1,28 +1,17 @@
 <template>
-  <el-table
-    :data="tableData"
-    stripe
-    border
-    style="width: 100%">
-    <el-table-column
-      prop="date"
-      label="日期"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="name"
-      label="姓名"
-      width="180">
-    </el-table-column>
-    <el-table-column
-      prop="address"
-      label="地址">
-    </el-table-column>
-  </el-table>
+  <div id="parkinglotItem">
+    <ParkingLotDisplayTable></ParkingLotDisplayTable>
+  </div>
 </template>
 
 <script>
-export default {
-    
-}
+ import ParkingLotDisplayTable from "../../components/common/ParkingLotDisplayTable"; 
+ import {ADD_LIST} from '../../store/const-types'
+ export default {
+   name: 'ParkingLotManager',
+   components: { ParkingLotDisplayTable },
+   mounted () {
+     this.$store.dispatch(ADD_LIST)
+   }
+ };
 </script>
