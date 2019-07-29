@@ -3,11 +3,11 @@
     <div style="float: left; margin-left: 20px; width: 80%">
       <h2 style="margin: 0; ">Parking Lot Manage System</h2>
     </div>
-    <div style="float: left; width: 15%; margin-top: 10px; height: 100%; text-align: -webkit-center">
+    <div style="float: right; width: 15%; margin-top: 10px; height: 100%; text-align: left">
       <div style="float: left; margin-right: 10px">
         <el-avatar :size="40" :src="circleUrl"></el-avatar>
       </div>
-      sadasdasdsda
+      {{$store.state.loginResponse.name}}
     </div>
   </div>
 </template>

@@ -15,14 +15,18 @@
 </template>
 
 <script>
+import { CHANGE_WEB_ACTIVE_MENU_ITEM } from '../../store/const-types'
 import WebHeader from '../../components/header/WebHeader'
 import ManageSystemHomeMenu from '../../components/common/ManageSystemHomeMenu'
 export default {
   name: 'Home',
-  components: {WebHeader, ManageSystemHomeMenu },
+  components: { WebHeader, ManageSystemHomeMenu },
   data: function () {
     return {
     }
+  },
+  mounted () {
+    this.$store.commit(CHANGE_WEB_ACTIVE_MENU_ITEM, { webActiveMenuItem: 'employees-management' })
   }
 }
 </script>

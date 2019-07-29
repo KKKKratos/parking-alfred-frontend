@@ -52,7 +52,7 @@ export default {
     }
   },
   methods: {
-    clickGrabOrderTab () {
+    clickCreateOrderTab () {
       this.$router.push('/grabbing-order')
       this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: DEFAULT_MOBILE_BOY_TAB_ITEM })
     },

@@ -15,7 +15,8 @@
           <el-date-picker
             v-model="order.reservationTime"
             type="datetime"
-            placeholder="选择日期时间">
+            placeholder="选择日期时间"
+            style="width: 100%">
           </el-date-picker>
         </el-form-item>
       </el-form>
@@ -26,7 +27,8 @@
 
 <script>
 import { createOrder } from '../../api/order'
-
+import { CHANGE_MOBILE_TAB_ITEM } from '../../store/const-types'
+import { MOBILE_TAB_ITEM_ORDER } from '../../config/const-values'
 export default {
   name: 'CreatingOrder',
   data () {
@@ -43,13 +45,14 @@ export default {
   methods: {
     clickReservation () {
       this.loding = true
-      const data = { 
-        ...this.order, 
+      const data = {
+        ...this.order,
         reservationTime: new Date(this.order.reservationTime).getTime()
       }
       createOrder(data).then(response => {
         this.$message.success('预约成功')
         this.$router.push('/customer-orders')
+        this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
       }).catch(response => {
         this.$message.error('预约失败')
       })
