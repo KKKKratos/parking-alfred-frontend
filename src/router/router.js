@@ -10,6 +10,7 @@ import OrderDetails from '../page/mobilePage/ParkingBoyOrderDetails'
 import CustomerOrders from '../page/mobilePage/CustomerOrders'
 import CustomerInfo from '../page/mobilePage/CustomerInformation'
 import RoleLogin from '../page/RoleLogin'
+import ParkingLotManager from '../page/webPage/ParkingLotManager'
 
 Vue.use(VueRouter)
 
@@ -28,7 +29,8 @@ const routes = [
     ]
   },
   { path: '/web-home', name: 'web-home', component: WebHome },
-  { path: '/role-login', name: 'role-login', component: RoleLogin }
+  { path: '/role-login', name: 'role-login', component: RoleLogin },
+  { path: '/parking-lot-manager', name: 'parking-lot-manager', component: ParkingLotManager }
 ]
 
 const router = new VueRouter({

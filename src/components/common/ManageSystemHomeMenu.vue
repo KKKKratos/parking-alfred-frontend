@@ -7,7 +7,7 @@
         </el-menu-item>
         <el-menu-item index="parkingLotsManage">
           <i class="el-icon-s-management"></i>
-          <span slot="title">停车场管理</span>
+          <span slot="title" >停车场管理</span>
         </el-menu-item>
         <el-menu-item index="parkingBoysManage">
           <i class="el-icon-s-management"></i>
@@ -35,7 +35,7 @@ export default {
   },
   methods: {
     selectMenuItem (index, indexPath) {
-
+       
     }
   }
 }
