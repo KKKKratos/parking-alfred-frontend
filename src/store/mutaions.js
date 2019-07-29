@@ -15,7 +15,8 @@ import {
   SET_TARGET_ORDER_STATUS,
   LOGIN_RESPONSE,
   SAVE_TOKEN,
-  ADD_LIST
+  ADD_LIST,
+  UPDATE_CUSTOMER_ORDER
 } from './const-types'
 import { employeeEnums } from '../config/util'
 
@@ -107,8 +108,6 @@ const mutations = {
   },
   [GET_CUSTOMER_ORDERS] (state, orders) {
     const toDisplayTime = time => {
-  [ADD_LIST] (state, items) {
-    state.tableData.push(...items)
       const date = new Date()
       date.setTime(time)
       return date.toLocaleString()
@@ -123,6 +122,9 @@ const mutations = {
     }))
     state.customerOrders.splice(0)
     state.customerOrders.push(...result)
+  },
+  [ADD_LIST] (state, items) {
+    state.tableData.push(...items)
   }
 }
 

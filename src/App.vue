@@ -8,7 +8,7 @@
 export default {
   name: "app",
   mounted() {
-    this.$router.push({ path: "role-login" });  
+    this.$router.push({ path: "/role-login" });  
   }
 };
 </script>

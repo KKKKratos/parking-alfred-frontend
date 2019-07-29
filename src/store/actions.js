@@ -5,13 +5,11 @@ import {
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
   GET_LOGIN_INFO,
-  ADD_LIST
-} from './const-types'
+  ADD_LIST,
   GET_EMPLOYEES_LIST,
   CREATE_EMPLOYEE,
   GET_CUSTOMER_ORDERS,
-  UPDATE_CUSTOMER_ORDER,
-  GET_LOGIN_INFO
+  UPDATE_CUSTOMER_ORDER
 } from './const-types'
 import axios from '../api/config'
 import { requestOrders } from '../api/order'
@@ -87,6 +85,7 @@ const actions = {
       .catch(function (error) {
         console.log(error)
       })
+    },
   [GET_EMPLOYEES_LIST] ({ commit }, payload) {
     if (payload !== undefined) {
       axios.get('/employees', { params: { page: payload.page } })

@@ -8,8 +8,7 @@ const state = {
   customerOrders: [],
   token: '',
   loginResponse: ' ',
-  tableData: []
-  loginResponse: '',
+  tableData: [],
   webActiveMenuItem: '',
   isOpenCreateEmployeeDialog: false,
   employeesList: [],

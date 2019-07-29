@@ -34,13 +34,13 @@ const routes = [
   { path: '/web-home',
     name: 'web-home',
     component: WebHome,
-  { path: '/role-login', name: 'role-login', component: RoleLogin },
-  { path: '/parking-lot-manager', name: 'parking-lot-manager', component: ParkingLotManager }
     children: [
-      { path: '/employees-management', name: 'employees-management', component: EmployeeManagement }
+      { path: '/employees-management', name: 'employees-management', component: EmployeeManagement },
+      { path: '/parking-lot-manager', name: 'parking-lot-manager', component: ParkingLotManager }
     ],
     redirect: '/employees-management'
   },
+  { path: '/role-login', name: 'role-login', component: RoleLogin }
 ]
 
 const router = new VueRouter({

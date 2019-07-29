@@ -18,4 +18,3 @@ export const CREATE_EMPLOYEE = 'createEmployee'
 export const SAVE_TOKEN = 'saveToken'
 export const ADD_LIST = 'addList'
 export const UPDATE_CUSTOMER_ORDER = 'UPDATE_CUSTOMER_ORDER'
-
