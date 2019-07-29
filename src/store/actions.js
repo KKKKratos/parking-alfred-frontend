@@ -1,12 +1,12 @@
 import {
-  
   GET_GRABBING_ORDERS,
   GET_GRABBING_PARKING_LOTS,
   UPDATE_GRABBING_ORDER,
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
   GET_CUSTOMER_ORDERS,
-  UPDATE_CUSTOMER_ORDER } from './const-types'
+  UPDATE_CUSTOMER_ORDER,
+  GET_LOGIN_INFO } from './const-types'
 import axios from '../api/config'
 import { requestOrders } from '../api/order'
 
@@ -62,10 +62,10 @@ const actions = {
         commit(GET_CUSTOMER_ORDERS, response.data.data) })
         .catch(error => { reject(error) })  
   },
-  getLoginInfo ({ commit }, employeeLoginInfo) {
+  [GET_LOGIN_INFO] ({ commit }, payload) {
     const data = {
-      mail: employeeLoginInfo.email,
-      password: employeeLoginInfo.password
+      mail: payload.email,
+      password: payload.password
     }
     return axios.post('/login', data)
   }
