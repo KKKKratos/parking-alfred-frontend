@@ -11,7 +11,8 @@ import {
   GET_CUSTOMER_ORDERS,
   SET_TARGET_ORDER_STATUS,
   LOGIN_RESPONSE,
-  SAVE_TOKEN
+  SAVE_TOKEN,
+  UPDATE_CUSTOMER_ORDER
 } from './const-types'
 
 const mutations = {
@@ -54,6 +55,10 @@ const mutations = {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.grabbingOrders.splice(index, 1)
   },
+  [UPDATE_CUSTOMER_ORDER] (state, payload) {
+    const index = state.customerOrders.findIndex(value => value.id === payload.order.id)
+    state.customerOrders[index].status = 3
+  },
   [UPDATE_TARGET_ORDER] (state, payload) {
     if(payload != null){
       state.targetOrder.parkingLot = payload.parkingLot
@@ -74,6 +79,9 @@ const mutations = {
   },
   [SET_TARGET_ORDER_STATUS] (state, payload) {
     state.targetOrder.status = payload
+    const date = new Date()
+    date.setTime(state.targetOrder.reservationTime)
+    state.targetOrder.reservationTime = date.getTime()
   },
   [LOGIN_RESPONSE] (state, payload) {
     state.loginResponse = payload

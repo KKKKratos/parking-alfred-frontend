@@ -18,7 +18,7 @@
 </template>
 <script>
 import { PARK_CAR_ORDER, FETCH_CAR_ORDER, WAIT_FOR_RECEIVE, WAIT_FOR_CONFIRM, CONFIRM, WAIT_FOR_USER_CONFIRM, UNDEFINED_STATUS} from '../../config/const-values'
-import { SET_TARGET_ORDER_STATUS ,UPDATE_GRABBING_ORDER} from '../../store/const-types'
+import { SET_TARGET_ORDER_STATUS ,UPDATE_GRABBING_ORDER, UPDATE_CUSTOMER_ORDER, GET_CUSTOMER_ORDERS} from '../../store/const-types'
 export default {
   name: 'CustomerOderDetails',
   data: function () {
@@ -42,7 +42,7 @@ export default {
             type: 'success'
           })
         this.$store.commit(SET_TARGET_ORDER_STATUS,3)
-        this.$store.dispatch(UPDATE_GRABBING_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
+        this.$store.dispatch(UPDATE_CUSTOMER_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
         this.$router.push('/customer-orders')
     },
     turnToPageCustomerOrders () {
@@ -51,7 +51,7 @@ export default {
   },
   computed:{
     isWaittingForConfirm(){
-      return this.$store.state.targetOrder.status===4
+      return this.$store.state.targetOrder.status === 4 && this.$store.state.targetOrder.type === 2
     }
   }
   

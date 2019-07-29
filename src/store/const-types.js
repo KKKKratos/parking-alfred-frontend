@@ -12,3 +12,5 @@ export const SET_TARGET_ORDER_STATUS = 'setTagetOrderStatus'
 export const GET_LOGIN_INFO = 'getLoginInfo'
 export const LOGIN_RESPONSE = 'login_response'
 export const SAVE_TOKEN = 'saveToken'
+export const UPDATE_CUSTOMER_ORDER = 'UPDATE_CUSTOMER_ORDER'
+
