@@ -8,7 +8,7 @@
 export default {
   name: "app",
   mounted() {
-    this.$router.push({ path: "/parking-lot-manager" });   ///role-login  /parking-lot-manager
+    this.$router.push({ path: "role-login" });  
   }
 };
 </script>
