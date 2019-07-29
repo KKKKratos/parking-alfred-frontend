@@ -9,7 +9,9 @@ import {
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
   GET_CUSTOMER_ORDERS,
-  SET_TARGET_ORDER_STATUS
+  SET_TARGET_ORDER_STATUS,
+  LOGIN_RESPONSE,
+  SAVE_TOKEN
 } from './const-types'
 
 const mutations = {
@@ -26,6 +28,12 @@ const mutations = {
       return date.toLocaleString()
     }
     let result = orders.data.map(order => ({
+    // let result = orders.data.map(order => ({
+    //   carNumber: order.carNumber,
+    //   customerAddress: order.customerAddress,
+    //   reservationTime: order.reservationTime,
+    //   type: order.type
+    // }))
       id: order.id,
       carNumber: order.carNumber,
       customerAddress: order.customerAddress,
@@ -47,7 +55,14 @@ const mutations = {
     state.grabbingOrders.splice(index, 1)
   },
   [UPDATE_TARGET_ORDER] (state, payload) {
-    state.targetOrder.parkingLot = payload.parkingLot
+    if(payload != null){
+      state.targetOrder.parkingLot = payload.parkingLot
+      const date = new Date()
+      date.setTime(payload.reservationTime)
+      state.targetOrder.reservationTime = date.getTime()
+    }
+    const date = new Date()
+    state.targetOrder.reservationTime = date.getTime()
     state.targetOrder.status = 2
   },
   [GET_PARKING_BOY_ORDERS] (state, payload) {
@@ -59,6 +74,12 @@ const mutations = {
   },
   [SET_TARGET_ORDER_STATUS] (state, payload) {
     state.targetOrder.status = payload
+  },
+  [LOGIN_RESPONSE] (state, payload) {
+    state.loginResponse = payload
+  },
+  [SAVE_TOKEN] (state, payload) {
+    state.token = payload
   },
   [GET_CUSTOMER_ORDERS](state,orders){
     const toDisplayTime = time => {

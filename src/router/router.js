@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Login from '../page/Login'
 import MobileHome from '../page/mobilePage/Home'
 import WebHome from '../page/webPage/Home'
 import ParkingBodyOrders from '../page/mobilePage/ParkingBodyOrders'
@@ -10,20 +9,19 @@ import ParkingLotList from '../page/mobilePage/ParkingLotList'
 import OrderDetails from '../page/mobilePage/ParkingBoyOrderDetails'
 import CustomerOrders from '../page/mobilePage/CustomerOrders'
 import CustomerInfo from '../page/mobilePage/CustomerInformation'
-import RoleLogin from '../components/RoleLogin'
+import RoleLogin from '../page/RoleLogin'
 import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/login', name: 'login', component: Login },
   { path: '/mobile-home',
     name: 'mobile-home',
     component: MobileHome,
     children: [
       { path: '/parking-boy-orders', name: 'parking-boy-orders', component: ParkingBodyOrders },
-      { path: '/created-order', name: 'created-order', component: CreatingOrder },
-      { path: '/grabbed-order', name: 'grabbed-order', component: GrabbingOrder },
+      { path: '/creating-order', name: 'creating-order', component: CreatingOrder },
+      { path: '/grabbing-order', name: 'grabbing-order', component: GrabbingOrder },
       { path: '/parking-lot', name: 'parking-lot', component: ParkingLotList },
       { path: '/order-details', name: 'order-details', component: OrderDetails },
       { path: '/customer-orders', name: 'customer-orders', component: CustomerOrders },
@@ -32,7 +30,7 @@ const routes = [
     ]
   },
   { path: '/web-home', name: 'web-home', component: WebHome },
-  { path: '/role-login/:selectedRole', name: 'role-login', component: RoleLogin }
+  { path: '/role-login', name: 'role-login', component: RoleLogin }
 ]
 
 const router = new VueRouter({

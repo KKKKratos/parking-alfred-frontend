@@ -42,7 +42,7 @@ export default {
       this.$store.dispatch(UPDATE_GRABBING_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
         .then(() => {
           this.$message({
-            message: '预约成功',
+            message: '抢单成功',
             type: 'success'
           })
           this.$store.dispatch(GET_PARKING_BOY_ORDERS)

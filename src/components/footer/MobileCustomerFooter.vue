@@ -36,7 +36,7 @@ export default {
   watch: {
     selectedId: function (newValue, oldValue) {
       if (newValue === DEFAULT_MOBILE_CUSTOMER_TAB_ITEM) {
-        this.$router.push('/created-order')
+        this.$router.push('/creating-order')
       } else if (newValue === MOBILE_TAB_ITEM_ORDER) {
         this.$router.push('/customer-orders')
       } else if (newValue === MOBILE_TAB_ITEM_MY_INFO) {
@@ -46,7 +46,7 @@ export default {
     }
   },
   mounted () {
-    this.$router.push('/created-order')
+    this.$router.push('/creating-order')
     this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: DEFAULT_MOBILE_CUSTOMER_TAB_ITEM })
   }
 }
