@@ -53,7 +53,7 @@ export default {
   },
   methods: {
     clickGrabOrderTab () {
-      this.$router.push('/grabbed-order')
+      this.$router.push('/grabbing-order')
       this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: DEFAULT_MOBILE_BOY_TAB_ITEM })
     },
     clickOrderTab () {
@@ -66,7 +66,7 @@ export default {
     }
   },
   mounted () {
-    this.$router.push('/grabbed-order')
+    this.$router.push('/grabbing-order')
     this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: DEFAULT_MOBILE_BOY_TAB_ITEM })
   }
 }

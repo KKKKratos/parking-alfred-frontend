@@ -5,7 +5,10 @@ import {
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
   GET_EMPLOYEES_LIST,
-  CREATE_EMPLOYEE
+  CREATE_EMPLOYEE,
+  GET_CUSTOMER_ORDERS,
+  UPDATE_CUSTOMER_ORDER,
+  GET_LOGIN_INFO
 } from './const-types'
 import axios from '../api/config'
 // import { resolveCname } from 'dns';
@@ -30,6 +33,16 @@ const actions = {
         .catch(error => reject(error))
     })
   },
+  [UPDATE_CUSTOMER_ORDER] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios.put(`/orders/${payload.id}`, payload.order)
+        .then(response => {
+          commit(UPDATE_CUSTOMER_ORDER, { order: response.data.data })
+          resolve(response)
+        })
+        .catch(error => reject(error))
+    })
+  },
   [GET_PARKING_BOY_ORDERS] ({ commit }) {
     let result = []
     return new Promise((resolve, reject) => {
@@ -37,10 +50,20 @@ const actions = {
         .then(response => {
           result = response.data.data
           commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: response.data.data })
+
           axios.get('/orders', { params: { status: 3 } })
             .then(response => {
               result.push(...response.data.data)
               commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: result })
+
+              axios.get('/orders', { params: { status: 4 } })
+                .then(response => {
+                  result.push(...response.data.data)
+                  commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: result })
+                  resolve(response)
+                })
+                .catch(error => { reject(error) })
+
               resolve(response)
             })
             .catch(error => { reject(error) })
@@ -53,16 +76,19 @@ const actions = {
       .then(response => { commit(UPDATE_PARKING_BOY_ORDER, { order: response.data.data }) })
       .catch(error => {})
   },
-  getLoginInfo ({ commit }, employeeLoginInfo) {
+  [GET_CUSTOMER_ORDERS] ({ commit }) {
+    axios.get(`/orders`)
+      .then(response => {
+        commit(GET_CUSTOMER_ORDERS, response.data.data)
+      })
+      .catch(error => { reject(error) })
+  },
+  [GET_LOGIN_INFO] ({ commit }, employeeLoginInfo) {
     const data = {
-      name: employeeLoginInfo.name,
+      mail: employeeLoginInfo.email,
       password: employeeLoginInfo.password
     }
-    return new Promise((resolve, reject) => {
-      axios.post('/login', data)
-        .then(response => resolve(response))
-        .catch(error => reject(error))
-    })
+    return axios.post('/login', data)
   },
   [GET_EMPLOYEES_LIST] ({ commit }, payload) {
     if (payload !== undefined) {

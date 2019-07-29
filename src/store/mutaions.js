@@ -10,7 +10,12 @@ import {
   UPDATE_PARKING_BOY_ORDER,
   CHANGE_WEB_ACTIVE_MENU_ITEM,
   GET_EMPLOYEES_LIST,
-  OPEN_CREATING_DIALOG
+  OPEN_CREATING_DIALOG,
+  GET_CUSTOMER_ORDERS,
+  SET_TARGET_ORDER_STATUS,
+  LOGIN_RESPONSE,
+  SAVE_TOKEN,
+  UPDATE_CUSTOMER_ORDER
 } from './const-types'
 import { employeeEnums } from '../config/util'
 
@@ -48,8 +53,19 @@ const mutations = {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.grabbingOrders.splice(index, 1)
   },
+  [UPDATE_CUSTOMER_ORDER] (state, payload) {
+    const index = state.customerOrders.findIndex(value => value.id === payload.order.id)
+    state.customerOrders[index].status = 3
+  },
   [UPDATE_TARGET_ORDER] (state, payload) {
-    state.targetOrder.parkingLot = payload.parkingLot
+    if(payload != null){
+      state.targetOrder.parkingLot = payload.parkingLot
+      const date = new Date()
+      date.setTime(payload.reservationTime)
+      state.targetOrder.reservationTime = date.getTime()
+    }
+    const date = new Date()
+    state.targetOrder.reservationTime = date.getTime()
     state.targetOrder.status = 2
   },
   [GET_PARKING_BOY_ORDERS] (state, payload) {
@@ -76,6 +92,35 @@ const mutations = {
   },
   [OPEN_CREATING_DIALOG]  (state) {
     state.isOpenCreateEmployeeDialog = !state.isOpenCreateEmployeeDialog
+  },
+  [SET_TARGET_ORDER_STATUS] (state, payload) {
+    state.targetOrder.status = payload
+    const date = new Date()
+    date.setTime(state.targetOrder.reservationTime)
+    state.targetOrder.reservationTime = date.getTime()
+  },
+  [LOGIN_RESPONSE] (state, payload) {
+    state.loginResponse = payload
+  },
+  [SAVE_TOKEN] (state, payload) {
+    state.token = payload
+  },
+  [GET_CUSTOMER_ORDERS] (state, orders) {
+    const toDisplayTime = time => {
+      const date = new Date()
+      date.setTime(time)
+      return date.toLocaleString()
+    }
+    let result = orders.map(order => ({
+      id: order.id,
+      carNumber: order.carNumber,
+      customerAddress: order.customerAddress,
+      reservationTime: toDisplayTime(order.reservationTime),
+      status: order.status,
+      type: order.type
+    }))
+    state.customerOrders.splice(0)
+    state.customerOrders.push(...result)
   }
 }
 
