@@ -61,6 +61,7 @@ export default {
     clickCreatedSuccess () {
       this.$store.dispatch(CREATE_EMPLOYEE, { employee: this.creatingEmployeeForm })
         .then(response => {
+          this.$store.commit(OPEN_CREATING_DIALOG)
           this.$message.success('创建成功')
         })
         .catch(error => {

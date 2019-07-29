@@ -28,11 +28,9 @@ export default {
     },
     addressWithTIme() {
       const time = new Date(
-        this.$store.state.parkingBoyOrders[this.index].reservationTime * 1000
+        this.$store.state.parkingBoyOrders[this.index].reservationTime
       );
-      return `(${
-        this.$store.state.parkingBoyOrders[this.index].customerAddress
-      })${time.getHours()}:${time.getMinutes()}`;
+      return `(${this.$store.state.parkingBoyOrders[this.index].customerAddress})\t${time.toLocaleString()}`;
     }
   },
   methods: {
