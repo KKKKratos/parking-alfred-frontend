@@ -7,7 +7,7 @@
       <div style="float: left; margin-right: 10px">
         <el-avatar :size="40" :src="circleUrl"></el-avatar>
       </div>
-      sadasdasdsda
+      {{$store.state.loginResponse.name}}
     </div>
   </div>
 </template>

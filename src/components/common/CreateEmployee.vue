@@ -32,7 +32,7 @@
 
 <script>
 import { MANAGER, PARKING_BOY, ADMIN, CUSTOMER } from '../../config/const-values'
-import { OPEN_CREATING_DIALOG, CREATE_EMPLOYEE } from '../../store/const-types'
+import { OPEN_CREATING_DIALOG, CREATE_EMPLOYEE, GET_EMPLOYEES_LIST } from '../../store/const-types'
 export default {
   name: 'CreateEmployee',
   data () {
@@ -62,6 +62,10 @@ export default {
       this.$store.dispatch(CREATE_EMPLOYEE, { employee: this.creatingEmployeeForm })
         .then(response => {
           this.$store.commit(OPEN_CREATING_DIALOG)
+          this.creatingEmployeeForm.name = ''
+          this.creatingEmployeeForm.mail = ''
+          this.creatingEmployeeForm.telephone = ''
+          this.$store.dispatch(GET_EMPLOYEES_LIST)
           this.$message.success('创建成功')
         })
         .catch(error => {
