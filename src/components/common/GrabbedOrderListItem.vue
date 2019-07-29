@@ -3,32 +3,37 @@
     <div class="img-div" >
       <img slot="icon" src="../../assets/img/car.png" width="40" height="40" />
     </div>
-    <div class="text-div">
-      <mt-cell :title=carNumber :label="reservationTime" is-link>
+    <div class="text-div" @click="clickGrabItem">
+      <mt-cell :title=carNumber :label="orderType" is-link>
           
         <span>详情</span>
       </mt-cell>
     </div>
   </div>
-</template>  
+</template>
 
 <script>
+import { GET_TARGET_ORDER } from '../../store/const-types'
+import { PARK_CAR_ORDER, FETCH_CAR_ORDER } from '../../config/const-values'
 export default {
   name: 'GrabbedOrderListItem',
   methods: {
     turnToPageOrderDetail () {
-      this.$router.push("/order-details")
+      this.$router.push('/order-details')
+    },
+    clickGrabItem () {
+      this.$store.commit(GET_TARGET_ORDER, { targetOrder: this.grabbingOrder })
     }
   },
-  props:{
-    grabbingOrder:Object,
+  props: {
+    grabbingOrder: Object
   },
   computed: {
-    carNumber(){
+    carNumber () {
       return `${this.grabbingOrder.carNumber}`
     },
-    reservationTime() {
-      return `${this.grabbingOrder.reservationTime}`
+    orderType () {
+      return `订单类型：${this.grabbingOrder.type === 1 ? PARK_CAR_ORDER : FETCH_CAR_ORDER}`
     }
   }
 }

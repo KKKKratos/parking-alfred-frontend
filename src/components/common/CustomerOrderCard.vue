@@ -18,7 +18,6 @@ export default {
   name: 'CustomerOrderCard',
   methods: {
     clickDetailed () {
-      console.log('detailed')
     }
   }
 }
