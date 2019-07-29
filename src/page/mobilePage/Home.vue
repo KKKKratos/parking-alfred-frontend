@@ -2,7 +2,7 @@
   <div class="home-main-div">
     <MobileHeader></MobileHeader>
     <router-view></router-view>
-    <MobileParkingBoyFooter v-if="$store.state.roleSelected === 'parkingBoy'"></MobileParkingBoyFooter>
+    <MobileParkingBoyFooter v-if="$store.state.roleSelected === 1"></MobileParkingBoyFooter>
     <MobileCustomerFooter v-else></MobileCustomerFooter>
   </div>
 </template>

@@ -62,14 +62,10 @@ const actions = {
   },
   getLoginInfo ({ commit }, employeeLoginInfo) {
     const data = {
-      name: employeeLoginInfo.name,
+      mail: employeeLoginInfo.email,
       password: employeeLoginInfo.password
     }
-    return new Promise((resolve, reject) => {
-      axios.post('/login', data)
-        .then(response => resolve(response))
-        .catch(error => reject(error))
-    })
+    return axios.post('/login', data)
   }
 }
 

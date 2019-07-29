@@ -53,7 +53,7 @@ export default {
       }
     },
     turnToPageGrabbingOrder () {
-      this.$router.push('/grabbed-order')
+      this.$router.push('/grabbing-order')
     }
   }
 }
