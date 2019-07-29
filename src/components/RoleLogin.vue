@@ -1,15 +1,16 @@
 <template>
   <div id="login" style="margin-top:200px">
     <div style="margin: 20px;"></div>
+    
     <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
       <el-form-item label="用户名">
         <el-input v-model="formLabelAlign.name" placeholder="请输入用户名"></el-input>
       </el-form-item>
       <el-form-item label="密码">
-        <el-input v-model="formLabelAlign.password" placeholder="请输入密码"></el-input>
+        <el-input v-model="formLabelAlign.password" placeholder="请输入密码" show-password ></el-input>
       </el-form-item>
     </el-form>
-    <el-button type="info" @click="clickLogin">登录</el-button>
+    <el-button type="primary" @click="clickLogin">Login</el-button>
   </div>
 </template>
 
@@ -39,7 +40,7 @@ export default {
               this.$router.push("/web-home");
             }
           }
-        });
+        }); 
     }
   }
 };
