@@ -45,7 +45,14 @@ const mutations = {
     state.grabbingOrders.splice(index, 1)
   },
   [UPDATE_TARGET_ORDER] (state, payload) {
-    state.targetOrder.parkingLot = payload.parkingLot
+    if(payload != null){
+      state.targetOrder.parkingLot = payload.parkingLot
+      const date = new Date()
+      date.setTime(payload.reservationTime)
+      state.targetOrder.reservationTime = date.getTime()
+    }
+    const date = new Date()
+    state.targetOrder.reservationTime = date.getTime()
     state.targetOrder.status = 2
   },
   [GET_PARKING_BOY_ORDERS] (state, payload) {
