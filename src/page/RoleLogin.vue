@@ -45,7 +45,7 @@ export default {
       } else {
         const self = this;
         this.$store
-          .dispatch("getLoginInfo", this.formLabelAlign)
+          .dispatch("getLoginInfo", { ...this.formLabelAlign })
           .then(response => {
             self.$store.commit("saveToken", response.data.data);
             return getSelfEmployee()
@@ -53,9 +53,7 @@ export default {
           .then(response => {
             self.$store.commit(SELECT_ROLE,{roleSelected:response.data.data.role})
             self.$store.commit(LOGIN_RESPONSE,response.data.data)      
-            // const role = response.data.data.role;
             const role = this.$store.state.loginResponse.role
-            console.log(response)
             if (role === 1) {
               self.$router.push("/grabbing-order");
             } else if (role === 2 || role == 3) {
@@ -65,7 +63,6 @@ export default {
             }
           })
           .catch(error => {
-            console.log(error)
             MessageBox.alert("登录失败", "提示信息");
           });
       }
