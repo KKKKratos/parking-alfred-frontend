@@ -34,10 +34,21 @@ const actions = {
         .then(response => {
           result = response.data.data
           commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: response.data.data })
+          
           axios.get('/orders', { params: { status: 3 } })
             .then(response => {
               result.push(...response.data.data)
               commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: result })
+
+              axios.get('/orders', { params: { status: 4 } })
+                .then(response => {
+                  result.push(...response.data.data)
+                  commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: result })
+                  resolve(response)
+                })
+                .catch(error => { reject(error) })
+
+
               resolve(response)
             })
             .catch(error => { reject(error) })
