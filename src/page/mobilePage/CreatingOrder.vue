@@ -1,22 +1,22 @@
 <template>
     <div class="creating-body-div">
-      <el-form label-position="right" label-width="100px" :model="formLabelAlign">
+      <el-form label-position="right" label-width="100px" :model="order" v-loading="loding">
         <el-form-item label="预约类型：">
-          <el-radio v-model="formLabelAlign.selectedRadio" label="park">停车</el-radio>
-          <el-radio v-model="formLabelAlign.selectedRadio" label="fetch">取车</el-radio>
+          <el-radio v-model="order.type" label="1">停车</el-radio>
+          <el-radio v-model="order.type" label="2">取车</el-radio>
         </el-form-item>
         <el-form-item label="车 牌 号：">
-            <el-input v-model="formLabelAlign.name" placeholder="例如：粤C3451K"></el-input>
+            <el-input v-model="order.carNumber" placeholder="例如：粤C3451K"></el-input>
         </el-form-item>
         <el-form-item label="用户地址：">
-            <el-input v-model="formLabelAlign.region" placeholder="例如：香洲区红星路5号"></el-input>
+            <el-input v-model="order.customerAddress" placeholder="例如：香洲区红星路5号"></el-input>
         </el-form-item>
         <el-form-item label="预约时间：">
-          <el-time-select
-            v-model="formLabelAlign.time"
-            :picker-options="{start: '08:00', step: '00:30', end: '22:00'}"
-            placeholder="选择时间">
-          </el-time-select>
+          <el-date-picker
+            v-model="order.reservationTime"
+            type="datetime"
+            placeholder="选择日期时间">
+          </el-date-picker>
         </el-form-item>
       </el-form>
       <el-button type="primary" @click="clickReservation">提交预约</el-button>
@@ -25,31 +25,41 @@
 </template>
 
 <script>
+import { createOrder } from '../../api/order'
+
 export default {
-  name: 'CreatedOrder',
+  name: 'CreatingOrder',
   data () {
     return {
-      formLabelAlign: {
-        selectedRadio: '',
-        name: '',
-        region: '',
-        time: ''
+      loding: false,
+      order: {
+        type: '',
+        carNumber: '',
+        customerAddress: '',
+        reservationTime: ''
       }
     }
   },
   methods: {
     clickReservation () {
-      this.$message({
-        message: '预约成功',
-        type: 'success'
+      this.loding = true
+      const data = { 
+        ...this.order, 
+        reservationTime: new Date(this.order.reservationTime).getTime()
+      }
+      createOrder(data).then(response => {
+        this.$message.success('预约成功')
+        this.$router.push('/customer-orders')
+      }).catch(response => {
+        this.$message.error('预约失败')
       })
-      this.$router.push('/customer-orders')
+      this.loding = false
     },
     clickReset () {
-      this.formLabelAlign.selectedRadio = ''
-      this.formLabelAlign.name = ''
-      this.formLabelAlign.region = ''
-      this.formLabelAlign.time = ''
+      this.order.type = ''
+      this.order.carNumber = ''
+      this.order.customerAddress = ''
+      this.order.reservationTime = ''
     }
   }
 }

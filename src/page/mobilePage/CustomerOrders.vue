@@ -1,8 +1,8 @@
 <template>
   <div class="orders-div">
     <div :style="{height: fullHeight + 'px'}">
-      <div v-for="n in 4" :key="n">
-        <CustomerOrderCard></CustomerOrderCard>
+      <div v-for="item in $store.state.customerOrders" :key="item.id">
+        <CustomerOrderCard :customerOrder="item"></CustomerOrderCard>
       </div>
     </div>
   </div>
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import { GET_CUSTOMER_ORDERS } from '../../store/const-types'
 import CustomerOrderCard from '../../components/common/CustomerOrderCard'
 export default {
   name: 'CustomerOrders',
@@ -24,7 +25,7 @@ export default {
     }
   },
   mounted () {
-    console.log(this.fullHeight)
+    this.$store.dispatch(GET_CUSTOMER_ORDERS)
   }
 }
 </script>
