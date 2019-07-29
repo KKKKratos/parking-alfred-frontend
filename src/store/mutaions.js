@@ -8,12 +8,16 @@ import {
   UPDATE_TARGET_ORDER,
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
+  CHANGE_WEB_ACTIVE_MENU_ITEM,
+  GET_EMPLOYEES_LIST,
+  OPEN_CREATING_DIALOG,
   GET_CUSTOMER_ORDERS,
   SET_TARGET_ORDER_STATUS,
   LOGIN_RESPONSE,
   SAVE_TOKEN,
   UPDATE_CUSTOMER_ORDER
 } from './const-types'
+import { employeeEnums } from '../config/util'
 
 const mutations = {
   [CHANGE_MOBILE_TAB_ITEM]: function (state, payload) {
@@ -29,12 +33,6 @@ const mutations = {
       return date.toLocaleString()
     }
     let result = orders.data.map(order => ({
-    // let result = orders.data.map(order => ({
-    //   carNumber: order.carNumber,
-    //   customerAddress: order.customerAddress,
-    //   reservationTime: order.reservationTime,
-    //   type: order.type
-    // }))
       id: order.id,
       carNumber: order.carNumber,
       customerAddress: order.customerAddress,
@@ -77,6 +75,24 @@ const mutations = {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.parkingBoyOrders[index] = payload.order
   },
+  [CHANGE_WEB_ACTIVE_MENU_ITEM] (state, payload) {
+    state.webActiveMenuItem = payload.webActiveMenuItem
+  },
+  [GET_EMPLOYEES_LIST] (state, payload) {
+    const employeeList = payload.employees.map(employee => ({
+      id: employee.id,
+      mail: employee.mail,
+      name: employee.name,
+      role: employeeEnums[employee.role - 1],
+      status: employee.status,
+      telephone: employee.telephone
+    }))
+    state.employeesList = employeeList
+    state.totalEmployees = payload.totalCount
+  },
+  [OPEN_CREATING_DIALOG]  (state) {
+    state.isOpenCreateEmployeeDialog = !state.isOpenCreateEmployeeDialog
+  },
   [SET_TARGET_ORDER_STATUS] (state, payload) {
     state.targetOrder.status = payload
     const date = new Date()
@@ -89,7 +105,7 @@ const mutations = {
   [SAVE_TOKEN] (state, payload) {
     state.token = payload
   },
-  [GET_CUSTOMER_ORDERS](state,orders){
+  [GET_CUSTOMER_ORDERS] (state, orders) {
     const toDisplayTime = time => {
       const date = new Date()
       date.setTime(time)
@@ -103,7 +119,7 @@ const mutations = {
       status: order.status,
       type: order.type
     }))
-    state.customerOrders.splice(0);
+    state.customerOrders.splice(0)
     state.customerOrders.push(...result)
   }
 }

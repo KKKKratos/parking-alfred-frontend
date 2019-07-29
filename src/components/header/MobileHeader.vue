@@ -1,10 +1,6 @@
 <template>
   <div class="header-div">
-    <mt-header fixed :title="selectedId" class="header">
-      <router-link to="/login" slot="left">
-        <mt-button icon="back">返回</mt-button>
-      </router-link>
-    </mt-header>
+    <mt-header fixed :title="selectedId" class="header"></mt-header>
   </div>
 </template>
 

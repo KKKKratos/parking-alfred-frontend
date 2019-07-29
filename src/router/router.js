@@ -10,6 +10,7 @@ import OrderDetails from '../page/mobilePage/ParkingBoyOrderDetails'
 import CustomerOrders from '../page/mobilePage/CustomerOrders'
 import CustomerInfo from '../page/mobilePage/CustomerInformation'
 import RoleLogin from '../page/RoleLogin'
+import EmployeeManagement from '../page/webPage/EmployeeManagement'
 import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 
 Vue.use(VueRouter)
@@ -29,7 +30,14 @@ const routes = [
       { path: '/customer-order-details', name: 'customer-order-details', component: CustomerOrderDetails }
     ]
   },
-  { path: '/web-home', name: 'web-home', component: WebHome },
+  { path: '/web-home',
+    name: 'web-home',
+    component: WebHome,
+    children: [
+      { path: '/employees-management', name: 'employees-management', component: EmployeeManagement }
+    ],
+    redirect: '/employees-management'
+  },
   { path: '/role-login', name: 'role-login', component: RoleLogin }
 ]
 

@@ -7,7 +7,11 @@ const state = {
   parkingBoyOrders: [],
   customerOrders: [],
   token: '',
-  loginResponse: ' '
+  loginResponse: '',
+  webActiveMenuItem: '',
+  isOpenCreateEmployeeDialog: false,
+  employeesList: [],
+  totalEmployees: 0
 }
 
 export default state
