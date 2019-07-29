@@ -8,6 +8,8 @@ import {
   GET_CUSTOMER_ORDERS,
   UPDATE_CUSTOMER_ORDER } from './const-types'
 import axios from '../api/config'
+import { requestOrders } from '../api/order'
+
 // import { resolveCname } from 'dns';
 const actions = {
   [GET_GRABBING_ORDERS] ({ commit }) {
@@ -41,30 +43,11 @@ const actions = {
     })
   },
   [GET_PARKING_BOY_ORDERS] ({ commit }) {
-    let result = []
     return new Promise((resolve, reject) => {
-      axios.get('/orders', { params: { status: 2 } })
-        .then(response => {
-          result = response.data.data
-          commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: response.data.data })
-          
-          axios.get('/orders', { params: { status: 3 } })
-            .then(response => {
-              result.push(...response.data.data)
-              commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: result })
-
-              axios.get('/orders', { params: { status: 4 } })
-                .then(response => {
-                  result.push(...response.data.data)
-                  commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: result })
-                  resolve(response)
-                })
-                .catch(error => { reject(error) })
-
-
-              resolve(response)
-            })
-            .catch(error => { reject(error) })
+      requestOrders("reservationTime", "desc").then(response => {
+          let orders = response.data.data
+          orders = orders.filter(o => o.status !== 1)
+          commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: orders })
         })
         .catch(error => { reject(error) })
     })
