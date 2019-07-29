@@ -10,6 +10,7 @@ import OrderDetails from '../page/mobilePage/ParkingBoyOrderDetails'
 import CustomerOrders from '../page/mobilePage/CustomerOrders'
 import CustomerInfo from '../page/mobilePage/CustomerInformation'
 import RoleLogin from '../page/RoleLogin'
+import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 
 Vue.use(VueRouter)
 
@@ -24,7 +25,8 @@ const routes = [
       { path: '/parking-lot', name: 'parking-lot', component: ParkingLotList },
       { path: '/order-details', name: 'order-details', component: OrderDetails },
       { path: '/customer-orders', name: 'customer-orders', component: CustomerOrders },
-      { path: '/customer-info', name: 'customer-info', component: CustomerInfo }
+      { path: '/customer-info', name: 'customer-info', component: CustomerInfo },
+      { path: '/customer-order-details', name: 'customer-order-details', component: CustomerOrderDetails }
     ]
   },
   { path: '/web-home', name: 'web-home', component: WebHome },

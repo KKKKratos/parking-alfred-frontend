@@ -5,6 +5,7 @@ const state = {
   targetOrder: {},
   grabbingParkingLots: [],
   parkingBoyOrders: [],
+  customerOrders: [],
   token: '',
   loginResponse: ' '
 }
