@@ -14,7 +14,7 @@ const mutations = {
       return date.toLocaleString()
     }
     let result = orders.data.map(order => ({
-      carNumber: order.car.carNumber,
+      carNumber: order.carNumber,
       customerAddress: order.customerAddress,
       reservationTime: toDisplayTime(order.reservationTime)
     }))
