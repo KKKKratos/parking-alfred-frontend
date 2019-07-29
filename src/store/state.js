@@ -4,7 +4,8 @@ const state = {
   grabbingOrders: [],
   targetOrder: {},
   grabbingParkingLots: [],
-  parkingBoyOrders: []
+  parkingBoyOrders: [],
+  token: ' '
 }
 
 export default state

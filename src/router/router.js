@@ -15,7 +15,7 @@ import RoleLogin from '../components/RoleLogin'
 Vue.use(VueRouter)
 
 const routes = [
-  { path: '/login', name: 'login', component: Login },
+  // { path: '/login', name: 'login', component: Login },
   { path: '/mobile-home',
     name: 'mobile-home',
     component: MobileHome,
@@ -30,7 +30,7 @@ const routes = [
     ]
   },
   { path: '/web-home', name: 'web-home', component: WebHome },
-  { path: '/role-login/:selectedRole', name: 'role-login', component: RoleLogin }
+  { path: '/role-login', name: 'role-login', component: RoleLogin }
 ]
 
 const router = new VueRouter({
