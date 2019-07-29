@@ -32,7 +32,7 @@ export default {
       this.$router.push('/parking-lot')
     },
     turnToPageGrabbingOrder () {
-      this.$router.push('/grabbed-order')
+      this.$router.push('/grabbing-order')
     }
   }
 }
