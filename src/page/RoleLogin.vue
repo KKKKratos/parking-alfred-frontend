@@ -56,7 +56,6 @@ export default {
             return getSelfEmployee()
           })
           .then(response => {
-            console.log(response.data.data)
             self.$store.commit(SELECT_ROLE, { roleSelected: response.data.data.role })
             self.$store.commit(LOGIN_RESPONSE, response.data.data)
             const role = this.$store.state.loginResponse.role
