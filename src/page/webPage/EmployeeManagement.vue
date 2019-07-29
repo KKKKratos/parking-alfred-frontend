@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 100%; width: 100%; background-color: white">
+  <div style="height: 90%; width: 100%; background-color: white; margin-top: 20px">
     <ManagementHeader></ManagementHeader>
     <CreateEmployee></CreateEmployee>
     <EmployeesTable></EmployeesTable>

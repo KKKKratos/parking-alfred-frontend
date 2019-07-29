@@ -4,7 +4,8 @@ import {
   UPDATE_GRABBING_ORDER,
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
-  GET_EMPLOYEES_LIST
+  GET_EMPLOYEES_LIST,
+  CREATE_EMPLOYEE
 } from './const-types'
 import axios from '../api/config'
 // import { resolveCname } from 'dns';
@@ -77,6 +78,18 @@ const actions = {
         })
         .catch(error => {})
     }
+  },
+  [CREATE_EMPLOYEE] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      axios.post('/employees', payload.employee)
+        .then(response => {
+          // commit(CREATE_EMPLOYEE, response.data.data)
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
 

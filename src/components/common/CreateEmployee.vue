@@ -11,6 +11,16 @@
           <el-form-item label="电话号码:">
             <el-input v-model="creatingEmployeeForm.telephone"></el-input>
           </el-form-item>
+          <el-form-item>
+            <el-select v-model="creatingEmployeeForm.role" placeholder="请选择角色">
+              <el-option
+                v-for="item in roleOption"
+                :key="item.value"
+                :label="item.label"
+                :value="item.value">
+              </el-option>
+            </el-select>
+          </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="clickCreatedCancel">取 消</el-button>
@@ -21,7 +31,8 @@
 </template>
 
 <script>
-import { OPEN_CREATING_DIALOG } from '../../store/const-types'
+import { MANAGER, PARKING_BOY, ADMIN, CUSTOMER } from '../../config/const-values'
+import { OPEN_CREATING_DIALOG, CREATE_EMPLOYEE } from '../../store/const-types'
 export default {
   name: 'CreateEmployee',
   data () {
@@ -29,8 +40,15 @@ export default {
       creatingEmployeeForm: {
         name: '',
         mail: '',
-        telephone: ''
-      }
+        telephone: '',
+        role: ''
+      },
+      roleOption: [
+        { value: 1, label: PARKING_BOY },
+        { value: 2, label: MANAGER },
+        { value: 3, label: ADMIN },
+        { value: 4, label: CUSTOMER }
+      ]
     }
   },
   methods: {
@@ -41,7 +59,13 @@ export default {
       this.$store.commit(OPEN_CREATING_DIALOG)
     },
     clickCreatedSuccess () {
-
+      this.$store.dispatch(CREATE_EMPLOYEE, { employee: this.creatingEmployeeForm })
+        .then(response => {
+          this.$message.success('创建成功')
+        })
+        .catch(error => {
+          this.$message.error('创建失败')
+        })
     }
   }
 }
