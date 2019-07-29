@@ -50,7 +50,6 @@ const actions = {
       .then(response => { commit(UPDATE_PARKING_BOY_ORDER, { order: response.data.data }) })
   },
   getLoginInfo ({ commit }, employeeLoginInfo) {
-    console.log(employeeLoginInfo)
     const data = {
       mail: employeeLoginInfo.email,
       password: employeeLoginInfo.password

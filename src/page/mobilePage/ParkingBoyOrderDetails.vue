@@ -7,7 +7,7 @@
       <div class="text item">
         <p>车牌号：{{$store.state.targetOrder.carNumber}}</p>
         <p>车辆地址：{{$store.state.targetOrder.customerAddress}}</p>
-        <p>预约时间：{{new Date($store.state.targetOrder.reservationTime * 1000)}}</p>
+        <p>预约时间：{{$store.state.targetOrder.reservationTime}}</p>
       </div>
     </el-card>
     <el-button class="grab-button" type="primary" @click="turnToPageParkingLot">抢单</el-button>

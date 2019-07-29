@@ -51,8 +51,8 @@ export default {
             return getSelfEmployee()
           })
           .then(response => {
-            self.$store.commit(SELECT_ROLE,{roleSelected:1})
-            self.$store.commit(LOGIN_RESPONSE,response.data.data)           
+            self.$store.commit(SELECT_ROLE,{roleSelected:response.data.data.role})
+            self.$store.commit(LOGIN_RESPONSE,response.data.data)      
             // const role = response.data.data.role;
             const role = this.$store.state.loginResponse.role
             console.log(response)
@@ -60,7 +60,7 @@ export default {
               self.$router.push("/grabbing-order");
             } else if (role === 2 || role == 3) {
               self.$router.push("/web-home");
-            } else {
+            } else if (role === 4 ){
               self.$router.push("/creating-order");
             }
           })

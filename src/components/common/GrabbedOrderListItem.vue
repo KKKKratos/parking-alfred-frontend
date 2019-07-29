@@ -5,7 +5,6 @@
     </div>
     <div class="text-div" @click="clickGrabItem">
       <mt-cell :title=carNumber :label="orderType" is-link>
-          
         <span>详情</span>
       </mt-cell>
     </div>
