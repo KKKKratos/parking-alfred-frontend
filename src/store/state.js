@@ -4,7 +4,8 @@ const state = {
   grabbingOrders: [],
   targetOrder: {},
   grabbingParkingLots: [],
-  parkingBoyOrders: []
+  parkingBoyOrders: [],
+  webActiveMenuItem: ''
 }
 
 export default state

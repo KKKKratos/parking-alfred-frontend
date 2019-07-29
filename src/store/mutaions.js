@@ -7,7 +7,8 @@ import {
   UPDATE_GRABBING_ORDER,
   UPDATE_TARGET_ORDER,
   GET_PARKING_BOY_ORDERS,
-  UPDATE_PARKING_BOY_ORDER
+  UPDATE_PARKING_BOY_ORDER,
+  CHANGE_WEB_ACTIVE_MENU_ITEM
 } from './const-types'
 
 const mutations = {
@@ -54,6 +55,9 @@ const mutations = {
   [UPDATE_PARKING_BOY_ORDER] (state, payload) {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.parkingBoyOrders[index] = payload.order
+  },
+  [CHANGE_WEB_ACTIVE_MENU_ITEM] (state, payload) {
+    state.webActiveMenuItem = payload.webActiveMenuItem
   }
 }
 
