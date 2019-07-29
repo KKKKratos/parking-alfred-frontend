@@ -6,7 +6,7 @@
           <ParkingLotItem :index="index"></ParkingLotItem>
         </div>
       </el-radio-group>
-      <el-button style="margin-top: 20px" type="primary" @click="clickConfirmSelected">确认选择</el-button>
+      <el-button style="margin-top: 20px" type="primary" @click="clickConfirmSelected" :disabled="radioSelected === ''">确认选择</el-button>
    </div>
 </div>
 </template>

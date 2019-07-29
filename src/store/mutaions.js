@@ -18,13 +18,21 @@ const mutations = {
     state.roleSelected = payload.roleSelected
   },
   [GET_GRABBING_ORDERS] (state, orders) {
-    // let result = orders.data.map(order => ({
-    //   carNumber: order.carNumber,
-    //   customerAddress: order.customerAddress,
-    //   reservationTime: order.reservationTime,
-    //   type: order.type
-    // }))
-    state.grabbingOrders = orders.data
+    const toDisplayTime = time => {
+      const date = new Date()
+      date.setTime(time)
+      return date.toLocaleString()
+    }
+    let result = orders.data.map(order => ({
+      id: order.id,
+      carNumber: order.carNumber,
+      customerAddress: order.customerAddress,
+      reservationTime: toDisplayTime(order.reservationTime),
+      status: order.status,
+      type: order.type
+    }))
+    state.grabbingOrders.splice(0)
+    state.grabbingOrders = [...result]
   },
   [GET_TARGET_ORDER] (state, payload) {
     state.targetOrder = payload.targetOrder
