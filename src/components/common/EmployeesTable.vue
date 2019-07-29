@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="tableData"
+    :data="$store.state.employeesList"
     border
     stripe
     style="width: 100%">
@@ -15,14 +15,19 @@
       min-width="150">
     </el-table-column>
     <el-table-column
-      prop="email"
+      prop="mail"
       label="Email"
-      min-width="300">
+      min-width="250">
     </el-table-column>
     <el-table-column
       prop="telephone"
       label="电话号码"
-      min-width="250">
+      min-width="200">
+    </el-table-column>
+    <el-table-column
+      prop="role"
+      label="角色"
+      min-width="150">
     </el-table-column>
     <el-table-column label="操作" min-width="150">
       <template slot-scope="scope">
@@ -44,12 +49,6 @@ export default {
   name: 'EmployeesTable',
   data () {
     return {
-      tableData: [{
-        id: 1,
-        name: 'william',
-        email: 'william@oocl.com',
-        telephone: '12345678911'
-      }]
     }
   },
   methods: {

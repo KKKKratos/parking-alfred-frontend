@@ -8,8 +8,11 @@ import {
   UPDATE_TARGET_ORDER,
   GET_PARKING_BOY_ORDERS,
   UPDATE_PARKING_BOY_ORDER,
-  CHANGE_WEB_ACTIVE_MENU_ITEM
+  CHANGE_WEB_ACTIVE_MENU_ITEM,
+  GET_EMPLOYEES_LIST,
+  OPEN_CREATING_DIALOG
 } from './const-types'
+import { employeeEnums } from '../config/util'
 
 const mutations = {
   [CHANGE_MOBILE_TAB_ITEM]: function (state, payload) {
@@ -58,6 +61,21 @@ const mutations = {
   },
   [CHANGE_WEB_ACTIVE_MENU_ITEM] (state, payload) {
     state.webActiveMenuItem = payload.webActiveMenuItem
+  },
+  [GET_EMPLOYEES_LIST] (state, payload) {
+    const employeeList = payload.employees.map(employee => ({
+      id: employee.id,
+      mail: employee.mail,
+      name: employee.name,
+      role: employeeEnums[employee.role - 1],
+      status: employee.status,
+      telephone: employee.telephone
+    }))
+    state.employeesList = employeeList
+    state.totalEmployees = payload.totalCount
+  },
+  [OPEN_CREATING_DIALOG]  (state) {
+    state.isOpenCreateEmployeeDialog = !state.isOpenCreateEmployeeDialog
   }
 }
 

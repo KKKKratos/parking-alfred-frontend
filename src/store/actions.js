@@ -3,7 +3,9 @@ import {
   GET_GRABBING_PARKING_LOTS,
   UPDATE_GRABBING_ORDER,
   GET_PARKING_BOY_ORDERS,
-  UPDATE_PARKING_BOY_ORDER } from './const-types'
+  UPDATE_PARKING_BOY_ORDER,
+  GET_EMPLOYEES_LIST
+} from './const-types'
 import axios from '../api/config'
 // import { resolveCname } from 'dns';
 const actions = {
@@ -48,6 +50,7 @@ const actions = {
   [UPDATE_PARKING_BOY_ORDER] ({ commit }, payload) {
     axios.put(`/orders/${payload.id}`, payload.order)
       .then(response => { commit(UPDATE_PARKING_BOY_ORDER, { order: response.data.data }) })
+      .catch(error => {})
   },
   getLoginInfo ({ commit }, employeeLoginInfo) {
     const data = {
@@ -59,6 +62,21 @@ const actions = {
         .then(response => resolve(response))
         .catch(error => reject(error))
     })
+  },
+  [GET_EMPLOYEES_LIST] ({ commit }, payload) {
+    if (payload !== undefined) {
+      axios.get('/employees', { params: { page: payload.page } })
+        .then(response => {
+          commit(GET_EMPLOYEES_LIST, response.data.data)
+        })
+        .catch(error => {})
+    } else {
+      axios.get('/employees')
+        .then(response => {
+          commit(GET_EMPLOYEES_LIST, response.data.data)
+        })
+        .catch(error => {})
+    }
   }
 }
 

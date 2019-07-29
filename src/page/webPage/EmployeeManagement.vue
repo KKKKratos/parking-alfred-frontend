@@ -1,6 +1,7 @@
 <template>
   <div style="height: 100%; width: 100%; background-color: white">
     <ManagementHeader></ManagementHeader>
+    <CreateEmployee></CreateEmployee>
     <EmployeesTable></EmployeesTable>
     <ManagementPagination></ManagementPagination>
   </div>
@@ -10,15 +11,20 @@
 import ManagementHeader from '../../components/header/ManagementHeader'
 import EmployeesTable from '../../components/common/EmployeesTable'
 import ManagementPagination from '../../components/footer/ManagementPagination'
+import CreateEmployee from '../../components/common/CreateEmployee'
+import { GET_EMPLOYEES_LIST } from '../../store/const-types'
 export default {
   name: 'EmployeeManagement',
-  components: { ManagementPagination, EmployeesTable, ManagementHeader },
+  components: { CreateEmployee, ManagementPagination, EmployeesTable, ManagementHeader },
   data () {
     return {
       employeesCount: 0
     }
   },
   methods: {
+  },
+  mounted () {
+    this.$store.dispatch(GET_EMPLOYEES_LIST)
   }
 }
 </script>

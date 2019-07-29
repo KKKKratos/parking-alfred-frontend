@@ -5,7 +5,10 @@ const state = {
   targetOrder: {},
   grabbingParkingLots: [],
   parkingBoyOrders: [],
-  webActiveMenuItem: ''
+  webActiveMenuItem: '',
+  isOpenCreateEmployeeDialog: false,
+  employeesList: [],
+  totalEmployees: 0
 }
 
 export default state

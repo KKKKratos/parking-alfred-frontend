@@ -12,22 +12,27 @@
 </template>
 
 <script>
+import { GET_EMPLOYEES_LIST } from '../../store/const-types'
 export default {
   name: 'ManagementPagination',
   data () {
     return {
-      employeesCount: 0
+    }
+  },
+  computed: {
+    employeesCount: function () {
+      return this.$store.state.totalEmployees
     }
   },
   methods: {
-    handleCurrentChange () {
-
+    handleCurrentChange (index) {
+      this.$store.dispatch(GET_EMPLOYEES_LIST, { page: index })
     },
-    prevClick () {
-
+    prevClick (index) {
+      this.$store.dispatch(GET_EMPLOYEES_LIST, { page: index })
     },
-    nextClick () {
-
+    nextClick (index) {
+      this.$store.dispatch(GET_EMPLOYEES_LIST, { page: index })
     }
   }
 }
