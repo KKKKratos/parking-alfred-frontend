@@ -7,7 +7,9 @@ import {
   UPDATE_GRABBING_ORDER,
   UPDATE_TARGET_ORDER,
   GET_PARKING_BOY_ORDERS,
-  UPDATE_PARKING_BOY_ORDER
+  UPDATE_PARKING_BOY_ORDER,
+  LOGIN_RESPONSE,
+  SAVE_TOKEN
 } from './const-types'
 
 const mutations = {
@@ -24,6 +26,12 @@ const mutations = {
       return date.toLocaleString()
     }
     let result = orders.data.map(order => ({
+    // let result = orders.data.map(order => ({
+    //   carNumber: order.carNumber,
+    //   customerAddress: order.customerAddress,
+    //   reservationTime: order.reservationTime,
+    //   type: order.type
+    // }))
       id: order.id,
       carNumber: order.carNumber,
       customerAddress: order.customerAddress,
@@ -54,6 +62,12 @@ const mutations = {
   [UPDATE_PARKING_BOY_ORDER] (state, payload) {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.parkingBoyOrders[index] = payload.order
+  },
+  [LOGIN_RESPONSE] (state, payload) {
+    state.loginResponse = payload
+  },
+  [SAVE_TOKEN] (state, payload) {
+    state.token = payload
   }
 }
 
