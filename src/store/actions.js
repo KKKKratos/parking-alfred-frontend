@@ -47,11 +47,13 @@ const actions = {
   },
   [GET_PARKING_BOY_ORDERS] ({ commit }) {
     return new Promise((resolve, reject) => {
-      requestOrders('reservationTime', 'desc').then(response => {
-        let orders = response.data.data
-        orders = orders.filter(o => o.status !== 1)
-        commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: orders })
-      })
+      requestOrders('reservationTime', 'desc')
+        .then(response => {
+          let orders = response.data.data
+          orders = orders.filter(o => o.status !== 1)
+          commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: orders })
+          resolve(response)
+        })
         .catch(error => { reject(error) })
     })
   },

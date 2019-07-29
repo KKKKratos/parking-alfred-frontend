@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 90%; width: 100%; background-color: white; margin-top: 20px">
+  <div class="employees-manage-div">
     <ManagementHeader></ManagementHeader>
     <CreateEmployee></CreateEmployee>
     <EmployeesTable></EmployeesTable>
@@ -18,7 +18,6 @@ export default {
   components: { CreateEmployee, ManagementPagination, EmployeesTable, ManagementHeader },
   data () {
     return {
-      employeesCount: 0
     }
   },
   methods: {
@@ -30,5 +29,10 @@ export default {
 </script>
 
 <style scoped>
-
+.employees-manage-div {
+  height: 90%;
+  width: 100%;
+  background-color: white;
+  margin-top: 20px;
+}
 </style>

@@ -2,7 +2,7 @@
   <div class="parkingLotItem">
     <mt-cell :title= "parkingLotName" :label="parkingLotOccupied">
       <img slot="icon" src=../../assets/img/parkinglot.png width="24" height="24">
-      <el-radio-button :label="index">选择</el-radio-button>
+      <el-radio-button :label="index" :disabled="!isEnabled">选择</el-radio-button>
     </mt-cell>
   </div>
 </template>
@@ -22,7 +22,17 @@ export default {
       return `停车场:${this.$store.state.grabbingParkingLots[this.index].name}`
     },
     parkingLotOccupied: function () {
-      return `剩余数量:${this.$store.state.grabbingParkingLots[this.index].occupied}`
+      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity
+      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied
+      if (capacity - occupied <= 0) {
+        this.isEnabled = false
+      }
+      return `剩余数量:${capacity - occupied}`
+    },
+    isEnabled: function () {
+      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity
+      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied
+      return capacity - occupied > 0
     }
   }
 }
