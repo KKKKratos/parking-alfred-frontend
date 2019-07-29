@@ -57,10 +57,13 @@ const actions = {
       .then(response => { commit(UPDATE_PARKING_BOY_ORDER, { order: response.data.data }) })
   },
   [GET_CUSTOMER_ORDERS] ({ commit }) {
-    axios.get(`/orders`)
-      .then(response => { 
-        commit(GET_CUSTOMER_ORDERS, response.data.data) })
-        .catch(error => { reject(error) })  
+    requestOrders("reservationTime", "desc")
+      .then(response => {
+        commit(GET_CUSTOMER_ORDERS, response.data.data)
+      })
+      .catch(error => {
+        reject(error);
+      });  
   },
   [GET_LOGIN_INFO] ({ commit }, payload) {
     const data = {

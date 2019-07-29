@@ -63,7 +63,7 @@ export default {
             }
           })
           .catch(error => {
-            MessageBox.alert("登录失败", "提示信息");
+            MessageBox.alert("用户名或密码错误", "提示信息");
           });
       }
     },
