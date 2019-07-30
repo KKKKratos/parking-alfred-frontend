@@ -6,6 +6,7 @@ import mutations from './mutaions'
 import getters from './getters'
 import parkingBoyModule from './modules/parkingBoy'
 import customer from './modules/customer'
+import employee from './modules/employee'
 
 Vue.use(Vuex)
 
@@ -16,7 +17,8 @@ const store = new Vuex.Store({
   actions,
   modules: {
     parkingBoy: parkingBoyModule,
-    customer: customer
+    customer: customer,
+    employee: employee
   }
 })
 

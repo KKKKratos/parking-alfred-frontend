@@ -4,10 +4,7 @@ const state = {
   token: '',
   loginInformation: '',
   webActiveMenuItem: '',
-  isOpenCreateEmployeeDialog: false,
-  employeesList: [],
-  parkingBoyList: [],
-  totalEmployees: 0
+  parkingBoyList: []
 }
 
 export default state

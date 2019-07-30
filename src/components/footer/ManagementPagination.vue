@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { GET_EMPLOYEES_LIST } from '../../store/const-types'
+import { GET_EMPLOYEES_LIST } from '../../store/const/employee-const'
 export default {
   name: 'ManagementPagination',
   data () {
@@ -21,7 +21,7 @@ export default {
   },
   computed: {
     employeesCount: function () {
-      return this.$store.state.totalEmployees
+      return this.$store.state.employee.totalEmployees
     }
   },
   methods: {

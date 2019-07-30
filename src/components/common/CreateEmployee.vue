@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-dialog title="创建员工" :visible="$store.state.isOpenCreateEmployeeDialog" :show-close="false">
+      <el-dialog title="创建员工" :visible="$store.state.employee.isOpenCreateEmployeeDialog" :show-close="false">
         <el-form label-position="left" label-width="80px" :model="creatingEmployeeForm">
           <el-form-item label="姓名:">
             <el-input v-model="creatingEmployeeForm.name"></el-input>
@@ -32,7 +32,7 @@
 
 <script>
 import { MANAGER, PARKING_BOY, ADMIN, CUSTOMER } from '../../config/const-values'
-import { CHANGE_CREATING_EMPLOYEE_DIALOG, CREATE_EMPLOYEE, GET_EMPLOYEES_LIST } from '../../store/const-types'
+import { CHANGE_CREATING_EMPLOYEE_DIALOG, CREATE_EMPLOYEE, GET_EMPLOYEES_LIST } from '../../store/const/employee-const'
 export default {
   name: 'CreateEmployee',
   data () {

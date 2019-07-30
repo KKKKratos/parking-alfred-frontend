@@ -9,7 +9,7 @@
 
 <script>
 import ManagementSearch from '../common/ManagementSearch'
-import { CHANGE_CREATING_EMPLOYEE_DIALOG } from '../../store/const-types'
+import { CHANGE_CREATING_EMPLOYEE_DIALOG } from '../../store/const/employee-const'
 export default {
   name: 'CreateButton',
   components: { ManagementSearch },

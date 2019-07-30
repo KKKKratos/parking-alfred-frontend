@@ -4,7 +4,3 @@ export const GET_LOGIN_INFO = 'getLoginInfo'
 export const LOGIN_INFORMATION = 'loginInformation'
 export const CHANGE_WEB_ACTIVE_MENU_ITEM = 'changeWebActiveMenuItem'
 export const SAVE_TOKEN = 'saveToken'
-
-export const CHANGE_CREATING_EMPLOYEE_DIALOG = 'changeCreatingEmployeeDialog'
-export const GET_EMPLOYEES_LIST = 'getEmployeesList'
-export const CREATE_EMPLOYEE = 'createEmployee'

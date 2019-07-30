@@ -1,6 +1,6 @@
 <template>
   <el-table
-    :data="$store.state.employeesList"
+    :data="$store.state.employee.employeesList"
     border
     stripe
     style="width: 100%">
