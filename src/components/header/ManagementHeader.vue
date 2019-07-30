@@ -16,9 +16,7 @@ export default {
   components: { ManagementSearch },
   methods: {
     clickCreating () {
-      console.log(this.$route.name)
       this.$route.name === 'employees-management' ? this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG) : this.$store.commit(CHANGE_CREATING_LOT_DIALOG)
-      
     }
   }
 }
