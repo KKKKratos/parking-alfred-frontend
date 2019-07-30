@@ -9,7 +9,7 @@
         <p>车牌号：{{$store.state.targetOrder.carNumber}}</p>
         <p>车辆地址：{{$store.state.targetOrder.customerAddress}}</p>
         <p>预约时间：{{$store.state.targetOrder.reservationTime}}</p>
-        
+
       </div>
     </el-card>
     <el-button class="grab-button" type="primary" @click="confirmFetchedCar" v-if="isWaittingForConfirm">确认取车</el-button>
@@ -17,8 +17,8 @@
   </div>
 </template>
 <script>
-import { PARK_CAR_ORDER, FETCH_CAR_ORDER, WAIT_FOR_RECEIVE, WAIT_FOR_CONFIRM, CONFIRM, WAIT_FOR_USER_CONFIRM, UNDEFINED_STATUS} from '../../config/const-values'
-import { SET_TARGET_ORDER_STATUS ,UPDATE_GRABBING_ORDER, UPDATE_CUSTOMER_ORDER, GET_CUSTOMER_ORDERS} from '../../store/const-types'
+import { PARK_CAR_ORDER, FETCH_CAR_ORDER, WAIT_FOR_RECEIVE, WAIT_FOR_CONFIRM, CONFIRM, WAIT_FOR_USER_CONFIRM, UNDEFINED_STATUS } from '../../config/const-values'
+import { SET_TARGET_ORDER_STATUS, UPDATE_CUSTOMER_ORDER } from '../../store/const-types' // GET_CUSTOMER_ORDERS , UPDATE_GRABBING_ORDER
 export default {
   name: 'CustomerOderDetails',
   data: function () {
@@ -30,31 +30,31 @@ export default {
   },
   mounted () {
     this.orderType = this.$store.state.targetOrder.type === 1 ? PARK_CAR_ORDER : FETCH_CAR_ORDER
-    this.orderStatus = this.$store.state.targetOrder.status === 1 ? WAIT_FOR_RECEIVE :
-                        this.$store.state.targetOrder.status === 2 ? WAIT_FOR_CONFIRM :
-                            this.$store.state.targetOrder.status === 3 ? CONFIRM :
-                              this.$store.state.targetOrder.status === 4 ? WAIT_FOR_USER_CONFIRM : UNDEFINED_STATUS
+    this.orderStatus = this.$store.state.targetOrder.status === 1 ? WAIT_FOR_RECEIVE
+      : this.$store.state.targetOrder.status === 2 ? WAIT_FOR_CONFIRM
+        : this.$store.state.targetOrder.status === 3 ? CONFIRM
+          : this.$store.state.targetOrder.status === 4 ? WAIT_FOR_USER_CONFIRM : UNDEFINED_STATUS
   },
   methods: {
     confirmFetchedCar () {
       this.$message({
-            message: '完成订单',
-            type: 'success'
-          })
-        this.$store.commit(SET_TARGET_ORDER_STATUS,3)
-        this.$store.dispatch(UPDATE_CUSTOMER_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
-        this.$router.push('/customer-orders')
+        message: '完成订单',
+        type: 'success'
+      })
+      this.$store.commit(SET_TARGET_ORDER_STATUS, 3)
+      this.$store.dispatch(UPDATE_CUSTOMER_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
+      this.$router.push('/customer-orders')
     },
     turnToPageCustomerOrders () {
       this.$router.push('/customer-orders')
     }
   },
-  computed:{
-    isWaittingForConfirm(){
+  computed: {
+    isWaittingForConfirm () {
       return this.$store.state.targetOrder.status === 4 && this.$store.state.targetOrder.type === 2
     }
   }
-  
+
 }
 </script>
 <style scoped>

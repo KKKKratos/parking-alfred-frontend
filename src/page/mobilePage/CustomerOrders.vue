@@ -8,7 +8,6 @@
   </div>
 </template>
 
-
 <script>
 import { GET_CUSTOMER_ORDERS } from '../../store/const-types'
 import CustomerOrderCard from '../../components/common/CustomerOrderCard'

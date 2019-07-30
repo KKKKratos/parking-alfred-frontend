@@ -7,26 +7,31 @@
           <el-input v-model="formLabelAlign.email" placeholder="请输入邮箱" :style="{width: fullWidth}"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="formLabelAlign.password" placeholder="请输入密码" show-password :style="{width: fullWidth}"></el-input>
+          <el-input
+            v-model="formLabelAlign.password"
+            placeholder="请输入密码"
+            show-password
+            :style="{width: fullWidth}"
+          ></el-input>
         </el-form-item>
       </el-form>
       <el-button type="primary" @click="clickLogin">登录</el-button>
-      <el-button type="primary" @click="reset">重置</el-button> 
+      <el-button type="primary" @click="reset">重置</el-button>
     </div>
   </div>
 </template>
 
 <script>
 import { MessageBox } from 'mint-ui'
-import { SELECT_ROLE, LOGIN_RESPONSE } from '../store/const-types' 
-import { Promise } from 'q'
+import { SELECT_ROLE, LOGIN_RESPONSE } from '../store/const-types'
+// import { Promise } from 'q'
 import { getSelfEmployee } from '../api/employee'
 
 export default {
   name: 'RoleLogin',
   data () {
     return {
-      role: this.$route.params.selectedRole,  
+      role: this.$route.params.selectedRole,
       labelPosition: 'right',
       formLabelAlign: {
         email: '',
@@ -37,7 +42,7 @@ export default {
   computed: {
     fullWidth: function () {
       const clientWidth = document.documentElement.offsetWidth
-      return clientWidth > 500 ? '50%' : (clientWidth - 100) + 'px'
+      return clientWidth > 500 ? '50%' : clientWidth - 100 + 'px'
     }
   },
   methods: {
@@ -49,14 +54,16 @@ export default {
         MessageBox.alert('邮箱或者密码不能为空', '提示信息')
       } else {
         const self = this
-        this.$store 
+        this.$store
           .dispatch('getLoginInfo', { ...this.formLabelAlign })
-          .then(response => { 
+          .then(response => {
             self.$store.commit('saveToken', response.data.data)
             return getSelfEmployee()
           })
           .then(response => {
-            self.$store.commit(SELECT_ROLE, { roleSelected: response.data.data.role })
+            self.$store.commit(SELECT_ROLE, {
+              roleSelected: response.data.data.role
+            })
             self.$store.commit(LOGIN_RESPONSE, response.data.data)
             const role = this.$store.state.loginResponse.role
             if (role === 1) {
@@ -67,13 +74,13 @@ export default {
               self.$router.push('/creating-order')
             }
           })
-          .catch(error => {
+          .catch(() => {
             MessageBox.alert('用户名或密码错误', '提示信息')
           })
       }
     },
     reset () {
-      this.formLabelAlign.email = '',
+      this.formLabelAlign.email = ''
       this.formLabelAlign.password = ''
     }
   }

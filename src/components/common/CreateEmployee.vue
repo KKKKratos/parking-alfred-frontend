@@ -36,21 +36,21 @@ import {
   PARKING_BOY,
   ADMIN,
   CUSTOMER
-} from "../../config/const-values";
+} from '../../config/const-values'
 import {
   OPEN_CREATING_DIALOG,
   CREATE_EMPLOYEE,
   GET_EMPLOYEES_LIST
-} from "../../store/const-types";
+} from '../../store/const-types'
 export default {
-  name: "CreateEmployee",
-  data() {
+  name: 'CreateEmployee',
+  data () {
     return {
       creatingEmployeeForm: {
-        name: "",
-        mail: "",
-        telephone: "",
-        role: ""
+        name: '',
+        mail: '',
+        telephone: '',
+        role: ''
       },
       roleOption: [
         { value: 1, label: PARKING_BOY },
@@ -58,32 +58,32 @@ export default {
         { value: 3, label: ADMIN },
         { value: 4, label: CUSTOMER }
       ]
-    };
+    }
   },
   methods: {
-    clickCreatedCancel() {
-      this.creatingEmployeeForm.name = "";
-      this.creatingEmployeeForm.mail = "";
-      this.creatingEmployeeForm.telephone = "";
-      this.$store.commit(OPEN_CREATING_DIALOG);
+    clickCreatedCancel () {
+      this.creatingEmployeeForm.name = ''
+      this.creatingEmployeeForm.mail = ''
+      this.creatingEmployeeForm.telephone = ''
+      this.$store.commit(OPEN_CREATING_DIALOG)
     },
-    clickCreatedSuccess() {
+    clickCreatedSuccess () {
       this.$store
         .dispatch(CREATE_EMPLOYEE, { employee: this.creatingEmployeeForm })
         .then(response => {
-          this.$store.commit(OPEN_CREATING_DIALOG);
-          this.creatingEmployeeForm.name = "";
-          this.creatingEmployeeForm.mail = "";
-          this.creatingEmployeeForm.telephone = "";
-          this.$store.dispatch(GET_EMPLOYEES_LIST);
-          this.$message.success("创建成功");
+          this.$store.commit(OPEN_CREATING_DIALOG)
+          this.creatingEmployeeForm.name = ''
+          this.creatingEmployeeForm.mail = ''
+          this.creatingEmployeeForm.telephone = ''
+          this.$store.dispatch(GET_EMPLOYEES_LIST)
+          this.$message.success('创建成功')
         })
-        .catch(error => {
-          this.$message.error("创建失败");
-        });
+        .catch(() => {
+          this.$message.error('创建失败')
+        })
     }
   }
-};
+}
 </script>
 
 <style scoped>

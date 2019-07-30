@@ -48,7 +48,7 @@ export default {
       MessageBox.confirm('是否要退出登录？').then(action => {
         this.$router.push('/login')
       })
-        .catch(action => console.log('1'))
+        .catch(() => {})
     }
   }
 }

@@ -11,7 +11,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="clickCreatedCancel">取 消</el-button>
-          <el-button type="primary" @click="clickCreatedSuccess">确定创建</el-button> 
+          <el-button type="primary" @click="clickCreatedSuccess">确定创建</el-button>
         </div>
       </el-dialog>
     </div>
@@ -22,37 +22,37 @@ import {
   OPEN_CREATING_DIALOG,
   CREATE_PARKINGLOT,
   GET_PARKINGLOT_LIST
-} from "../../store/const-types";
-   export default {
-  name: "CreateParkingLot",
-  data() {
+} from '../../store/const-types'
+export default {
+  name: 'CreateParkingLot',
+  data () {
     return {
       creatingParkingLotForm: {
-        name: "",
-        capacity: ""
+        name: '',
+        capacity: ''
       }
-    };
+    }
   },
   methods: {
-    clickCreatedCancel() {
-      this.creatingParkingLotForm.name = "";
-      this.creatingParkingLotForm.capacity = "";
-      this.$store.commit(OPEN_CREATING_DIALOG);
+    clickCreatedCancel () {
+      this.creatingParkingLotForm.name = ''
+      this.creatingParkingLotForm.capacity = ''
+      this.$store.commit(OPEN_CREATING_DIALOG)
     },
-    clickCreatedSuccess() {
+    clickCreatedSuccess () {
       this.$store
         .dispatch(CREATE_PARKINGLOT, { parkinglot: this.creatingParkingLotForm })
         .then(response => {
-          this.$store.commit(OPEN_CREATING_DIALOG);
-          this.creatingParkingLotForm.name = "";
-          this.creatingParkingLotForm.capacity = "";
-          this.$store.dispatch(GET_PARKINGLOT_LIST);
-          this.$message.success("创建成功");
+          this.$store.commit(OPEN_CREATING_DIALOG)
+          this.creatingParkingLotForm.name = ''
+          this.creatingParkingLotForm.capacity = ''
+          this.$store.dispatch(GET_PARKINGLOT_LIST)
+          this.$message.success('创建成功')
         })
-        .catch(error => {
-          this.$message.error("创建失败");
-        });
+        .catch(() => {
+          this.$message.error('创建失败')
+        })
     }
   }
-};
+}
 </script>

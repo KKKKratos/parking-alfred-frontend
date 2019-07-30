@@ -10,7 +10,6 @@
 export default {
   name: 'ParkingLotItem',
   props: {
-    // eslint-disable-next-line no-undef
     index: Number
   },
   data () {
@@ -23,15 +22,15 @@ export default {
     },
     parkingLotOccupied: function () {
       const capacity = this.$store.state.grabbingParkingLots[this.index].capacity
-      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied
+      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied  
       if (capacity - occupied <= 0) {
         this.isEnabled = false
       }
       return `剩余数量:${capacity - occupied}`
     },
     isEnabled: function () {
-      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity
-      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied
+      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity  
+      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied  
       return capacity - occupied > 0
     }
   }
@@ -41,5 +40,5 @@ export default {
 .parkingLotItem{
   text-align: left;
   border-bottom: 1px solid lightgray;
-}
+}   
 </style>

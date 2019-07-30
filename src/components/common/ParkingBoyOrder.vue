@@ -10,65 +10,65 @@
 </template>
 
 <script>
-import { MessageBox } from "mint-ui";
-import { UPDATE_PARKING_BOY_ORDER } from "../../store/const-types";
+import { MessageBox } from 'mint-ui'
+import { UPDATE_PARKING_BOY_ORDER } from '../../store/const-types'
 export default {
-  name: "ParkingBoyOrder",
+  name: 'ParkingBoyOrder',
   props: {
     index: Number
   },
-  data() {
+  data () {
     return {
       isSure: false
-    };
+    }
   },
   computed: {
-    carNumber() {
-      return this.$store.state.parkingBoyOrders[this.index].carNumber;
+    carNumber () {
+      return this.$store.state.parkingBoyOrders[this.index].carNumber
     },
-    addressWithTIme() {
+    addressWithTIme () {
       const time = new Date(
         this.$store.state.parkingBoyOrders[this.index].reservationTime
-      );
-      return `(${this.$store.state.parkingBoyOrders[this.index].customerAddress})\t${time.toLocaleString()}`;
+      )
+      return `(${this.$store.state.parkingBoyOrders[this.index].customerAddress})\t${time.toLocaleString()}`
     }
   },
   methods: {
-    toMakeSure: function() {
+    toMakeSure: function () {
       if (this.$store.state.parkingBoyOrders[this.index].type === 1) {
-        const self = this;
-        MessageBox.confirm("是否确认完成订单？")
+        const self = this
+        MessageBox.confirm('是否确认完成订单？')
           .then(action => {
-            let order = self.$store.state.parkingBoyOrders[self.index];
-            order.status = 3;
+            let order = self.$store.state.parkingBoyOrders[self.index]
+            order.status = 3
             this.$store
               .dispatch(UPDATE_PARKING_BOY_ORDER, {
                 id: order.id,
                 order: order
               })
               .then(response => (self.isSure = true))
-              .catch(error => console.log(error));
+              .catch(() => {})
           })
-          .catch(action => console.log("2"));
-      }else{
-        const self = this;
-        MessageBox.confirm("是否确认？")
+          .catch(() => {})
+      } else {
+        const self = this
+        MessageBox.confirm('是否确认？')
           .then(action => {
-            let order = self.$store.state.parkingBoyOrders[self.index];
-            order.status = 4;
+            let order = self.$store.state.parkingBoyOrders[self.index]
+            order.status = 4
             this.$store
               .dispatch(UPDATE_PARKING_BOY_ORDER, {
                 id: order.id,
                 order: order
               })
               .then(response => (self.isSure = true))
-              .catch(error => console.log(error));
+              .catch(() => {})
           })
-          .catch(action => console.log("4"));
+          .catch(() => {})
       }
     }
   }
-};
+}
 </script>
 
 <style scoped>

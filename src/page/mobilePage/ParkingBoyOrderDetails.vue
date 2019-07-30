@@ -16,7 +16,7 @@
 </template>
 <script>
 import { PARK_CAR_ORDER, FETCH_CAR_ORDER, MOBILE_TAB_ITEM_ORDER } from '../../config/const-values'
-import { UPDATE_GRABBING_ORDER,UPDATE_TARGET_ORDER, CHANGE_MOBILE_TAB_ITEM, GET_PARKING_BOY_ORDERS } from '../../store/const-types'
+import { UPDATE_GRABBING_ORDER, UPDATE_TARGET_ORDER, CHANGE_MOBILE_TAB_ITEM, GET_PARKING_BOY_ORDERS } from '../../store/const-types'
 export default {
   name: 'OderDetails',
   data: function () {
@@ -29,27 +29,26 @@ export default {
     this.orderName = this.$store.state.targetOrder.type === 1 ? PARK_CAR_ORDER : FETCH_CAR_ORDER
   },
   methods: {
-    
-      async turnToPageParkingLot () {
-      if(this.orderName  === PARK_CAR_ORDER){
-         this.$router.push('/parking-lot')
-      }else{
+
+    async turnToPageParkingLot () {
+      if (this.orderName === PARK_CAR_ORDER) {
+        this.$router.push('/parking-lot')
+      } else {
         this.$store.commit(UPDATE_TARGET_ORDER)
         this.$store.dispatch(UPDATE_GRABBING_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
-        .then(() => {
-          this.$message({
-            message: '抢单成功',
-            type: 'success'
-          })
-          this.$store.dispatch(GET_PARKING_BOY_ORDERS)
-            .then(response => {
-              this.$router.push('/parking-boy-orders')
-              this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
+          .then(() => {
+            this.$message({
+              message: '抢单成功',
+              type: 'success'
             })
-            .catch(error => console.log(error))
-
-        })
-        .catch(error => console.log(error))
+            this.$store.dispatch(GET_PARKING_BOY_ORDERS)
+              .then(response => {
+                this.$router.push('/parking-boy-orders')
+                this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
+              })
+              .catch(() => {})
+          })
+          .catch(() => {})
       }
     },
     turnToPageGrabbingOrder () {

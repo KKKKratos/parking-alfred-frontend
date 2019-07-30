@@ -51,9 +51,9 @@ export default {
               self.$router.push('/parking-boy-orders')
               self.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
             })
-            .catch(error => console.log(error))
+            .catch(() => {})
         })
-        .catch(error => console.log(error))
+        .catch(() => {})
     },
     clickSelectedParkingLot (index) {
     }

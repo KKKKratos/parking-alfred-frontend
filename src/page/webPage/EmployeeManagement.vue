@@ -3,7 +3,7 @@
     <ManagementHeader></ManagementHeader>
     <CreateEmployee></CreateEmployee>
     <EmployeesTable></EmployeesTable>
-    <ManagementPagination></ManagementPagination> 
+    <ManagementPagination></ManagementPagination>
   </div>
 </template>
 

@@ -16,19 +16,17 @@
 
 <script>
 export default {
-  name: "EmployeesTable",
-  data() {
-    return {};
+  name: 'EmployeesTable',
+  data () {
+    return {}
   },
   methods: {
-    handleEdit(index, row) {
-      console.log(index, row);
+    handleEdit (index, row) {
     },
-    handleDelete(index, row) {
-      console.log(index, row);
+    handleDelete (index, row) {
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -12,27 +12,26 @@
 </template>
 
 <script>
-import { GET_CUSTOMER_ORDERS, GET_TARGET_ORDER } from '../../store/const-types'
+import { GET_TARGET_ORDER } from '../../store/const-types' 
 export default {
   name: 'CustomerOrderCard',
   methods: {
-    turnToPageCustomOrderDetail(){
+    turnToPageCustomOrderDetail () {
       this.$router.push('/customer-order-details')
     },
     clickDetailed () {
       this.$store.commit(GET_TARGET_ORDER, { targetOrder: this.customerOrder })
-      
     }
   },
   computed: {
-    carNumber() {
+    carNumber () {
       return `车牌号：${this.customerOrder.carNumber}`
     },
-    reservationTime() {
+    reservationTime () {
       return `预定时间：${this.customerOrder.reservationTime}`
     }
   },
-  props:{
+  props: {
     customerOrder: Object
   }
 }
