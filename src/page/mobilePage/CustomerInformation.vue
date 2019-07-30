@@ -46,9 +46,9 @@ export default {
   methods: {
     clickExitLogin () {
       MessageBox.confirm('是否要退出登录？').then(action => {
-        this.$router.push('/login')
+        this.$router.push('/role-login')
       })
-        .catch(action => console.log('1'))
+        .catch(() => {})
     }
   }
 }

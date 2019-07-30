@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import { GET_GRABBING_ORDERS } from '../../store/const-types'
+import { GET_GRABBING_ORDERS } from '../../store/const/parking-boy-const'
 import OrderListItem from '../../components/common/GrabbedOrderListItem'
 export default {
   name: 'GrabbingOrderList',
@@ -16,7 +16,7 @@ export default {
   },
   computed: {
     itemsShow () {
-      return this.$store.state.grabbingOrders
+      return this.$store.state.parkingBoy.grabbingOrders
     }
   },
   mounted () {

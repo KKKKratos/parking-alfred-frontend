@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { GET_TARGET_ORDER } from '../../store/const-types'
+import { GET_TARGET_ORDER } from '../../store/const/parking-boy-const'
 import { PARK_CAR_ORDER, FETCH_CAR_ORDER } from '../../config/const-values'
 export default {
   name: 'GrabbedOrderListItem',
@@ -21,7 +21,7 @@ export default {
       this.$router.push('/order-details')
     },
     clickGrabItem () {
-      this.$store.commit(GET_TARGET_ORDER, { targetOrder: this.grabbingOrder })
+      this.$store.commit(GET_TARGET_ORDER, { grabbingTargetOrder: this.grabbingOrder })
     }
   },
   props: {

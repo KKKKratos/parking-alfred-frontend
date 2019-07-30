@@ -6,11 +6,11 @@
 
 <script>
 export default {
-  name: "app",
-  mounted() {
-    this.$router.push({ path: "/role-login" });  
+  name: 'app',
+  mounted () {
+    this.$router.push({ path: '/role-login' })
   }
-};
+}
 </script>
 
 <style >

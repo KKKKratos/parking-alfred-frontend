@@ -19,19 +19,16 @@ export default {
   },
   computed: {
     parkingLotName: function () {
-      return `停车场:${this.$store.state.grabbingParkingLots[this.index].name}`
+      return `停车场:${this.$store.state.parkingBoy.grabbingParkingLots[this.index].name}`
     },
     parkingLotOccupied: function () {
-      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity
-      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied
-      if (capacity - occupied <= 0) {
-        this.isEnabled = false
-      }
+      const capacity = this.$store.state.parkingBoy.grabbingParkingLots[this.index].capacity
+      const occupied = this.$store.state.parkingBoy.grabbingParkingLots[this.index].occupied
       return `剩余数量:${capacity - occupied}`
     },
     isEnabled: function () {
-      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity
-      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied
+      const capacity = this.$store.state.parkingBoy.grabbingParkingLots[this.index].capacity
+      const occupied = this.$store.state.parkingBoy.grabbingParkingLots[this.index].occupied
       return capacity - occupied > 0
     }
   }

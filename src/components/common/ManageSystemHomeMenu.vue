@@ -1,11 +1,11 @@
 <template>
-    <div style="height: 100%">
+    <div style="height: 100%; text-align: left">
       <el-menu :default-active="activeMenu" style="height: 100%" :router="true" @select="selectMenuItem">
         <el-menu-item index="employees-management" >
           <i class="el-icon-s-management"></i>
           <span slot="title">员工管理</span>
         </el-menu-item>
-        <el-menu-item index="parkingLots-management">
+        <el-menu-item index="parking-lots-management">
           <i class="el-icon-s-management"></i>
           <span slot="title" >停车场管理</span>
         </el-menu-item>

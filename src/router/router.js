@@ -12,6 +12,7 @@ import CustomerInfo from '../page/mobilePage/CustomerInformation'
 import RoleLogin from '../page/RoleLogin'
 import ParkingLotsManagement from '../page/webPage/ParkingLotsManagement'
 import EmployeeManagement from '../page/webPage/EmployeeManagement'
+import ParkingBoyManagement from '../page/webPage/ParkingBoyManagement'
 import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 
 Vue.use(VueRouter)
@@ -36,7 +37,8 @@ const routes = [
     component: WebHome,
     children: [
       { path: '/employees-management', name: 'employees-management', component: EmployeeManagement },
-      { path: '/parkingLots-management', name: 'parkingLots-management', component: ParkingLotsManagement }
+      { path: '/parking-boys-management', name: 'parking-boys-management', component: ParkingBoyManagement },
+      { path: '/parking-lots-management', name: 'parkingLots-management', component: ParkingLotsManagement }
     ],
     redirect: '/employees-management'
   },

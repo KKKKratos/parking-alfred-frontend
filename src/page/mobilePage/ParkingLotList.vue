@@ -1,20 +1,29 @@
 <template>
-<div class="orders-div">
+  <div class="orders-div">
     <div :style="{height: fullHeight + 'px'}">
       <el-radio-group v-model="radioSelected" @change="clickSelectedParkingLot" class="item-div">
         <div v-for="(parkingLot, index) in parkingLots" :key="index" style="margin-top: 10px">
           <ParkingLotItem :index="index"></ParkingLotItem>
         </div>
       </el-radio-group>
-      <el-button style="margin-top: 20px" type="primary" @click="clickConfirmSelected" :disabled="radioSelected === ''">确认选择</el-button>
-   </div>
-</div>
+      <el-button style="margin-top: 20px" type="primary" @click="clickConfirmSelected" :disabled="radioSelected === ''">
+        确认选择
+      </el-button>
+    </div>
+  </div>
 </template>
 
 <script>
 import { MOBILE_TAB_ITEM_ORDER } from '../../config/const-values'
-import { GET_GRABBING_PARKING_LOTS, UPDATE_GRABBING_ORDER, UPDATE_TARGET_ORDER, CHANGE_MOBILE_TAB_ITEM, GET_PARKING_BOY_ORDERS } from '../../store/const-types'
+import { CHANGE_MOBILE_TAB_ITEM } from '../../store/const-types'
+import {
+  GET_GRABBING_PARKING_LOTS,
+  UPDATE_TARGET_ORDER_BY_STATUS,
+  UPDATE_TARGET_ORDER,
+  GET_PARKING_BOY_ORDERS
+} from '../../store/const/parking-boy-const'
 import ParkingLotItem from '../../components/common/ParkingLotItem'
+
 export default {
   name: 'ParkingLot',
   components: {
@@ -30,7 +39,7 @@ export default {
       return document.documentElement.clientHeight - 140
     },
     parkingLots: function () {
-      return this.$store.state.grabbingParkingLots
+      return this.$store.state.parkingBoy.grabbingParkingLots
     }
   },
   mounted () {
@@ -39,8 +48,10 @@ export default {
   methods: {
     clickConfirmSelected () {
       const self = this
-      this.$store.commit(UPDATE_TARGET_ORDER, { parkingLot: this.$store.state.grabbingParkingLots[this.radioSelected] })
-      this.$store.dispatch(UPDATE_GRABBING_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
+      this.$store.commit(UPDATE_TARGET_ORDER, { parkingLot: this.$store.state.parkingBoy.grabbingParkingLots[this.radioSelected] })
+      const id = this.$store.state.parkingBoy.grabbingTargetOrder.id
+      const order = this.$store.state.parkingBoy.grabbingTargetOrder
+      this.$store.dispatch(UPDATE_TARGET_ORDER_BY_STATUS, { id: id, order: order })
         .then(() => {
           this.$message({
             message: '抢单成功',
@@ -51,9 +62,9 @@ export default {
               self.$router.push('/parking-boy-orders')
               self.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
             })
-            .catch(error => console.log(error))
+            .catch(() => {})
         })
-        .catch(error => console.log(error))
+        .catch(() => {})
     },
     clickSelectedParkingLot (index) {
     }
@@ -67,8 +78,9 @@ export default {
     text-align: left;
     width: 100%;
   }
+
   .orders-div {
     margin-top: 10px;
-    overflow:auto;
+    overflow: auto;
   }
 </style>

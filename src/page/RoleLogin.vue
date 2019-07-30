@@ -11,22 +11,21 @@
         </el-form-item>
       </el-form>
       <el-button type="primary" @click="clickLogin">登录</el-button>
-      <el-button type="primary" @click="reset">重置</el-button> 
+      <el-button type="primary" @click="reset">重置</el-button>
     </div>
   </div>
 </template>
 
 <script>
 import { MessageBox } from 'mint-ui'
-import { SELECT_ROLE, LOGIN_RESPONSE } from '../store/const-types' 
-import { Promise } from 'q'
+import { SELECT_ROLE, LOGIN_INFORMATION } from '../store/const-types'
 import { getSelfEmployee } from '../api/employee'
 
 export default {
   name: 'RoleLogin',
   data () {
     return {
-      role: this.$route.params.selectedRole,  
+      role: this.$route.params.selectedRole,
       labelPosition: 'right',
       formLabelAlign: {
         email: '',
@@ -49,16 +48,16 @@ export default {
         MessageBox.alert('邮箱或者密码不能为空', '提示信息')
       } else {
         const self = this
-        this.$store 
+        this.$store
           .dispatch('getLoginInfo', { ...this.formLabelAlign })
-          .then(response => { 
+          .then(response => {
             self.$store.commit('saveToken', response.data.data)
             return getSelfEmployee()
           })
           .then(response => {
             self.$store.commit(SELECT_ROLE, { roleSelected: response.data.data.role })
-            self.$store.commit(LOGIN_RESPONSE, response.data.data)
-            const role = this.$store.state.loginResponse.role
+            self.$store.commit(LOGIN_INFORMATION, response.data.data)
+            const role = this.$store.state.loginInformation.role
             if (role === 1) {
               self.$router.push('/grabbing-order')
             } else if (role === 2 || role === 3) {
@@ -67,13 +66,14 @@ export default {
               self.$router.push('/creating-order')
             }
           })
-          .catch(error => {
+          .catch(() => {
             MessageBox.alert('用户名或密码错误', '提示信息')
           })
       }
     },
     reset () {
-      this.formLabelAlign.email = '',
+      this.formLabelAlign.email = ''
+      this.formLabelAlign.password = ''
       this.formLabelAlign.password = ''
     }
   }
