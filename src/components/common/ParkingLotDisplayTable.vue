@@ -5,7 +5,7 @@
       <el-table-column prop="name" label="名字" min-width="180">
         <template slot-scope="scope">
           <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByName"></el-input>
-          <span v-else>{{scope.row.name}}</span>
+          <span v-else>{{scope.row.name}}</span>  
         </template>
       </el-table-column >
       <el-table-column prop="capacity" label="大小" min-width="180">
