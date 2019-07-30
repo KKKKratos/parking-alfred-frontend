@@ -11,7 +11,7 @@
         </el-form-item>
       </el-form>
       <el-button type="primary" @click="clickLogin">登录</el-button>
-      <el-button type="primary" @click="reset">重置</el-button>
+      <el-button type="primary" @click="reset">重置</el-button> 
     </div>
   </div>
 </template>
@@ -26,7 +26,7 @@ export default {
   name: 'RoleLogin',
   data () {
     return {
-      role: this.$route.params.selectedRole,
+      role: this.$route.params.selectedRole,  
       labelPosition: 'right',
       formLabelAlign: {
         email: '',
@@ -49,9 +49,9 @@ export default {
         MessageBox.alert('邮箱或者密码不能为空', '提示信息')
       } else {
         const self = this
-        this.$store
+        this.$store 
           .dispatch('getLoginInfo', { ...this.formLabelAlign })
-          .then(response => {
+          .then(response => { 
             self.$store.commit('saveToken', response.data.data)
             return getSelfEmployee()
           })
@@ -73,7 +73,8 @@ export default {
       }
     },
     reset () {
-      (this.formLabelAlign.email = ' '), (this.formLabelAlign.password = ' ')
+      this.formLabelAlign.email = '',
+      this.formLabelAlign.password = ''
     }
   }
 }

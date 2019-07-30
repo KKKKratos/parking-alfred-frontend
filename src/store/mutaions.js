@@ -15,6 +15,7 @@ import {
   SET_TARGET_ORDER_STATUS,
   LOGIN_RESPONSE,
   SAVE_TOKEN,
+  GET_PARKINGLOT_LIST,
   UPDATE_CUSTOMER_ORDER
 } from './const-types'
 import { employeeEnums } from '../config/util'
@@ -26,7 +27,7 @@ const mutations = {
   [SELECT_ROLE]: function (state, payload) {
     state.roleSelected = payload.roleSelected
   },
-  [GET_GRABBING_ORDERS] (state, orders) {
+  [GET_GRABBING_ORDERS](state, orders) {
     const toDisplayTime = time => {
       const date = new Date()
       date.setTime(time)
@@ -43,22 +44,22 @@ const mutations = {
     state.grabbingOrders.splice(0)
     state.grabbingOrders = [...result]
   },
-  [GET_TARGET_ORDER] (state, payload) {
+  [GET_TARGET_ORDER](state, payload) {
     state.targetOrder = payload.targetOrder
   },
-  [GET_GRABBING_PARKING_LOTS] (state, payload) {
+  [GET_GRABBING_PARKING_LOTS](state, payload) {
     state.grabbingParkingLots = payload.data
   },
-  [UPDATE_GRABBING_ORDER] (state, payload) {
+  [UPDATE_GRABBING_ORDER](state, payload) {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.grabbingOrders.splice(index, 1)
   },
-  [UPDATE_CUSTOMER_ORDER] (state, payload) {
+  [UPDATE_CUSTOMER_ORDER](state, payload) {
     const index = state.customerOrders.findIndex(value => value.id === payload.order.id)
     state.customerOrders[index].status = 3
   },
   [UPDATE_TARGET_ORDER] (state, payload) {
-    if(payload != null){
+    if (payload != null) {
       state.targetOrder.parkingLot = payload.parkingLot
       const date = new Date()
       date.setTime(payload.reservationTime)
@@ -68,17 +69,17 @@ const mutations = {
     state.targetOrder.reservationTime = date.getTime()
     state.targetOrder.status = 2
   },
-  [GET_PARKING_BOY_ORDERS] (state, payload) {
+  [GET_PARKING_BOY_ORDERS](state, payload) {
     state.parkingBoyOrders = payload.parkingBoyOrders
   },
-  [UPDATE_PARKING_BOY_ORDER] (state, payload) {
+  [UPDATE_PARKING_BOY_ORDER](state, payload) {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.parkingBoyOrders[index] = payload.order
   },
-  [CHANGE_WEB_ACTIVE_MENU_ITEM] (state, payload) {
+  [CHANGE_WEB_ACTIVE_MENU_ITEM](state, payload) {
     state.webActiveMenuItem = payload.webActiveMenuItem
   },
-  [GET_EMPLOYEES_LIST] (state, payload) {
+  [GET_EMPLOYEES_LIST](state, payload) {
     const employeeList = payload.employees.map(employee => ({
       id: employee.id,
       mail: employee.mail,
@@ -90,22 +91,22 @@ const mutations = {
     state.employeesList = employeeList
     state.totalEmployees = payload.totalCount
   },
-  [OPEN_CREATING_DIALOG]  (state) {
+  [OPEN_CREATING_DIALOG](state) {
     state.isOpenCreateEmployeeDialog = !state.isOpenCreateEmployeeDialog
   },
-  [SET_TARGET_ORDER_STATUS] (state, payload) {
+  [SET_TARGET_ORDER_STATUS](state, payload) {
     state.targetOrder.status = payload
     const date = new Date()
     date.setTime(state.targetOrder.reservationTime)
     state.targetOrder.reservationTime = date.getTime()
   },
-  [LOGIN_RESPONSE] (state, payload) {
+  [LOGIN_RESPONSE](state, payload) {
     state.loginResponse = payload
   },
-  [SAVE_TOKEN] (state, payload) {
+  [SAVE_TOKEN](state, payload) {
     state.token = payload
   },
-  [GET_CUSTOMER_ORDERS] (state, orders) {
+  [GET_CUSTOMER_ORDERS](state, orders) {
     const toDisplayTime = time => {
       const date = new Date()
       date.setTime(time)
@@ -121,6 +122,10 @@ const mutations = {
     }))
     state.customerOrders.splice(0)
     state.customerOrders.push(...result)
+  },
+  [GET_PARKINGLOT_LIST](state, items) {
+    state.tableData.items = ''
+    state.tableData.push(...items)
   }
 }
 
