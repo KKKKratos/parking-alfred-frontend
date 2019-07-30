@@ -13,3 +13,4 @@ export const WAIT_FOR_CONFIRM = '待停车员确认'
 export const CONFIRM = '已完成'
 export const WAIT_FOR_USER_CONFIRM = '待车主确认'
 export const UNDEFINED_STATUS = '未知'
+export const TABLE_BUTTON_TYPE = ['编辑', '保存']
