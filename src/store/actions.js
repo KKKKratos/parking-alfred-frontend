@@ -1,31 +1,7 @@
-import {
-  GET_EMPLOYEES_LIST,
-  CREATE_EMPLOYEE,
-  GET_CUSTOMER_ORDERS,
-  UPDATE_CUSTOMER_ORDER,
-  GET_LOGIN_INFO
-} from './const-types'
+import {CREATE_EMPLOYEE, GET_EMPLOYEES_LIST, GET_LOGIN_INFO} from './const-types'
 import axios from '../api/config'
-import { requestOrders } from '../api/order'
 
 const actions = {
-  [UPDATE_CUSTOMER_ORDER] ({ commit }, payload) {
-    return new Promise((resolve, reject) => {
-      axios.put(`/orders/${payload.id}`, payload.order)
-        .then(response => {
-          commit(UPDATE_CUSTOMER_ORDER, { order: response.data.data })
-          resolve(response)
-        })
-        .catch(error => reject(error))
-    })
-  },
-  [GET_CUSTOMER_ORDERS] ({ commit }) {
-    requestOrders('reservationTime', 'desc')
-      .then(response => {
-        commit(GET_CUSTOMER_ORDERS, response.data.data)
-      })
-      .catch(error => { reject(error) })
-  },
   [GET_LOGIN_INFO] ({ commit }, payload) {
     const data = {
       mail: payload.email,

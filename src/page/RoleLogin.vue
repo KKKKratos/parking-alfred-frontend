@@ -57,7 +57,7 @@ export default {
           .then(response => {
             self.$store.commit(SELECT_ROLE, { roleSelected: response.data.data.role })
             self.$store.commit(LOGIN_INFORMATION, response.data.data)
-            const role = this.$store.state.loginResponse.role
+            const role = this.$store.state.loginInformation.role
             if (role === 1) {
               self.$router.push('/grabbing-order')
             } else if (role === 2 || role === 3) {

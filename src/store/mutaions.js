@@ -18,10 +18,6 @@ const mutations = {
   [SELECT_ROLE]: function (state, payload) {
     state.roleSelected = payload.roleSelected
   },
-  [UPDATE_CUSTOMER_ORDER] (state, payload) {
-    const index = state.customerOrders.findIndex(value => value.id === payload.order.id)
-    state.customerOrders[index].status = 3
-  },
   [CHANGE_WEB_ACTIVE_MENU_ITEM] (state, payload) {
     state.webActiveMenuItem = payload.webActiveMenuItem
   },
@@ -41,27 +37,10 @@ const mutations = {
     state.isOpenCreateEmployeeDialog = !state.isOpenCreateEmployeeDialog
   },
   [LOGIN_INFORMATION] (state, payload) {
-    state.loginResponse = payload
+    state.loginInformation = payload
   },
   [SAVE_TOKEN] (state, payload) {
     state.token = payload
-  },
-  [GET_CUSTOMER_ORDERS] (state, orders) {
-    const toDisplayTime = time => {
-      const date = new Date()
-      date.setTime(time)
-      return date.toLocaleString()
-    }
-    let result = orders.map(order => ({
-      id: order.id,
-      carNumber: order.carNumber,
-      customerAddress: order.customerAddress,
-      reservationTime: toDisplayTime(order.reservationTime),
-      status: order.status,
-      type: order.type
-    }))
-    state.customerOrders.splice(0)
-    state.customerOrders.push(...result)
   }
 }
 

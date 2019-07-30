@@ -17,7 +17,7 @@
 </template>
 <script>
 import { PARK_CAR_ORDER, FETCH_CAR_ORDER, WAIT_FOR_RECEIVE, WAIT_FOR_CONFIRM, CONFIRM, WAIT_FOR_USER_CONFIRM, UNDEFINED_STATUS } from '../../config/const-values'
-import { UPDATE_CUSTOMER_ORDER } from '../../store/const-types'
+import { UPDATE_CUSTOMER_ORDER } from '../../store/const/customer-const'
 import { SET_TARGET_ORDER_STATUS } from '../../store/const/parking-boy-const'
 export default {
   name: 'CustomerOderDetails',
@@ -25,7 +25,7 @@ export default {
     return {
       employeeId: '',
       orderType: '',
-      orderStatus: ''
+      orderStatus: '',
     }
   },
   mounted () {
