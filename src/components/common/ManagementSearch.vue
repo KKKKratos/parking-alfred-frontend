@@ -1,15 +1,15 @@
 <template>
   <div class="management-search-div">
-    <el-select v-model="tableSelectedRole" placeholder="请选择" size="small">
+    <el-select v-model="seletedOption" placeholder="请选择" size="small">
       <el-option
-        v-for="item in tableSelectedOptions"
+        v-for="item in seletedOptions"
         :key="item.value"
         :label="item.label"
         :value="item.value">
       </el-option>
     </el-select>
-    <el-input style="padding-left: 30px; width: 200px" size="small" v-model="searchedText" placeholder="请输入搜索内容"></el-input>
-    <el-button type="primary" size="small" @click="searchText">
+    <el-input style="padding: 0px 30px; width: 200px" size="small" v-model="keyword"></el-input>
+    <el-button type="primary" size="small" @click="searchByKeyword">
       <i class="el-icon-search"></i>
       搜索
     </el-button>
@@ -19,22 +19,19 @@
 <script>
 export default {
   name: 'ManagementSearch',
+  props: {
+    seletedOptions: Array,
+    search: Function
+  },
   data () {
     return {
-      tableSelectedRole: '',
-      tableSelectedOptions: [
-        { value: 'all', label: 'All' },
-        { value: 'customer', label: 'Customer' },
-        { value: 'parkingBoy', label: 'Parking Boy' },
-        { value: 'manager', label: 'Manager' },
-        { value: 'admin', label: 'Admin' }
-      ],
-      searchedText: ''
+      seletedOption: this.seletedOptions ? this.seletedOptions[0].value : '',
+      keyword: ''
     }
   },
   methods: {
-    searchText (text) {
-
+    searchByKeyword: function () {
+      this.search({ [this.seletedOption]: this.keyword })
     }
   }
 }

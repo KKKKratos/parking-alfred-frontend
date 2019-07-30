@@ -1,6 +1,6 @@
 <template>
   <div class="parking-lot-manage-div">
-    <ManagementHeader></ManagementHeader>
+    <ManagementHeader :seletedOptions="seletedOptions" :search="search"></ManagementHeader>
     <CreateParkingLot></CreateParkingLot>
     <ParkingLotDisplayTable></ParkingLotDisplayTable>
     <ManagementPagination></ManagementPagination>
@@ -16,6 +16,18 @@ import { GET_PARKING_LOT_LIST } from '../../store/const/common-parking-lot-const
 export default {
   name: 'ParkingLotsManagement',
   components: { ParkingLotDisplayTable, ManagementHeader, ManagementPagination, CreateParkingLot },
+  data () {
+    return {
+      seletedOptions: [
+        { value: 'name', label: '名字' }
+      ]
+    }
+  },
+  methods: {
+    search: function (data) {
+      this.$store.dispatch(GET_PARKING_LOT_LIST, data)
+    }
+  },
   mounted () {
     this.$store.dispatch(GET_PARKING_LOT_LIST)
   }

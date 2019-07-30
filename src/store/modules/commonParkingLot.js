@@ -21,9 +21,9 @@ const mutations = {
 }
 
 const actions = {
-  [GET_PARKING_LOT_LIST]: ({ commit }) => {
+  [GET_PARKING_LOT_LIST]: ({ commit }, payload = {}) => {
     return new Promise((resolve, reject) => {
-      getParkingLots()
+      getParkingLots(payload)
         .then(response => {
           commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
           resolve(response)
