@@ -1,5 +1,10 @@
-import { getParkingLots, createParkingLot, freezeparkinglot, startparkinglot, updateParkingLot } from '../../api/parkingLot'
-import { CREATE_PARKING_LOT, GET_PARKING_LOT_LIST, CHANGE_CREATING_LOT_DIALOG, FREEZE_PARKING_LOT, START_PARKING_LOT, UPDATE_PARKING_LOT } from '../const/common-parking-lot-const'
+<<<<<<< HEAD
+import { getParkingLots, createParkingLot, freezeparkinglot, startparkinglot } from '../../api/parkingLot'
+import { CREATE_PARKING_LOT, GET_PARKING_LOT_LIST, CHANGE_CREATING_LOT_DIALOG, FREEZE_PARKING_LOT, START_PARKING_LOT } from '../const/common-parking-lot-const'
+=======
+import { getParkingLots, createParkingLot, updateParkingLot } from '../../api/parkingLot'
+import { CREATE_PARKING_LOT, GET_PARKING_LOT_LIST, CHANGE_CREATING_LOT_DIALOG,UPDATE_PARKING_LOT} from '../const/common-parking-lot-const'
+>>>>>>> 97c20b66cd06380b21aed79c088e70ac7efdfa42
 
 const state = {
   parkingLotList: [],
@@ -14,7 +19,7 @@ const mutations = {
   [CHANGE_CREATING_LOT_DIALOG] (state) {
     state.isOpenCreateParkingLotDialog = !state.isOpenCreateParkingLotDialog
   },
-  [UPDATE_PARKING_LOT] (state, parkingLot) {
+  [UPDATE_PARKING_LOT] (state,parkingLot) {
     state.parkingLotList.filter(item => (item.id === parkingLot.id))[0].name = parkingLot.name
     state.parkingLotList.filter(item => (item.id === parkingLot.id))[0].capacity = parkingLot.capacity
   }
@@ -24,12 +29,16 @@ const actions = {
   [GET_PARKING_LOT_LIST]: ({ commit }) => {
     return new Promise((resolve, reject) => {
       getParkingLots()
-        .then(response => {
-          commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
-          resolve(response)
-        })
-        .catch((error) => { reject(error) })
+      .then(response => {
+        commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
+        resolve(response)
+      })
+<<<<<<< HEAD
+      .catch(() => { })
+=======
+      .catch((error) => {reject(error)})
     })
+>>>>>>> 97c20b66cd06380b21aed79c088e70ac7efdfa42
   },
   [CREATE_PARKING_LOT] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
@@ -42,6 +51,7 @@ const actions = {
         })
     })
   },
+<<<<<<< HEAD
   [FREEZE_PARKING_LOT] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       freezeparkinglot(payload)
@@ -58,17 +68,13 @@ const actions = {
       startparkinglot(payload)
         .then(response => {
           resolve(response)
-        })
-        .catch(error => {
-          reject(error)
-        })
-    })
-  },
+=======
   [UPDATE_PARKING_LOT] ({ commit }, parkingLot) {
     return new Promise((resolve, reject) => {
-      updateParkingLot(parkingLot.id, parkingLot)
+      updateParkingLot(parkingLot.id,parkingLot)
         .then(response => {
           commit(UPDATE_PARKING_LOT, response.data.data)
+>>>>>>> 97c20b66cd06380b21aed79c088e70ac7efdfa42
         })
         .catch(error => {
           reject(error)

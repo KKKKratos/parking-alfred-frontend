@@ -16,6 +16,9 @@ export default {
   components: { ManagementSearch },
   methods: {
     clickCreating () {
+<<<<<<< HEAD
+      this.$route.name === 'employees-management' ? this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG) : this.$store.commit(CHANGE_CREATING_LOT_DIALOG)
+=======
       if (this.$route.name === 'employees-management') {
         this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG)
       } else if (this.$route.name === 'parking-lots-management') {
@@ -26,6 +29,7 @@ export default {
   computed: {
     isCreateButtonDisable: function () {
       return this.$route.name === 'employees-management' || this.$route.name === 'parking-lots-management'
+>>>>>>> 97c20b66cd06380b21aed79c088e70ac7efdfa42
     }
   }
 }
