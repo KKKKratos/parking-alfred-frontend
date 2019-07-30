@@ -6,16 +6,20 @@ import {
   UPDATE_TARGET_ORDER,
   UPDATE_PARKING_BOY_SELECTED_ORDER,
   UPDATE_TARGET_ORDER_BY_STATUS,
-  SET_TARGET_ORDER_STATUS
+  SET_TARGET_ORDER_STATUS,
+  GET_PARKING_BOY_LIST,
+  UPDATE_PARKING_BOY_BY_PARKING_LOTS
 } from '../const/parking-boy-const'
-import { getEmployeeParkingLots } from '../../api/employee'
+import { getEmployeeParkingLots, getParkingBoys, updateParkingLotsOfBoy } from '../../api/employee'
 import { requestOrders, getGabbingOrders, updateOrderByStatus } from '../../api/order'
 
 const state = {
   grabbingOrders: [],
   grabbingTargetOrder: {},
   grabbingParkingLots: [],
-  parkingBoyOrders: []
+  parkingBoyOrders: [],
+  parkingBoyList: [],
+  parkingLotsOfBoy: []
 }
 
 const mutations = {
@@ -70,6 +74,15 @@ const mutations = {
     const date = new Date()
     date.setTime(state.grabbingTargetOrder.reservationTime)
     state.grabbingTargetOrder.reservationTime = date.getTime()
+  },
+  [GET_PARKING_BOY_LIST] (state, payload) {
+    state.parkingBoyList = payload.parkingBoyList
+  },
+  [UPDATE_PARKING_BOY_BY_PARKING_LOTS] (state, payload) {
+    const index = state.parkingBoyList.findIndex(x => {
+      return x.id === payload.parkingBoy.id
+    })
+    state.parkingBoyList[index].parkingLotVOS = payload.parkingBoy.parkingLotVOS
   }
 }
 
@@ -112,6 +125,21 @@ const actions = {
     updateOrderByStatus(payload.id, payload.order)
       .then(response => {
         commit(UPDATE_PARKING_BOY_SELECTED_ORDER, { order: response.data.data })
+      })
+      .catch(() => {})
+  },
+  [GET_PARKING_BOY_LIST] ({ commit }) {
+    getParkingBoys()
+      .then(response => {
+        commit(GET_PARKING_BOY_LIST, { parkingBoyList: response.data.data.employees })
+      })
+      .catch(() => {})
+  },
+  [UPDATE_PARKING_BOY_BY_PARKING_LOTS] ({ commit }, payload) {
+    updateParkingLotsOfBoy(payload.id, payload.parkingLotIdList)
+      .then(response => {
+        console.log(response)
+        commit(UPDATE_PARKING_BOY_BY_PARKING_LOTS, { parkingBoy: response.data.data })
       })
       .catch(() => {})
   }

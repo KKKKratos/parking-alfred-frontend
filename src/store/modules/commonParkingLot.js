@@ -18,11 +18,14 @@ const mutations = {
 
 const actions = {
   [GET_PARKING_LOT_LIST]: ({ commit }) => {
-    getParkingLots()
-      .then(response => {
-        commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
-      })
-      .catch(() => {})
+    return new Promise((resolve, reject) => {
+      getParkingLots()
+        .then(response => {
+          commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
   },
   [CREATE_PARKING_LOT] ({ commit }, payload) {
     return new Promise((resolve, reject) => {

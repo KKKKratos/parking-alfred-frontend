@@ -10,10 +10,12 @@
 import ManagementHeader from '../../components/header/ManagementHeader'
 import ParkingBoyTable from '../../components/common/ParkingBoyTable'
 import ManagementPagination from '../../components/footer/ManagementPagination'
+import { GET_PARKING_BOY_LIST } from '../../store/const/parking-boy-const'
 export default {
   name: 'ParkingBoyManagement',
   components: { ParkingBoyTable, ManagementPagination, ManagementHeader },
   mounted () {
+    this.$store.dispatch(GET_PARKING_BOY_LIST)
   }
 }
 </script>
