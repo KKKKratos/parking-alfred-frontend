@@ -11,3 +11,7 @@ export const getEmployeesByPage = (page) => axios.get('/employees', { params: { 
 export const getAllEmployees = () => axios.get('/employees')
 
 export const createEmployee = (employee) => axios.post('/employees', employee)
+
+export const getParkingBoys = () => axios.get('/employees', { params: { role: 1 } })
+
+export const updateParkingLotsOfBoy = (employeeId, parkingLotIdList) => axios.put(`/employees/${employeeId}/parking-lots`, parkingLotIdList)

@@ -35,8 +35,8 @@ export default {
     return {
       ismodifyButtonDisabledArray: [],
       operateButtonNameArray: [],
-      editTextByName: "",
-      editTextByCapacity: "",
+      editTextByName: '',
+      editTextByCapacity: '',
       isEdited: [],
       editButtonName: []
     }
@@ -51,7 +51,7 @@ export default {
           this.isEdited.push(false)
           this.editButtonName.push(TABLE_BUTTON_TYPE[0])
         }
-      }).catch(() => {}) 
+      }).catch(() => {})
   },
   computed: {
     parkingLotList () {
@@ -92,7 +92,7 @@ export default {
             .then((response) => {
               this.ismodifyButtonDisabledArray.splice(index, 1, false)
               this.operateButtonNameArray.splice(index, 1, '冻结')
-              this.$message({type: 'success', message: '启用成功!'})
+              this.$message({ type: 'success', message: '启用成功!' })
             })
             .catch(() => {
               this.$message({
@@ -104,19 +104,19 @@ export default {
         })
       }
     },
-      handleEdit (index, row) {
-        if (this.editButtonName[index] === TABLE_BUTTON_TYPE[0]) {
-          this.editTextByName = row.name
-          this.editTextByCapacity = row.capacity
-          this.isEdited[index] = true
-          this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[1])
-        } else {
-          const parkingLot = { id: row.id, name: this.editTextByName, capacity: this.editTextByCapacity }
-          this.$store.dispatch(UPDATE_PARKING_LOT, parkingLot)
-          this.isEdited[index] = false
-          this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
-        }
+    handleEdit (index, row) {
+      if (this.editButtonName[index] === TABLE_BUTTON_TYPE[0]) {
+        this.editTextByName = row.name
+        this.editTextByCapacity = row.capacity
+        this.isEdited[index] = true
+        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[1])
+      } else {
+        const parkingLot = { id: row.id, name: this.editTextByName, capacity: this.editTextByCapacity }
+        this.$store.dispatch(UPDATE_PARKING_LOT, parkingLot)
+        this.isEdited[index] = false
+        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
       }
+    }
   }
 }
 </script>

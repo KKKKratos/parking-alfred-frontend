@@ -8,8 +8,8 @@
         :value="item.value">
       </el-option>
     </el-select>
-    <el-input style="padding-left: 30px; width: 200px" size="small"></el-input>
-    <el-button type="primary" size="small">
+    <el-input style="padding-left: 30px; width: 200px" size="small" v-model="searchedText" placeholder="请输入搜索内容"></el-input>
+    <el-button type="primary" size="small" @click="searchText">
       <i class="el-icon-search"></i>
       搜索
     </el-button>
@@ -28,7 +28,13 @@ export default {
         { value: 'parkingBoy', label: 'Parking Boy' },
         { value: 'manager', label: 'Manager' },
         { value: 'admin', label: 'Admin' }
-      ]
+      ],
+      searchedText: ''
+    }
+  },
+  methods: {
+    searchText (text) {
+
     }
   }
 }
