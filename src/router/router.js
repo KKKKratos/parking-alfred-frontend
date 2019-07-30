@@ -38,7 +38,7 @@ const routes = [
     children: [
       { path: '/employees-management', name: 'employees-management', component: EmployeeManagement },
       { path: '/parking-boys-management', name: 'parking-boys-management', component: ParkingBoyManagement },
-      { path: '/parking-lots-management', name: 'parkingLots-management', component: ParkingLotsManagement }
+      { path: '/parking-lots-management', name: 'parking-lots-management', component: ParkingLotsManagement }
     ],
     redirect: '/employees-management'
   },
