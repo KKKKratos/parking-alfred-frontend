@@ -58,8 +58,9 @@ const mutations = {
     state.customerOrders[index].status = 3
   },
   [UPDATE_TARGET_ORDER] (state, payload) {
-    if(payload != null){
+    if (payload != null) {
       state.targetOrder.parkingLot = payload.parkingLot
+      state.targetOrder.parkingLot.occupied += 1
       const date = new Date()
       date.setTime(payload.reservationTime)
       state.targetOrder.reservationTime = date.getTime()

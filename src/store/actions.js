@@ -21,7 +21,7 @@ const actions = {
       .catch(error => {})
   },
   [GET_GRABBING_PARKING_LOTS] ({ commit }, payload) {
-    axios.get(`/employees/${payload.employeeId}/parking-lots`)
+    axios.get(`/employees/${payload.employeeId}/parking-lots`, {data: {}})
       .then(response => { commit(GET_GRABBING_PARKING_LOTS, response.data) })
       .catch(error => {})
   },

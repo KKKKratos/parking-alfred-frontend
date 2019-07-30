@@ -16,5 +16,4 @@ export const GET_EMPLOYEES_LIST = 'getEmployeesList'
 export const OPEN_CREATING_DIALOG = 'openCreatingDialog'
 export const CREATE_EMPLOYEE = 'createEmployee'
 export const SAVE_TOKEN = 'saveToken'
-export const UPDATE_CUSTOMER_ORDER = 'UPDATE_CUSTOMER_ORDER'
-
+export const UPDATE_CUSTOMER_ORDER = 'updateCustomerOrder'

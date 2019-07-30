@@ -11,6 +11,7 @@ const state = {
   webActiveMenuItem: '',
   isOpenCreateEmployeeDialog: false,
   employeesList: [],
+  parkingBoyList: [],
   totalEmployees: 0
 }
 
