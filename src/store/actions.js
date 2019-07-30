@@ -8,28 +8,7 @@ import {
 import axios from '../api/config'
 import { requestOrders } from '../api/order'
 
-// import { resolveCname } from 'dns';
 const actions = {
-  // [GET_GRABBING_ORDERS] ({ commit }) {
-  //   axios.get('/orders', { params: { status: 1 } })
-  //     .then(response => commit(GET_GRABBING_ORDERS, response.data))
-  //     .catch(error => {})
-  // },
-  // [GET_GRABBING_PARKING_LOTS] ({ commit }, payload) {
-  //   axios.get(`/employees/${payload.employeeId}/parking-lots`, {data: {}})
-  //     .then(response => { commit(GET_GRABBING_PARKING_LOTS, response.data) })
-  //     .catch(error => {})
-  // },
-  // [UPDATE_TARGET_ORDER_BY_STATUS] ({ commit }, payload) {
-  //   return new Promise((resolve, reject) => {
-  //     axios.put(`/orders/${payload.id}`, payload.order)
-  //       .then(response => {
-  //         commit(UPDATE_TARGET_ORDER_BY_STATUS, { order: response.data.data })
-  //         resolve(response)
-  //       })
-  //       .catch(error => reject(error))
-  //   })
-  // },
   [UPDATE_CUSTOMER_ORDER] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       axios.put(`/orders/${payload.id}`, payload.order)
@@ -40,23 +19,6 @@ const actions = {
         .catch(error => reject(error))
     })
   },
-  // [GET_PARKING_BOY_ORDERS] ({ commit }) {
-  //   return new Promise((resolve, reject) => {
-  //     requestOrders('reservationTime', 'desc')
-  //       .then(response => {
-  //         let orders = response.data.data
-  //         orders = orders.filter(o => o.status !== 1)
-  //         commit(GET_PARKING_BOY_ORDERS, { parkingBoyOrders: orders })
-  //         resolve(response)
-  //       })
-  //       .catch(error => { reject(error) })
-  //   })
-  // },
-  // [UPDATE_PARKING_BOY_SELECTED_ORDER] ({ commit }, payload) {
-  //   axios.put(`/orders/${payload.id}`, payload.order)
-  //     .then(response => { commit(UPDATE_PARKING_BOY_SELECTED_ORDER, { order: response.data.data }) })
-  //     .catch(error => {})
-  // },
   [GET_CUSTOMER_ORDERS] ({ commit }) {
     requestOrders('reservationTime', 'desc')
       .then(response => {

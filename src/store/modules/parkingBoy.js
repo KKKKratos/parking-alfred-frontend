@@ -8,9 +8,8 @@ import {
   UPDATE_TARGET_ORDER_BY_STATUS,
   SET_TARGET_ORDER_STATUS
 } from '../const/parking-boy-const'
-import {} from '../../api/employee'
-import axios from '../../api/config'
-import { requestOrders } from '../../api/order'
+import { getEmployeeParkingLots } from '../../api/employee'
+import { requestOrders, getGabbingOrders, updateOrderByStatus } from '../../api/order'
 
 const state = {
   grabbingOrders: [],
@@ -76,18 +75,20 @@ const mutations = {
 
 const actions = {
   [GET_GRABBING_ORDERS] ({ commit }) {
-    axios.get('/orders', { params: { status: 1 } })
-      .then(response => commit(GET_GRABBING_ORDERS, response.data))
-      .catch(error => {})
+    getGabbingOrders().then(response => {
+      commit(GET_GRABBING_ORDERS, response.data)
+    }).catch(error => {})
   },
   [GET_GRABBING_PARKING_LOTS] ({ commit }, payload) {
-    axios.get(`/employees/${payload.employeeId}/parking-lots`, { data: {} })
-      .then(response => { commit(GET_GRABBING_PARKING_LOTS, response.data) })
+    getEmployeeParkingLots(payload.employeeId)
+      .then(response => {
+        commit(GET_GRABBING_PARKING_LOTS, response.data)
+      })
       .catch(error => {})
   },
   [UPDATE_TARGET_ORDER_BY_STATUS] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.put(`/orders/${payload.id}`, payload.order)
+      updateOrderByStatus(payload.id, payload.order)
         .then(response => {
           commit(UPDATE_TARGET_ORDER_BY_STATUS, { order: response.data.data })
           resolve(response)
@@ -108,8 +109,10 @@ const actions = {
     })
   },
   [UPDATE_PARKING_BOY_SELECTED_ORDER] ({ commit }, payload) {
-    axios.put(`/orders/${payload.id}`, payload.order)
-      .then(response => { commit(UPDATE_PARKING_BOY_SELECTED_ORDER, { order: response.data.data }) })
+    updateOrderByStatus(payload.id, payload.order)
+      .then(response => {
+        commit(UPDATE_PARKING_BOY_SELECTED_ORDER, { order: response.data.data })
+      })
       .catch(error => {})
   }
 }
