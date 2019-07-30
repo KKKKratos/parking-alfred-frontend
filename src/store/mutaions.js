@@ -123,8 +123,8 @@ const mutations = {
     state.customerOrders.splice(0)
     state.customerOrders.push(...result)
   },
-  [GET_PARKINGLOT_LIST](state, items) {
-    state.tableData.items = ''
+  [GET_PARKINGLOT_LIST] (state, items) {
+    state.tableData.splice(0)
     state.tableData.push(...items)
   }
 }

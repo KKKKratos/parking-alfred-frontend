@@ -18,7 +18,7 @@
 
 <script>
 import { MessageBox } from 'mint-ui'
-import { SELECT_ROLE, LOGIN_RESPONSE } from '../store/const-types'
+import { SELECT_ROLE, LOGIN_RESPONSE } from '../store/const-types' 
 import { Promise } from 'q'
 import { getSelfEmployee } from '../api/employee'
 
