@@ -1,7 +1,7 @@
 <template>
   <div style="height: 60px; background-color: white; text-align: left">
     <div class="create-button-div">
-      <el-button v-if="$route.name === 'employees-management' || 'parking-lots-management'" type="primary" size="small" style="width: 80px" @click="clickCreating">新建</el-button>
+      <el-button v-if="isCreateButtonDisable" type="primary" size="small" style="width: 80px" @click="clickCreating">新建</el-button>
     </div>
     <ManagementSearch></ManagementSearch>
   </div>
@@ -16,9 +16,16 @@ export default {
   components: { ManagementSearch },
   methods: {
     clickCreating () {
-      console.log(this.$route.name)
-      this.$route.name === 'employees-management' ? this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG) : this.$store.commit(CHANGE_CREATING_LOT_DIALOG)
-      
+      if (this.$route.name === 'employees-management') {
+        this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG)
+      } else if (this.$route.name === 'parking-lots-management') {
+        this.$store.commit(CHANGE_CREATING_LOT_DIALOG)
+      }
+    }
+  },
+  computed: {
+    isCreateButtonDisable: function () {
+      return this.$route.name === 'employees-management' || this.$route.name === 'parking-lots-management'
     }
   }
 }
