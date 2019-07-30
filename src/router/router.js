@@ -10,7 +10,7 @@ import OrderDetails from '../page/mobilePage/ParkingBoyOrderDetails'
 import CustomerOrders from '../page/mobilePage/CustomerOrders'
 import CustomerInfo from '../page/mobilePage/CustomerInformation'
 import RoleLogin from '../page/RoleLogin'
-import ParkingLotManager from '../page/webPage/ParkingLotManager'
+import ParkingLotsManagement from '../page/webPage/ParkingLotsManagement'
 import EmployeeManagement from '../page/webPage/EmployeeManagement'
 import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 
@@ -36,7 +36,7 @@ const routes = [
     component: WebHome,
     children: [
       { path: '/employees-management', name: 'employees-management', component: EmployeeManagement },
-      { path: '/parking-lot-manager', name: 'parking-lot-manager', component: ParkingLotManager }
+      { path: '/parkingLots-management', name: 'parkingLots-management', component: ParkingLotsManagement }
     ],
     redirect: '/employees-management'
   },

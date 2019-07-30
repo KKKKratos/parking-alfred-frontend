@@ -6,7 +6,7 @@
       <el-table-column prop="capacity" label="大小"></el-table-column>
       <el-table-column prop="operate" label="操作">
         <template slot-scope="scope">
-          <el-button style="background-color:green;"  size="mini" @click="handleEdit(scope.$index, scope.row)">编辑</el-button>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
           <el-button size="mini" type="danger" @click="handleFreeze(scope.$index, scope.row)">冻结</el-button>
         </template>
       </el-table-column>
@@ -22,13 +22,13 @@ export default {
       return this.$store.state.tableData;
     }
   },
-   methods: {
-      handleEdit(index, row) {
-        console.log(index, row);
-      },
-      handleFreeze(index, row) {
-        console.log(index, row);
-      }
+  methods: {
+    handleEdit(index, row) {
+      console.log(index, row);
+    },
+    handleFreeze(index, row) {
+      console.log(index, row);
     }
+  }
 };
 </script>

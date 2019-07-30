@@ -12,9 +12,14 @@ export const SET_TARGET_ORDER_STATUS = 'setTagetOrderStatus'
 export const GET_LOGIN_INFO = 'getLoginInfo'
 export const LOGIN_RESPONSE = 'login_response'
 export const CHANGE_WEB_ACTIVE_MENU_ITEM = 'changeWebActiveMenuItem'
-export const GET_EMPLOYEES_LIST = 'getEmployeesList'
+
 export const OPEN_CREATING_DIALOG = 'openCreatingDialog'
+
+export const GET_EMPLOYEES_LIST = 'getEmployeesList'
 export const CREATE_EMPLOYEE = 'createEmployee'
-export const SAVE_TOKEN = 'saveToken'
-export const ADD_LIST = 'addList'
+
+export const GET_PARKINGLOT_LIST = 'addList'
+export const CREATE_PARKINGLOT = 'createParkingLot'
+
 export const UPDATE_CUSTOMER_ORDER = 'UPDATE_CUSTOMER_ORDER'
+export const SAVE_TOKEN = 'saveToken'
