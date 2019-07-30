@@ -5,9 +5,9 @@
           <i class="el-icon-s-management"></i>
           <span slot="title">员工管理</span>
         </el-menu-item>
-        <el-menu-item index="parkingLots-management">
+        <el-menu-item index="parking-lots-management">
           <i class="el-icon-s-management"></i>
-          <span slot="title">停车场管理</span>
+          <span slot="title" >停车场管理</span>
         </el-menu-item>
         <el-menu-item index="parking-boys-management">
           <i class="el-icon-s-management"></i>

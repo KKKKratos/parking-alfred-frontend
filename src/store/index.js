@@ -7,6 +7,7 @@ import getters from './getters'
 import parkingBoyModule from './modules/parkingBoy'
 import customer from './modules/customer'
 import employee from './modules/employee'
+import commonParkingLot from './modules/commonParkingLot'
 
 Vue.use(Vuex)
 
@@ -18,7 +19,8 @@ const store = new Vuex.Store({
   modules: {
     parkingBoy: parkingBoyModule,
     customer: customer,
-    employee: employee
+    employee: employee,
+    commonParkingLot: commonParkingLot
   }
 })
 

@@ -3,8 +3,7 @@ const state = {
   roleSelected: '',
   token: '',
   loginInformation: '',
-  webActiveMenuItem: '',
-  parkingBoyList: []
+  webActiveMenuItem: ''
 }
 
 export default state

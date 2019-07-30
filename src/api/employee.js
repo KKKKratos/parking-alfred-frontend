@@ -6,7 +6,7 @@ export const getEmployeeParkingLots = (employeeId) => axios.get(`/employees/${em
 
 export const login = (data) => axios.post('/login', data)
 
-export const getEmoloyeesByPage = (page) => axios.get('/employees', { params: { page: page } })
+export const getEmployeesByPage = (page) => axios.get('/employees', { params: { page: page } })
 
 export const getAllEmployees = () => axios.get('/employees')
 

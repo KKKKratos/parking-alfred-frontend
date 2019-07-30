@@ -1,5 +1,5 @@
-import { GET_EMPLOYEES_LIST, CHANGE_CREATING_EMPLOYEE_DIALOG, CREATE_EMPLOYEE } from '../const/employee-const'
-import { getEmoloyeesByPage, getAllEmployees, createEmployee } from '../../api/employee'
+import { GET_EMPLOYEES_LIST, CREATE_EMPLOYEE, CHANGE_CREATING_EMPLOYEE_DIALOG } from '../const/employee-const'
+import { getEmployeesByPage, getAllEmployees, createEmployee } from '../../api/employee'
 import { employeeEnums } from '../../config/util'
 
 const state = {
@@ -10,7 +10,7 @@ const state = {
 
 const mutations = {
   [GET_EMPLOYEES_LIST] (state, payload) {
-    state.employeesList = payload.employees.map(employee => ({
+    const employeeList = payload.employees.map(employee => ({
       id: employee.id,
       mail: employee.mail,
       name: employee.name,
@@ -18,6 +18,7 @@ const mutations = {
       status: employee.status,
       telephone: employee.telephone
     }))
+    state.employeesList = employeeList
     state.totalEmployees = payload.totalCount
   },
   [CHANGE_CREATING_EMPLOYEE_DIALOG]  (state) {
@@ -28,7 +29,7 @@ const mutations = {
 const actions = {
   [GET_EMPLOYEES_LIST] ({ commit }, payload) {
     if (payload !== undefined) {
-      getEmoloyeesByPage(payload.page)
+      getEmployeesByPage(payload.page)
         .then(response => {
           commit(GET_EMPLOYEES_LIST, response.data.data)
         })
