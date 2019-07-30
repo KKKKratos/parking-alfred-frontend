@@ -1,4 +1,4 @@
-import {} from '../const-types'
+import {} from '../const/employee-const'
 import {} from '../../api/employee'
 
 const state = {

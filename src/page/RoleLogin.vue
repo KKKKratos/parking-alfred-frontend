@@ -18,8 +18,7 @@
 
 <script>
 import { MessageBox } from 'mint-ui'
-import { SELECT_ROLE, LOGIN_RESPONSE } from '../store/const-types'
-import { Promise } from 'q'
+import { SELECT_ROLE, LOGIN_INFORMATION } from '../store/const-types'
 import { getSelfEmployee } from '../api/employee'
 
 export default {
@@ -57,7 +56,7 @@ export default {
           })
           .then(response => {
             self.$store.commit(SELECT_ROLE, { roleSelected: response.data.data.role })
-            self.$store.commit(LOGIN_RESPONSE, response.data.data)
+            self.$store.commit(LOGIN_INFORMATION, response.data.data)
             const role = this.$store.state.loginResponse.role
             if (role === 1) {
               self.$router.push('/grabbing-order')
@@ -73,7 +72,9 @@ export default {
       }
     },
     reset () {
-      (this.formLabelAlign.email = ' '), (this.formLabelAlign.password = ' ')
+      this.formLabelAlign.email = ''
+      this.formLabelAlign.password = ''
+      this.formLabelAlign.password = ''
     }
   }
 }

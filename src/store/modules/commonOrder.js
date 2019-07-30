@@ -1,4 +1,4 @@
-import {} from '../const-types'
+import {} from '../const/common-order-const'
 import {} from '../../api/order'
 
 const state = {

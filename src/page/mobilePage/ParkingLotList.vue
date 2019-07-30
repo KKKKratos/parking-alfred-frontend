@@ -13,7 +13,8 @@
 
 <script>
 import { MOBILE_TAB_ITEM_ORDER } from '../../config/const-values'
-import { GET_GRABBING_PARKING_LOTS, UPDATE_GRABBING_ORDER, UPDATE_TARGET_ORDER, CHANGE_MOBILE_TAB_ITEM, GET_PARKING_BOY_ORDERS } from '../../store/const-types'
+import { CHANGE_MOBILE_TAB_ITEM } from '../../store/const-types'
+import { GET_GRABBING_PARKING_LOTS, UPDATE_TARGET_ORDER_BY_STATUS, UPDATE_TARGET_ORDER, GET_PARKING_BOY_ORDERS } from '../../store/const/parking-boy-const'
 import ParkingLotItem from '../../components/common/ParkingLotItem'
 export default {
   name: 'ParkingLot',
@@ -30,7 +31,7 @@ export default {
       return document.documentElement.clientHeight - 140
     },
     parkingLots: function () {
-      return this.$store.state.grabbingParkingLots
+      return this.$store.state.parkingBoy.grabbingParkingLots
     }
   },
   mounted () {
@@ -39,8 +40,10 @@ export default {
   methods: {
     clickConfirmSelected () {
       const self = this
-      this.$store.commit(UPDATE_TARGET_ORDER, { parkingLot: this.$store.state.grabbingParkingLots[this.radioSelected] })
-      this.$store.dispatch(UPDATE_GRABBING_ORDER, { id: this.$store.state.targetOrder.id, order: this.$store.state.targetOrder })
+      this.$store.commit(UPDATE_TARGET_ORDER, { parkingLot: this.$store.state.parkingBoy.grabbingParkingLots[this.radioSelected] })
+      const id = this.$store.state.parkingBoy.grabbingTargetOrder.id
+      const order = this.$store.state.parkingBoy.grabbingTargetOrder
+      this.$store.dispatch(UPDATE_TARGET_ORDER_BY_STATUS, { id: id, order: order })
         .then(() => {
           this.$message({
             message: '抢单成功',

@@ -8,7 +8,7 @@
 
 <script>
 import ParkingBoyOrder from '../../components/common/ParkingBoyOrder'
-import { GET_PARKING_BOY_ORDERS } from '../../store/const-types'
+import { GET_PARKING_BOY_ORDERS } from '../../store/const/parking-boy-const'
 export default {
   name: 'parkingBoyOrders',
   components: { ParkingBoyOrder },
@@ -19,7 +19,7 @@ export default {
   },
   computed: {
     orders () {
-      return this.$store.state.parkingBoyOrders
+      return this.$store.state.parkingBoy.parkingBoyOrders
     }
   },
   mounted () {

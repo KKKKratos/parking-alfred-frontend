@@ -9,13 +9,13 @@
 
 <script>
 import ManagementSearch from '../common/ManagementSearch'
-import { OPEN_CREATING_DIALOG } from '../../store/const-types'
+import { CHANGE_CREATING_EMPLOYEE_DIALOG } from '../../store/const-types'
 export default {
   name: 'CreateButton',
   components: { ManagementSearch },
   methods: {
     clickCreating () {
-      this.$store.commit(OPEN_CREATING_DIALOG)
+      this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG)
     }
   }
 }

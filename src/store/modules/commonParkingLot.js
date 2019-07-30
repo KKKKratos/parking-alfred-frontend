@@ -1,4 +1,4 @@
-import {} from '../const-types'
+import {} from '../const/common-parking-lot-const'
 import {} from '../../api/parkingLot'
 
 const state = {
