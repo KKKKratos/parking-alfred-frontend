@@ -14,6 +14,7 @@ import ParkingLotsManagement from '../page/webPage/ParkingLotsManagement'
 import EmployeeManagement from '../page/webPage/EmployeeManagement'
 import ParkingBoyManagement from '../page/webPage/ParkingBoyManagement'
 import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
+import ParkingLotDashBoard from '../page/webPage/ParkingLotDashBoard'
 
 Vue.use(VueRouter)
 
@@ -38,11 +39,13 @@ const routes = [
     children: [
       { path: '/employees-management', name: 'employees-management', component: EmployeeManagement },
       { path: '/parking-boys-management', name: 'parking-boys-management', component: ParkingBoyManagement },
-      { path: '/parking-lots-management', name: 'parkingLots-management', component: ParkingLotsManagement }
+      { path: '/parking-lots-management', name: 'parkingLots-management', component: ParkingLotsManagement },
+      { path: '/parking-lot-dashboard', name: 'parking-lot-dashboard', component: ParkingLotDashBoard }
     ],
     redirect: '/employees-management'
   },
-  { path: '/role-login', name: 'role-login', component: RoleLogin }
+  { path: '/role-login', name: 'role-login', component: RoleLogin },
+  
 ]
 
 const router = new VueRouter({

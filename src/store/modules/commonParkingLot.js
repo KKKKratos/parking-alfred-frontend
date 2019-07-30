@@ -20,7 +20,9 @@ const actions = {
   [GET_PARKING_LOT_LIST]: ({ commit }) => {
     getParkingLots()
       .then(response => {
+        console.log( response.data.data.parkingLots)
         commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
+        return new Promise((resolve, reject) => resolve(response.data.data.parkingLots))
       })
       .catch(() => {})
   },
