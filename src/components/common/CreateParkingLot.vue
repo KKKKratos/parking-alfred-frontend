@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-dialog title="创建停车场" :visible="$store.state.isOpenCreateEmployeeDialog" :show-close="false">
+      <el-dialog title="创建停车场" :visible="$store.state.isOpenCreateParkingLotDialog" :show-close="false">
         <el-form label-position="left" label-width="80px" :model="creatingParkingLotForm">
           <el-form-item label="名字:">
             <el-input v-model="creatingParkingLotForm.name"></el-input>
@@ -18,11 +18,7 @@
 </template>
 
 <script>
-import {
-  OPEN_CREATING_DIALOG,
-  CREATE_PARKINGLOT,
-  GET_PARKINGLOT_LIST
-} from '../../store/const-types'
+import { CREATE_PARKING_LOT, GET_PARKING_LOT_LIST, CHANGE_CREATING_LOT_DIALOG } from '../../store/const/common-parking-lot-const'
 export default {
   name: 'CreateParkingLot',
   data () {
@@ -37,16 +33,16 @@ export default {
     clickCreatedCancel () {
       this.creatingParkingLotForm.name = ''
       this.creatingParkingLotForm.capacity = ''
-      this.$store.commit(OPEN_CREATING_DIALOG)
+      this.$store.commit(CHANGE_CREATING_LOT_DIALOG)
     },
     clickCreatedSuccess () {
       this.$store
-        .dispatch(CREATE_PARKINGLOT, { parkinglot: this.creatingParkingLotForm })
-        .then(response => {
-          this.$store.commit(OPEN_CREATING_DIALOG)
+        .dispatch(CREATE_PARKING_LOT, { parkingLot: this.creatingParkingLotForm })
+        .then(() => {
+          this.$store.commit(CHANGE_CREATING_LOT_DIALOG)
           this.creatingParkingLotForm.name = ''
           this.creatingParkingLotForm.capacity = ''
-          this.$store.dispatch(GET_PARKINGLOT_LIST)
+          this.$store.dispatch(GET_PARKING_LOT_LIST)
           this.$message.success('创建成功')
         })
         .catch(() => {

@@ -9,3 +9,7 @@ export const requestOrders = (sortProperty = null, sortOrder = null, status = nu
     status
   }
 })
+
+export const getGabbingOrders = () => axios.get('/orders', { params: { status: 1 } })
+
+export const updateOrderByStatus = (id, order) => axios.put(`/orders/${id}`, order)

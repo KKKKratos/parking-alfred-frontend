@@ -3,7 +3,7 @@
     <el-pagination
       background
       layout="prev, pager, next"
-      :total="employeesCount"
+      :total="count"
       @current-change="handleCurrentChange"
       @prev-click="prevClick"
       @next-click="nextClick">
@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { GET_EMPLOYEES_LIST } from '../../store/const-types'
+import { GET_EMPLOYEES_LIST } from '../../store/const/employee-const'
 export default {
   name: 'ManagementPagination',
   data () {
@@ -20,8 +20,12 @@ export default {
     }
   },
   computed: {
-    employeesCount: function () {
-      return this.$store.state.totalEmployees
+    count: function () {
+      if (this.$route.name === 'employees-management') {
+        return this.$store.state.employee.totalEmployees
+      } else {
+        return 1
+      }
     }
   },
   methods: {

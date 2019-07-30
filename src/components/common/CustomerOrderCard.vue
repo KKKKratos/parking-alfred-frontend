@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { GET_TARGET_ORDER } from '../../store/const-types' 
+import { GET_TARGET_ORDER } from '../../store/const/parking-boy-const'
 export default {
   name: 'CustomerOrderCard',
   methods: {
@@ -20,7 +20,7 @@ export default {
       this.$router.push('/customer-order-details')
     },
     clickDetailed () {
-      this.$store.commit(GET_TARGET_ORDER, { targetOrder: this.customerOrder })
+      this.$store.commit(GET_TARGET_ORDER, { grabbingTargetOrder: this.customerOrder })
     }
   },
   computed: {

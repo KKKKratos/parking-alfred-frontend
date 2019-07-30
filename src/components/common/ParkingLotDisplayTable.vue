@@ -1,6 +1,6 @@
 <template>
   <div id="parkingLotTable">
-    <el-table stripe border :data="tableData" style="width: 100%">
+    <el-table stripe border :data="parkingLotList" style="width: 100%">
       <el-table-column prop="id" label="ID" width="180"></el-table-column>
       <el-table-column prop="name" label="名字" width="180"></el-table-column>
       <el-table-column prop="capacity" label="大小"></el-table-column>
@@ -18,18 +18,10 @@
 export default {
   name: 'ParkingLotDisplayTable',
   computed: {
-    tableData () {
-      return this.$store.state.tableData
+    parkingLotList () {
+      return this.$store.state.commonParkingLot.parkingLotList
     }
   },
-  // methods: {
-  //   handleEdit(index, row) {
-  //     console.log(index, row);
-  //   },
-  //   handleFreeze(index, row) {
-  //     console.log(index, row);
-  //   }
-  // }
   methods: {
     freeze () {
       this.$confirm('此操作将冻结该停车场，是否继续?', '提示', {
@@ -49,6 +41,6 @@ export default {
       })
     }
   }
-
 }
+
 </script>

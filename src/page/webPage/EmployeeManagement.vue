@@ -12,7 +12,7 @@ import ManagementHeader from '../../components/header/ManagementHeader'
 import EmployeesTable from '../../components/common/EmployeesTable'
 import ManagementPagination from '../../components/footer/ManagementPagination'
 import CreateEmployee from '../../components/common/CreateEmployee'
-import { GET_EMPLOYEES_LIST } from '../../store/const-types'
+import { GET_EMPLOYEES_LIST } from '../../store/const/employee-const'
 export default {
   name: 'EmployeeManagement',
   components: { CreateEmployee, ManagementPagination, EmployeesTable, ManagementHeader },

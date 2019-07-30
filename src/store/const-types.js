@@ -1,25 +1,7 @@
 export const CHANGE_MOBILE_TAB_ITEM = 'changeMobileTabItem'
 export const SELECT_ROLE = 'selectRole'
-export const GET_GRABBING_ORDERS = 'getGrabbingOrders'
-export const GET_GRABBING_PARKING_LOTS = 'getGrabbingParkingLots'
-export const GET_TARGET_ORDER = 'getTargetOrder'
-export const UPDATE_GRABBING_ORDER = 'updateGrabbingOrder'
-export const UPDATE_TARGET_ORDER = 'updateTargetOrder'
-export const GET_PARKING_BOY_ORDERS = 'getParkingBoyOrders'
-export const UPDATE_PARKING_BOY_ORDER = 'updateParkingBoyOrder'
-export const GET_CUSTOMER_ORDERS = 'getCustomerOrders'
-export const SET_TARGET_ORDER_STATUS = 'setTagetOrderStatus'
 export const GET_LOGIN_INFO = 'getLoginInfo'
-export const LOGIN_RESPONSE = 'login_response'
+export const LOGIN_INFORMATION = 'loginInformation'
 export const CHANGE_WEB_ACTIVE_MENU_ITEM = 'changeWebActiveMenuItem'
-
-export const OPEN_CREATING_DIALOG = 'openCreatingDialog'
-
-export const GET_EMPLOYEES_LIST = 'getEmployeesList'
-export const CREATE_EMPLOYEE = 'createEmployee'
-
-export const GET_PARKINGLOT_LIST = 'addList'
-export const CREATE_PARKINGLOT = 'createParkingLot'
-
-export const UPDATE_CUSTOMER_ORDER = 'UPDATE_CUSTOMER_ORDER'
 export const SAVE_TOKEN = 'saveToken'
+export const CHANGE_CREATING_DIALOG = 'changeCreatingDialog'
