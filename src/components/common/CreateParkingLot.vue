@@ -1,6 +1,6 @@
 <template>
     <div>
-      <el-dialog title="创建停车场" :visible="$store.state.isOpenCreateParkingLotDialog" :show-close="false">
+      <el-dialog title="创建停车场" :visible="$store.state.commonParkingLot.isOpenCreateParkingLotDialog" :show-close="false">
         <el-form label-position="left" label-width="80px" :model="creatingParkingLotForm">
           <el-form-item label="名字:">
             <el-input v-model="creatingParkingLotForm.name"></el-input>

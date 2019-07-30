@@ -1,4 +1,4 @@
-import { getParkingLots, createParkingLot } from '../../api/parkingLot'
+import { getParkingLots, createParkingLot, getParkingLotsWithParkingBoys } from '../../api/parkingLot'
 import { CREATE_PARKING_LOT, GET_PARKING_LOT_LIST, CHANGE_CREATING_LOT_DIALOG } from '../const/common-parking-lot-const'
 
 const state = {
@@ -8,7 +8,7 @@ const state = {
 
 const mutations = {
   [GET_PARKING_LOT_LIST] (state, items) {
-    state.tableData.splice(0)
+    state.parkingLotList.splice(0)
     state.parkingLotList.push(...items)
   },
   [CHANGE_CREATING_LOT_DIALOG]  (state) {
@@ -20,7 +20,6 @@ const actions = {
   [GET_PARKING_LOT_LIST]: ({ commit }) => {
     getParkingLots()
       .then(response => {
-        console.log( response.data.data.parkingLots)
         commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
         return new Promise((resolve, reject) => resolve(response.data.data.parkingLots))
       })
@@ -40,7 +39,12 @@ const actions = {
 }
 
 const getters = {
-
+  parkingLots: state => {
+    return state.parkingLotList
+  },
+  parkingLotListWithParkingBoys: state => {
+    return state.parkingLotListWithParkingBoys
+  },
 }
 
 export default {

@@ -2,14 +2,16 @@
   <div id="login">
     <div style="margin: 0 auto">
       <img src="../assets/img/photo.jpg" width="200" height="200" style="margin-bottom: 30px" />
-      <el-form :label-position="labelPosition" label-width="80px" :model="formLabelAlign">
-        <el-form-item label="邮箱" style="text-align: center">
-          <el-input v-model="formLabelAlign.email" placeholder="请输入邮箱" :style="{width: fullWidth}"></el-input>
-        </el-form-item>
-        <el-form-item label="密码">
-          <el-input v-model="formLabelAlign.password" placeholder="请输入密码" show-password :style="{width: fullWidth}"></el-input>
-        </el-form-item>
-      </el-form>
+      <div style="width: 300px; margin: 0 auto;">
+        <el-form :label-position="labelPosition" label-width="40px" :model="formLabelAlign">
+          <el-form-item label="邮箱" style="text-align: center">
+            <el-input v-model="formLabelAlign.email" placeholder="请输入邮箱"></el-input>
+          </el-form-item>
+          <el-form-item label="密码">
+            <el-input v-model="formLabelAlign.password" placeholder="请输入密码" show-password></el-input>
+          </el-form-item>
+        </el-form>
+      </div>
       <el-button type="primary" @click="clickLogin">登录</el-button>
       <el-button type="primary" @click="reset">重置</el-button>
     </div>
@@ -36,7 +38,7 @@ export default {
   computed: {
     fullWidth: function () {
       const clientWidth = document.documentElement.offsetWidth
-      return clientWidth > 500 ? '50%' : (clientWidth - 100) + 'px'
+      return clientWidth > 500 ? '50%' : clientWidth - 100 + 'px'
     }
   },
   methods: {

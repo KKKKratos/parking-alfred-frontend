@@ -1,6 +1,6 @@
 <template>
   <div class="parkingLotItem">
-    <mt-cell :title= "parkingLotName" :label="parkingLotOccupied">
+    <mt-cell :title="parkingLotName" :label="parkingLotOccupied">
       <img slot="icon" src=../../assets/img/parkinglot.png width="24" height="24">
       <el-radio-button :label="index" :disabled="!isEnabled">选择</el-radio-button>
     </mt-cell>
@@ -10,12 +10,10 @@
 export default {
   name: 'ParkingLotItem',
   props: {
-    // eslint-disable-next-line no-undef
     index: Number
   },
   data () {
-    return {
-    }
+    return {}
   },
   computed: {
     parkingLotName: function () {
@@ -35,7 +33,7 @@ export default {
 }
 </script>
 <style scoped>
-.parkingLotItem{
+.parkingLotItem {
   text-align: left;
   border-bottom: 1px solid lightgray;
 }
