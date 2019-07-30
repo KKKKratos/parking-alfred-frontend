@@ -1,7 +1,6 @@
 import { GET_EMPLOYEES_LIST, CHANGE_CREATING_EMPLOYEE_DIALOG, CREATE_EMPLOYEE } from '../const/employee-const'
-import {} from '../../api/employee'
+import { getEmoloyeesByPage, getAllEmployees, createEmployee } from '../../api/employee'
 import { employeeEnums } from '../../config/util'
-import axios from '../../api/config'
 
 const state = {
   employeesList: [],
@@ -29,13 +28,13 @@ const mutations = {
 const actions = {
   [GET_EMPLOYEES_LIST] ({ commit }, payload) {
     if (payload !== undefined) {
-      axios.get('/employees', { params: { page: payload.page } })
+      getEmoloyeesByPage(payload.page)
         .then(response => {
           commit(GET_EMPLOYEES_LIST, response.data.data)
         })
         .catch(() => {})
     } else {
-      axios.get('/employees')
+      getAllEmployees()
         .then(response => {
           commit(GET_EMPLOYEES_LIST, response.data.data)
         })
@@ -44,9 +43,8 @@ const actions = {
   },
   [CREATE_EMPLOYEE] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      axios.post('/employees', payload.employee)
+      createEmployee(payload.employee)
         .then(response => {
-          // commit(CREATE_EMPLOYEE, response.data.data)
           resolve(response)
         })
         .catch(error => {
