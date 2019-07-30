@@ -1,7 +1,7 @@
 <template>
   <div style="height: 60px; background-color: white; text-align: left">
     <div class="create-button-div">
-      <el-button v-if="$route.name === 'employees-management'" type="primary" size="small" style="width: 80px" @click="clickCreating">新建</el-button>
+      <el-button v-if="$route.name === 'employees-management' || 'parking-lots-management'" type="primary" size="small" style="width: 80px" @click="clickCreating">新建</el-button>
     </div>
     <ManagementSearch></ManagementSearch>
   </div>

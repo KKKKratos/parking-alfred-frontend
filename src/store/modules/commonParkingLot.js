@@ -8,7 +8,7 @@ const state = {
 
 const mutations = {
   [GET_PARKING_LOT_LIST] (state, items) {
-    state.tableData.splice(0)
+    state.parkingLotList.splice(0)
     state.parkingLotList.push(...items)
   },
   [CHANGE_CREATING_LOT_DIALOG]  (state) {

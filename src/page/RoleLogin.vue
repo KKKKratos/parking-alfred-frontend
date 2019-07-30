@@ -7,7 +7,12 @@
           <el-input v-model="formLabelAlign.email" placeholder="请输入邮箱" :style="{width: fullWidth}"></el-input>
         </el-form-item>
         <el-form-item label="密码">
-          <el-input v-model="formLabelAlign.password" placeholder="请输入密码" show-password :style="{width: fullWidth}"></el-input>
+          <el-input
+            v-model="formLabelAlign.password"
+            placeholder="请输入密码"
+            show-password
+            :style="{width: fullWidth}"
+          ></el-input>
         </el-form-item>
       </el-form>
       <el-button type="primary" @click="clickLogin">登录</el-button>
@@ -36,7 +41,7 @@ export default {
   computed: {
     fullWidth: function () {
       const clientWidth = document.documentElement.offsetWidth
-      return clientWidth > 500 ? '50%' : (clientWidth - 100) + 'px'
+      return clientWidth > 500 ? '50%' : clientWidth - 100 + 'px'
     }
   },
   methods: {
