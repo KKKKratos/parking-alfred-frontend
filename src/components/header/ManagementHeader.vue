@@ -10,12 +10,15 @@
 <script>
 import ManagementSearch from '../common/ManagementSearch'
 import { CHANGE_CREATING_EMPLOYEE_DIALOG } from '../../store/const/employee-const'
+import { CHANGE_CREATING_LOT_DIALOG } from '../../store/const/common-parking-lot-const'
 export default {
   name: 'CreateButton',
   components: { ManagementSearch },
   methods: {
     clickCreating () {
-      this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG)
+      console.log(this.$route.name)
+      this.$route.name === 'employees-management' ? this.$store.commit(CHANGE_CREATING_EMPLOYEE_DIALOG) : this.$store.commit(CHANGE_CREATING_LOT_DIALOG)
+      
     }
   }
 }
