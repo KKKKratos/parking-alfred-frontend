@@ -1,5 +1,5 @@
 <template>
-  <div id="parkinglotItem">
+  <div class="parking-lot-manage-div">
     <ManagementHeader></ManagementHeader>
     <CreateParkingLot></CreateParkingLot>
     <ParkingLotDisplayTable></ParkingLotDisplayTable>
@@ -21,3 +21,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  .parking-lot-manage-div {
+    height: 90%;
+    width: 100%;
+    background-color: white;
+    margin-top: 20px;
+  }
+</style>

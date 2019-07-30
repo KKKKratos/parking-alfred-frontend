@@ -1,9 +1,9 @@
 <template>
   <div id="parkingLotTable">
     <el-table stripe border :data="parkingLotList" style="width: 100%">
-      <el-table-column prop="id" label="ID" width="180"></el-table-column>
-      <el-table-column prop="name" label="名字" width="180"></el-table-column>
-      <el-table-column prop="capacity" label="大小"></el-table-column>
+      <el-table-column prop="id" label="ID" min-width="180"></el-table-column>
+      <el-table-column prop="name" label="名字" min-width="180"></el-table-column>
+      <el-table-column prop="capacity" label="大小" min-width="180"></el-table-column>
       <el-table-column prop="operate" label="操作">
         <template slot-scope="scope">
           <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">修改</el-button>
