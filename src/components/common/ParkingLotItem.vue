@@ -1,6 +1,6 @@
 <template>
   <div class="parkingLotItem">
-    <mt-cell :title= "parkingLotName" :label="parkingLotOccupied">
+    <mt-cell :title="parkingLotName" :label="parkingLotOccupied">
       <img slot="icon" src=../../assets/img/parkinglot.png width="24" height="24">
       <el-radio-button :label="index" :disabled="!isEnabled">选择</el-radio-button>
     </mt-cell>
@@ -8,37 +8,40 @@
 </template>
 <script>
 export default {
-  name: 'ParkingLotItem',
+  name: "ParkingLotItem",
   props: {
     index: Number
   },
-  data () {
-    return {
-    }
+  data() {
+    return {};
   },
   computed: {
-    parkingLotName: function () {
-      return `停车场:${this.$store.state.grabbingParkingLots[this.index].name}`
+    parkingLotName: function() {
+      return `停车场:${this.$store.state.grabbingParkingLots[this.index].name}`; 
     },
-    parkingLotOccupied: function () {
-      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity
-      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied  
+    parkingLotOccupied: function() {
+      const capacity = this.$store.state.grabbingParkingLots[this.index]
+        .capacity;
+      const occupied = this.$store.state.grabbingParkingLots[this.index]
+        .occupied;
       if (capacity - occupied <= 0) {
-        this.isEnabled = false
+        this.isEnabled = false;
       }
-      return `剩余数量:${capacity - occupied}`
+      return `剩余数量:${capacity - occupied}`;
     },
-    isEnabled: function () {
-      const capacity = this.$store.state.grabbingParkingLots[this.index].capacity  
-      const occupied = this.$store.state.grabbingParkingLots[this.index].occupied  
-      return capacity - occupied > 0
+    isEnabled: function() {
+      const capacity = this.$store.state.grabbingParkingLots[this.index]
+        .capacity;
+      const occupied = this.$store.state.grabbingParkingLots[this.index]
+        .occupied;
+      return capacity - occupied > 0;
     }
   }
-}
+};
 </script>
 <style scoped>
-.parkingLotItem{
+.parkingLotItem {
   text-align: left;
   border-bottom: 1px solid lightgray;
-}   
+}
 </style>
