@@ -129,19 +129,24 @@ const actions = {
       .catch(() => {})
   },
   [GET_PARKING_BOY_LIST] ({ commit }) {
-    getParkingBoys()
-      .then(response => {
-        commit(GET_PARKING_BOY_LIST, { parkingBoyList: response.data.data.employees })
-      })
-      .catch(() => {})
+    return new Promise((resolve, reject) => {
+      getParkingBoys()
+        .then(response => {
+          commit(GET_PARKING_BOY_LIST, { parkingBoyList: response.data.data.employees })
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
   },
   [UPDATE_PARKING_BOY_BY_PARKING_LOTS] ({ commit }, payload) {
-    updateParkingLotsOfBoy(payload.id, payload.parkingLotIdList)
-      .then(response => {
-        console.log(response)
-        commit(UPDATE_PARKING_BOY_BY_PARKING_LOTS, { parkingBoy: response.data.data })
-      })
-      .catch(() => {})
+    return new Promise((resolve, reject) => {
+      updateParkingLotsOfBoy(payload.id, payload.parkingLotIdList)
+        .then(response => {
+          commit(UPDATE_PARKING_BOY_BY_PARKING_LOTS, { parkingBoy: response.data.data })
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
   }
 }
 

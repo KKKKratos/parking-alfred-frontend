@@ -4,6 +4,7 @@
     <el-table-column type="expand" label="Lot">
       <template slot-scope="scope">
         <el-form label-position="left" inline class="demo-table-expand">
+          <span v-if="false">{{scope.$index}}</span>
           <div style="text-align: center">
             <el-transfer
               style="text-align: left; display: inline-block"
@@ -60,7 +61,7 @@
 <script>
 import { TABLE_BUTTON_TYPE } from '../../config/const-values'
 import { GET_PARKING_LOT_LIST } from '../../store/const/common-parking-lot-const'
-import { UPDATE_PARKING_BOY_BY_PARKING_LOTS } from '../../store/const/parking-boy-const'
+import { UPDATE_PARKING_BOY_BY_PARKING_LOTS, GET_PARKING_BOY_LIST } from '../../store/const/parking-boy-const'
 export default {
   name: 'ParkingBoyTable',
   data () {
@@ -82,11 +83,15 @@ export default {
     }
   },
   mounted () {
-    const boyLength = this.$store.state.parkingBoy.parkingBoyList.length
-    for (let i = 0; i < boyLength; i++) {
-      this.isEdited.push(false)
-      this.editButtonName.push(TABLE_BUTTON_TYPE[0])
-    }
+    this.$store.dispatch(GET_PARKING_BOY_LIST)
+      .then(() => {
+        const boyLength = this.$store.state.parkingBoy.parkingBoyList.length
+        for (let i = 0; i < boyLength; i++) {
+          this.isEdited.push(false)
+          this.editButtonName.push(TABLE_BUTTON_TYPE[0])
+        }
+      })
+      .catch(() => {})
   },
   methods: {
     handleEdit (index, row) {
@@ -105,6 +110,18 @@ export default {
     },
     handleChange (value, direction, movedKeys) {
       this.$store.dispatch(UPDATE_PARKING_BOY_BY_PARKING_LOTS, { id: this.currentId, parkingLotIdList: value })
+        .then(() => {
+          this.$message({
+            type: 'success',
+            message: '分配成功!'
+          })
+        })
+        .catch(() => {
+          this.$message({
+            type: 'error',
+            message: '分配失败!!!'
+          })
+        })
     },
     clickTableRow (row, column, event) {
       this.$refs.parkingBoyTable.toggleRowExpansion(this.lastRow, false)
