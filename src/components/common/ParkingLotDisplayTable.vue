@@ -81,6 +81,11 @@ export default {
         this.$store.dispatch(UPDATE_PARKING_LOT, parkingLot)
         this.isEdited[index] = false
         this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
+        this.$message({
+          type: 'success',
+          message: '修改成功!'
+        })
+      
       }
     }
   }
