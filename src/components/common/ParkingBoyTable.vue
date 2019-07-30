@@ -46,7 +46,7 @@
             :disabled="item.disabled">
           </el-option>
         </el-select>
-        <span v-else>{{scope.row.status}}</span>
+        <span v-else>{{employeeStatus[scope.row.status - 1]}}</span>
       </template>
     </el-table-column>
     <el-table-column label="操作" min-width="150">
@@ -59,7 +59,7 @@
 </template>
 
 <script>
-import { TABLE_BUTTON_TYPE } from '../../config/const-values'
+import { TABLE_BUTTON_TYPE, EMPLOYEE_STATUS } from '../../config/const-values'
 import { GET_PARKING_LOT_LIST } from '../../store/const/common-parking-lot-const'
 import { UPDATE_PARKING_BOY_BY_PARKING_LOTS, GET_PARKING_BOY_LIST } from '../../store/const/parking-boy-const'
 export default {
@@ -79,7 +79,8 @@ export default {
       isEdited: [],
       editButtonName: [],
       currentId: 0,
-      lastRow: 0
+      lastRow: 0,
+      employeeStatus: EMPLOYEE_STATUS
     }
   },
   mounted () {
@@ -124,7 +125,9 @@ export default {
         })
     },
     clickTableRow (row, column, event) {
-      this.$refs.parkingBoyTable.toggleRowExpansion(this.lastRow, false)
+      if (this.lastRow !== row) {
+        this.$refs.parkingBoyTable.toggleRowExpansion(this.lastRow, false)
+      }
       const self = this
       this.currentId = row.id
       this.lastRow = row
