@@ -125,7 +125,9 @@ export default {
         })
     },
     clickTableRow (row, column, event) {
-      this.$refs.parkingBoyTable.toggleRowExpansion(this.lastRow, false)
+      if (this.lastRow !== row) {
+        this.$refs.parkingBoyTable.toggleRowExpansion(this.lastRow, false)
+      }
       const self = this
       this.currentId = row.id
       this.lastRow = row
