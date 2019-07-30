@@ -4,10 +4,8 @@ import {
   CHANGE_WEB_ACTIVE_MENU_ITEM,
   GET_EMPLOYEES_LIST,
   CHANGE_CREATING_EMPLOYEE_DIALOG,
-  GET_CUSTOMER_ORDERS,
   LOGIN_INFORMATION,
-  SAVE_TOKEN,
-  UPDATE_CUSTOMER_ORDER
+  SAVE_TOKEN
 } from './const-types'
 import { employeeEnums } from '../config/util'
 

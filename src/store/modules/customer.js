@@ -1,6 +1,6 @@
-import {GET_CUSTOMER_ORDERS, UPDATE_CUSTOMER_ORDER} from '../const/customer-const'
-import {requestOrders} from '../../api/order'
-import axios from "../../api/config";
+import { GET_CUSTOMER_ORDERS, UPDATE_CUSTOMER_ORDER } from '../const/customer-const'
+import { requestOrders } from '../../api/order'
+import axios from '../../api/config'
 
 const state = {
   customerOrders: []
@@ -36,9 +36,7 @@ const actions = {
       .then(response => {
         commit(GET_CUSTOMER_ORDERS, response.data.data)
       })
-      .catch(error => {
-        reject(error)
-      })
+      .catch(() => {})
   },
   [UPDATE_CUSTOMER_ORDER] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
@@ -49,7 +47,7 @@ const actions = {
         })
         .catch(error => reject(error))
     })
-  },
+  }
 
 }
 

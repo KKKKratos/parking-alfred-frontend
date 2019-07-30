@@ -1,4 +1,4 @@
-import {CREATE_EMPLOYEE, GET_EMPLOYEES_LIST, GET_LOGIN_INFO} from './const-types'
+import { CREATE_EMPLOYEE, GET_EMPLOYEES_LIST, GET_LOGIN_INFO } from './const-types'
 import axios from '../api/config'
 
 const actions = {
@@ -15,13 +15,13 @@ const actions = {
         .then(response => {
           commit(GET_EMPLOYEES_LIST, response.data.data)
         })
-        .catch(error => {})
+        .catch(() => {})
     } else {
       axios.get('/employees')
         .then(response => {
           commit(GET_EMPLOYEES_LIST, response.data.data)
         })
-        .catch(error => {})
+        .catch(() => {})
     }
   },
   [CREATE_EMPLOYEE] ({ commit }, payload) {

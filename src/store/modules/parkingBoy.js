@@ -77,14 +77,14 @@ const actions = {
   [GET_GRABBING_ORDERS] ({ commit }) {
     getGabbingOrders().then(response => {
       commit(GET_GRABBING_ORDERS, response.data)
-    }).catch(error => {})
+    }).catch(() => {})
   },
   [GET_GRABBING_PARKING_LOTS] ({ commit }, payload) {
     getEmployeeParkingLots(payload.employeeId)
       .then(response => {
         commit(GET_GRABBING_PARKING_LOTS, response.data)
       })
-      .catch(error => {})
+      .catch(() => {})
   },
   [UPDATE_TARGET_ORDER_BY_STATUS] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
@@ -113,7 +113,7 @@ const actions = {
       .then(response => {
         commit(UPDATE_PARKING_BOY_SELECTED_ORDER, { order: response.data.data })
       })
-      .catch(error => {})
+      .catch(() => {})
   }
 }
 

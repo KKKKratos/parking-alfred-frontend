@@ -46,9 +46,9 @@ export default {
                 this.$router.push('/parking-boy-orders')
                 this.$store.commit(CHANGE_MOBILE_TAB_ITEM, { tabItemsSelected: MOBILE_TAB_ITEM_ORDER })
               })
-              .catch(error => console.log(error))
+              .catch(() => {})
           })
-          .catch(error => console.log(error))
+          .catch(() => {})
       }
     },
     turnToPageGrabbingOrder () {

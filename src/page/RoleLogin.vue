@@ -66,7 +66,7 @@ export default {
               self.$router.push('/creating-order')
             }
           })
-          .catch(error => {
+          .catch(() => {
             MessageBox.alert('用户名或密码错误', '提示信息')
           })
       }

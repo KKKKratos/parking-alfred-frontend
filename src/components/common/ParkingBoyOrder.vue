@@ -41,15 +41,13 @@ export default {
           .then(action => {
             let order = self.$store.state.parkingBoy.parkingBoyOrders[self.index]
             order.status = 3
-            this.$store
-              .dispatch(UPDATE_PARKING_BOY_SELECTED_ORDER, {
-                id: order.id,
-                order: order
+            this.$store.dispatch(UPDATE_PARKING_BOY_SELECTED_ORDER, { id: order.id, order: order })
+              .then(() => {
+                self.isSure = true
               })
-              .then(response => self.isSure = true)
-              .catch(error => console.log(error))
+              .catch(() => {})
           })
-          .catch(action => console.log('2'))
+          .catch(() => {})
       } else {
         const self = this
         MessageBox.confirm('是否确认？')
@@ -62,9 +60,9 @@ export default {
                 order: order
               })
               .then(response => (self.isSure = true))
-              .catch(error => console.log(error))
+              .catch(() => {})
           })
-          .catch(action => console.log('4'))
+          .catch(() => {})
       }
     }
   }

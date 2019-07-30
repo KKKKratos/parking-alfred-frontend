@@ -25,7 +25,7 @@ export default {
     return {
       employeeId: '',
       orderType: '',
-      orderStatus: '',
+      orderStatus: ''
     }
   },
   mounted () {

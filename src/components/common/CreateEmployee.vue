@@ -68,7 +68,7 @@ export default {
           this.$store.dispatch(GET_EMPLOYEES_LIST)
           this.$message.success('创建成功')
         })
-        .catch(error => {
+        .catch(() => {
           this.$message.error('创建失败')
         })
     }
