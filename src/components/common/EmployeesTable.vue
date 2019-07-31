@@ -113,19 +113,6 @@ export default {
       return { value: x, label: x }
     })
   },
-  updated () {
-    // const employeeLength = this.$store.state.employee.employeesList.length
-    // this.isModifyButtonDisabledArray.splice(0)
-    // this.operateButtonNameArray.splice(0)
-    // this.isEdited.splice(0)
-    // this.editButtonName.splice(0)
-    // for (let i = 0; i < employeeLength; i++) {
-    //   this.isModifyButtonDisabledArray.push(false)
-    //   this.operateButtonNameArray.push('冻结')
-    //   this.isEdited.push(false)
-    //   this.editButtonName.push(TABLE_BUTTON_TYPE[0])
-    // }
-  },
   methods: {
     freeze: function (index, row) {
       if (this.operateButtonNameArray[index] === '冻结') {
