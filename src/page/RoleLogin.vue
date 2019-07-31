@@ -25,7 +25,7 @@
 
 <script>
 import { MessageBox } from 'mint-ui'
-import { SELECT_ROLE, LOGIN_INFORMATION } from '../store/const-types'
+import { SELECT_ROLE, LOGIN_INFORMATION, GET_LOGIN_INFO, SAVE_TOKEN } from '../store/const-types'
 import { getSelfEmployee } from '../api/employee'
 
 export default {
@@ -55,10 +55,9 @@ export default {
         MessageBox.alert('邮箱或者密码不能为空', '提示信息')
       } else {
         const self = this
-        this.$store
-          .dispatch('getLoginInfo', { ...this.formLabelAlign })
+        this.$store.dispatch(GET_LOGIN_INFO, { ...this.formLabelAlign })
           .then(response => {
-            self.$store.commit('saveToken', response.data.data)
+            self.$store.commit(SAVE_TOKEN, response.data.data)
             return getSelfEmployee()
           })
           .then(response => {
