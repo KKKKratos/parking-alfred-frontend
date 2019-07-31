@@ -15,6 +15,8 @@ import EmployeeManagement from '../page/webPage/EmployeeManagement'
 import ParkingBoyManagement from '../page/webPage/ParkingBoyManagement'
 import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 import ParkingLotDashBoard from '../page/webPage/ParkingLotDashBoard'
+import CustomerRegist from '../page/CustomerRegist'
+import ParkingOrderManagement from '../page/webPage/ParkingOrdersManagement'
 
 Vue.use(VueRouter)
 
@@ -40,12 +42,13 @@ const routes = [
       { path: '/employees-management', name: 'employees-management', component: EmployeeManagement },
       { path: '/parking-boys-management', name: 'parking-boys-management', component: ParkingBoyManagement },
       { path: '/parking-lots-management', name: 'parking-lots-management', component: ParkingLotsManagement },
-      { path: '/parking-lot-dashboard', name: 'parking-lot-dashboard', component: ParkingLotDashBoard }
+      { path: '/parking-lot-dashboard', name: 'parking-lot-dashboard', component: ParkingLotDashBoard },
+      { path: '/parking-orders-management', name: 'parking-orders-management', component: ParkingOrderManagement }
     ],
     redirect: '/employees-management'
   },
   { path: '/role-login', name: 'role-login', component: RoleLogin },
-  
+  { path: '/customer-regist', name: 'customer-regist', component: CustomerRegist }
 ]
 
 const router = new VueRouter({

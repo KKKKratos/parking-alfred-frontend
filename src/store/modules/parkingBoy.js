@@ -8,9 +8,11 @@ import {
   UPDATE_TARGET_ORDER_BY_STATUS,
   SET_TARGET_ORDER_STATUS,
   GET_PARKING_BOY_LIST,
-  UPDATE_PARKING_BOY_BY_PARKING_LOTS
+  UPDATE_PARKING_BOY_BY_PARKING_LOTS,
+  GET_PARKING_BOY_LIST_BY_NAME,
+  GET_ORDERS_BY_PARKING_BOY_ID
 } from '../const/parking-boy-const'
-import { getEmployeeParkingLots, getParkingBoys, updateParkingLotsOfBoy } from '../../api/employee'
+import { getEmployeeParkingLots, getParkingBoys, updateParkingLotsOfBoy, getParkingBoysByName, getOrdersByEmployeeId } from '../../api/employee'
 import { requestOrders, getGabbingOrders, updateOrderByStatus } from '../../api/order'
 
 const state = {
@@ -19,7 +21,8 @@ const state = {
   grabbingParkingLots: [],
   parkingBoyOrders: [],
   parkingBoyList: [],
-  parkingLotsOfBoy: []
+  parkingLotsOfBoy: [],
+  parkingBoyTotalCount: 0
 }
 
 const mutations = {
@@ -65,6 +68,9 @@ const mutations = {
   [GET_PARKING_BOY_ORDERS] (state, payload) {
     state.parkingBoyOrders = payload.parkingBoyOrders
   },
+  [GET_ORDERS_BY_PARKING_BOY_ID] (state, payload) {
+    state.parkingBoyOrders = payload
+  },
   [UPDATE_PARKING_BOY_SELECTED_ORDER] (state, payload) {
     const index = state.grabbingOrders.findIndex(value => value.id === payload.order.id)
     state.parkingBoyOrders[index] = payload.order
@@ -76,7 +82,8 @@ const mutations = {
     state.grabbingTargetOrder.reservationTime = date.getTime()
   },
   [GET_PARKING_BOY_LIST] (state, payload) {
-    state.parkingBoyList = payload.parkingBoyList
+    state.parkingBoyTotalCount = payload.parkingBoys.totalCount
+    state.parkingBoyList = payload.parkingBoys.employees
   },
   [UPDATE_PARKING_BOY_BY_PARKING_LOTS] (state, payload) {
     const index = state.parkingBoyList.findIndex(x => {
@@ -96,6 +103,23 @@ const actions = {
     getEmployeeParkingLots(payload.employeeId)
       .then(response => {
         commit(GET_GRABBING_PARKING_LOTS, response.data)
+      })
+      .catch(() => {})
+  },
+  [GET_GRABBING_PARKING_LOTS] ({ commit }, payload) {
+    getEmployeeParkingLots(payload.employeeId)
+      .then(response => {
+        commit(GET_GRABBING_PARKING_LOTS, response.data)
+      })
+      .catch(() => {})
+  },
+  [GET_ORDERS_BY_PARKING_BOY_ID] ({ commit }, payload) {
+    getOrdersByEmployeeId(payload)
+      .then(response => {
+        let data = response.data.data
+        data = data.sort((first, second) => second.reservationTime - first.reservationTime)
+        data = data.filter(order => order.status !== 1)
+        commit(GET_ORDERS_BY_PARKING_BOY_ID, data)
       })
       .catch(() => {})
   },
@@ -128,11 +152,21 @@ const actions = {
       })
       .catch(() => {})
   },
-  [GET_PARKING_BOY_LIST] ({ commit }) {
+  [GET_PARKING_BOY_LIST] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       getParkingBoys()
         .then(response => {
-          commit(GET_PARKING_BOY_LIST, { parkingBoyList: response.data.data.employees })
+          commit(GET_PARKING_BOY_LIST, { parkingBoys: response.data.data })
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
+  },
+  [GET_PARKING_BOY_LIST_BY_NAME] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      getParkingBoysByName(payload)
+        .then(response => {
+          commit(GET_PARKING_BOY_LIST, { parkingBoys: response.data.data })
           resolve(response)
         })
         .catch((error) => { reject(error) })

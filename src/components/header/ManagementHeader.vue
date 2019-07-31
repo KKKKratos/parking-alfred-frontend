@@ -3,7 +3,7 @@
     <div class="create-button-div">
       <el-button v-if="isCreateButtonDisable" type="primary" size="small" style="width: 80px" @click="clickCreating">新建</el-button>
     </div>
-    <ManagementSearch :seletedOptions="seletedOptions" :search="search"></ManagementSearch>
+    <ManagementSearch :selectedOptions="selectedOptions" :search="search"></ManagementSearch>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   name: 'CreateButton',
   components: { ManagementSearch },
   props: {
-    seletedOptions: Array,
+    selectedOptions: Array,
     search: Function
   },
   methods: {

@@ -35,7 +35,7 @@ export default {
         this.$router.push('/parking-lot')
       } else {
         this.$store.commit(UPDATE_TARGET_ORDER)
-        this.$store.dispatch(UPDATE_TARGET_ORDER_BY_STATUS, { id: this.$store.state.parkingBoy.grabbingTargetOrder.id, order: this.$store.state.parkingBoy.grabbingTargetOrder })
+        this.$store.dispatch(UPDATE_TARGET_ORDER_BY_STATUS, { id: this.$store.state.parkingBoy.grabbingTargetOrder.id, order: this.$store.state.parkingBoy.grabbingTargetOrder, employeeId: this.$store.state.loginInformation.id })
           .then(() => {
             this.$message({
               message: '抢单成功',

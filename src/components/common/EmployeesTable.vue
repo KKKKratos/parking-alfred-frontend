@@ -1,5 +1,6 @@
 <template>
   <el-table :data="$store.state.employee.employeesList" border stripe style="width: 100%">
+    <el-table-column prop="id" label="ID" min-width="100"></el-table-column>
     :data="$store.state.employee.employeesList"
     <el-table-column prop="name" label="姓名" min-width="150">
       <template slot-scope="scope">

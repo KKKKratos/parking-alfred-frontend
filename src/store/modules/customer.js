@@ -1,5 +1,6 @@
-import { GET_CUSTOMER_ORDERS, UPDATE_CUSTOMER_ORDER } from '../const/customer-const'
+import { GET_CUSTOMER_ORDERS, UPDATE_CUSTOMER_ORDER, CREATE_CUSTOMER } from '../const/customer-const'
 import { requestOrders, updateOrderByStatus } from '../../api/order'
+import { createCustomer } from '../../api/customer'
 
 const state = {
   customerOrders: []
@@ -35,7 +36,7 @@ const actions = {
       .then(response => {
         commit(GET_CUSTOMER_ORDERS, response.data.data)
       })
-      .catch(() => {})
+      .catch(() => { })
   },
   [UPDATE_CUSTOMER_ORDER] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
@@ -45,6 +46,17 @@ const actions = {
           resolve(response)
         })
         .catch(error => reject(error))
+    })
+  },
+  [CREATE_CUSTOMER] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      createCustomer(payload.customer)
+        .then(response => {
+          resolve(response)
+        })
+        .catch(error => {
+          reject(error)
+        })
     })
   }
 

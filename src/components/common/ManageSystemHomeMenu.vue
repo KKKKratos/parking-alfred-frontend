@@ -17,7 +17,7 @@
           <i class="el-icon-s-management"></i>
           <span slot="title">停车场Dashboard</span>
         </el-menu-item>
-        <el-menu-item index="order-management">
+        <el-menu-item index="parking-orders-management">
           <i class="el-icon-s-management"></i>
           <span slot="title">订单管理</span>
         </el-menu-item>
