@@ -80,7 +80,9 @@ const actions = {
 }
 
 const getters = {
-
+  parkingLots: state => {
+    return state.parkingLotList
+  }
 }
 
 export default {
