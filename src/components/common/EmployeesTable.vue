@@ -1,6 +1,6 @@
 <template>
   <el-table :data="$store.state.employee.employeesList" border stripe style="width: 100%">
-    :data="$store.state.employee.employeesList"
+    <el-table-column prop="id" label="ID" min-width="100"></el-table-column>
     <el-table-column prop="name" label="姓名" min-width="150"></el-table-column>
     <el-table-column prop="mail" label="Email" min-width="250"></el-table-column>
     <el-table-column prop="telephone" label="电话号码" min-width="200"></el-table-column>
