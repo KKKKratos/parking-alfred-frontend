@@ -19,3 +19,5 @@ export const getParkingBoys = () => axios.get('/employees', { params: { role: 1 
 export const getParkingBoysByName = (data) => axios.get('/employees', { params: { name: `"${data.name}"`, role: 1 } })
 
 export const updateParkingLotsOfBoy = (employeeId, parkingLotIdList) => axios.put(`/employees/${employeeId}/parking-lots`, parkingLotIdList)
+
+export const getOrdersByEmployeeId = (employeeId) => axios.get(`/employees/${employeeId}/orders`)
