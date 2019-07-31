@@ -36,9 +36,6 @@ export default {
   methods: {
     selectMenuItem (index, indexPath) {
     }
-  },
-  mounted () {
-    console.log(this.$store.state.loginInformation)
   }
 }
 </script>
