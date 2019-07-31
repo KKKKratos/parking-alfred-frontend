@@ -3,11 +3,15 @@ import { login } from '../api/employee'
 
 const actions = {
   [GET_LOGIN_INFO] ({ commit }, payload) {
-    const data = {
-      mail: payload.email,
-      password: payload.password
-    }
-    return login(data)
+    return new Promise((resolve, reject) => {
+      const data = {
+        mail: payload.email,
+        password: payload.password
+      }
+      login(data)
+        .then(response => resolve(response))
+        .catch(error => reject(error))
+    })
   }
 }
 

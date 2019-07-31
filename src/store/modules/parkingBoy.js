@@ -125,8 +125,10 @@ const actions = {
   },
   [UPDATE_TARGET_ORDER_BY_STATUS] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
+      console.log(payload.order)
       updateOrderByStatus(payload.id, payload.order)
         .then(response => {
+          console.log(response)
           commit(UPDATE_TARGET_ORDER_BY_STATUS, { order: response.data.data })
           resolve(response)
         })
