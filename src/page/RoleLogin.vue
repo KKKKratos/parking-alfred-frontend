@@ -14,6 +14,11 @@
       </div>
       <el-button type="primary" @click="clickLogin">登录</el-button>
       <el-button type="primary" @click="reset">重置</el-button>
+      <p>
+      <router-link  to="/customer-regist" style="text-color:blue;margin-right: -143px;">
+        没有账号？请点击注册
+      </router-link>
+      </p>
     </div>
   </div>
 </template>
