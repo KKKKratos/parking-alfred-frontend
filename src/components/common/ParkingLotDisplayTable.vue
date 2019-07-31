@@ -1,20 +1,20 @@
 <template>
   <div id="parkingLotTable">
     <el-table stripe border :data="parkingLotList" style="min-width: 100%">
-      <el-table-column prop="id" label="ID" min-width="180"></el-table-column>
-      <el-table-column prop="name" label="名字" min-width="180">
+      <el-table-column prop="id" label="ID" min-width="100"></el-table-column>
+      <el-table-column prop="name" label="名字" min-width="200">
         <template slot-scope="scope">
           <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByName"></el-input>
           <span v-else>{{scope.row.name}}</span>
         </template>
       </el-table-column >
-      <el-table-column prop="capacity" label="大小" min-width="180">
+      <el-table-column prop="capacity" label="大小" min-width="200">
         <template slot-scope="scope">
           <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByCapacity"></el-input>
           <span v-else>{{scope.row.capacity}}</span>
         </template>
       </el-table-column>
-      <el-table-column prop="operate" label="操作">
+      <el-table-column prop="operate" label="操作" min-width="200">
 
         <template slot-scope="scope">
           <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)" :disabled="isModifyButtonDisabledArray[scope.$index]">{{editButtonName[scope.$index]}}</el-button>

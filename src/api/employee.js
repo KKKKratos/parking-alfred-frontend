@@ -8,10 +8,14 @@ export const login = (data) => axios.post('/login', data)
 
 export const getEmployeesByPage = (page) => axios.get('/employees', { params: { page: page } })
 
+export const getEmployeesByName = (name) => axios.get('/employees', { params: { name: `"${name.name}"` } })
+
 export const getAllEmployees = () => axios.get('/employees')
 
 export const createEmployee = (employee) => axios.post('/employees', employee)
 
 export const getParkingBoys = () => axios.get('/employees', { params: { role: 1 } })
+
+export const getParkingBoysByName = (data) => axios.get('/employees', { params: { name: `"${data.name}"`, role: 1 } })
 
 export const updateParkingLotsOfBoy = (employeeId, parkingLotIdList) => axios.put(`/employees/${employeeId}/parking-lots`, parkingLotIdList)

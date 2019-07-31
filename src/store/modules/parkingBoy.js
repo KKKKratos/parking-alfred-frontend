@@ -8,9 +8,10 @@ import {
   UPDATE_TARGET_ORDER_BY_STATUS,
   SET_TARGET_ORDER_STATUS,
   GET_PARKING_BOY_LIST,
-  UPDATE_PARKING_BOY_BY_PARKING_LOTS
+  UPDATE_PARKING_BOY_BY_PARKING_LOTS,
+  GET_PARKING_BOY_LIST_BY_NAME
 } from '../const/parking-boy-const'
-import { getEmployeeParkingLots, getParkingBoys, updateParkingLotsOfBoy } from '../../api/employee'
+import { getEmployeeParkingLots, getParkingBoys, updateParkingLotsOfBoy, getParkingBoysByName } from '../../api/employee'
 import { requestOrders, getGabbingOrders, updateOrderByStatus } from '../../api/order'
 
 const state = {
@@ -130,9 +131,19 @@ const actions = {
       })
       .catch(() => {})
   },
-  [GET_PARKING_BOY_LIST] ({ commit }) {
+  [GET_PARKING_BOY_LIST] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       getParkingBoys()
+        .then(response => {
+          commit(GET_PARKING_BOY_LIST, { parkingBoys: response.data.data })
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
+  },
+  [GET_PARKING_BOY_LIST_BY_NAME] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      getParkingBoysByName(payload)
         .then(response => {
           commit(GET_PARKING_BOY_LIST, { parkingBoys: response.data.data })
           resolve(response)
