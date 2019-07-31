@@ -1,8 +1,13 @@
 <template>
   <div class="parking-lot-dashboard-div">
-    <div style="margin-left:25px" v-for="(parkingLot, index) in parkingLotList" :key="index">
-    <DashBoard :parkingLot= parkingLot></DashBoard>
-    </div>
+<!--    <div style="margin-left:25px" v-for="(parkingLot, index) in parkingLotList" :key="index">-->
+<!--    <DashBoard :parkingLot= parkingLot></DashBoard>-->
+<!--    </div>-->
+    <el-carousel :interval="4000" type="card" height="500px" style="padding-top: 100px">
+      <el-carousel-item v-for="(parkingLot, index)  in parkingLotList" :key="index">
+        <DashBoard :parkingLot= parkingLot></DashBoard>
+      </el-carousel-item>
+    </el-carousel>
   </div>
 </template>
 <script>

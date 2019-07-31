@@ -1,8 +1,8 @@
 <template>
   <div class="management-search-div">
-    <el-select v-model="seletedOption" placeholder="请选择" size="small">
+    <el-select v-model="selectedOption" placeholder="请选择" size="small">
       <el-option
-        v-for="item in seletedOptions"
+        v-for="item in selectedOptions"
         :key="item.value"
         :label="item.label"
         :value="item.value">
@@ -20,18 +20,18 @@
 export default {
   name: 'ManagementSearch',
   props: {
-    seletedOptions: Array,
+    selectedOptions: Array,
     search: Function
   },
   data () {
     return {
-      seletedOption: this.seletedOptions ? this.seletedOptions[0].value : '',
+      selectedOption: this.selectedOptions ? this.selectedOptions[0].value : '',
       keyword: ''
     }
   },
   methods: {
     searchByKeyword: function () {
-      this.search({ [this.seletedOption]: this.keyword })
+      this.search({ [this.selectedOption]: this.keyword })
     }
   }
 }

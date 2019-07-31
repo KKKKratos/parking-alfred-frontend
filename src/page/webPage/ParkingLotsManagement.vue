@@ -1,6 +1,6 @@
 <template>
   <div class="parking-lot-manage-div">
-    <ManagementHeader :seletedOptions="seletedOptions" :search="search"></ManagementHeader>
+    <ManagementHeader :selectedOptions="selectedOptions" :search="search"></ManagementHeader>
     <CreateParkingLot></CreateParkingLot>
     <ParkingLotDisplayTable></ParkingLotDisplayTable>
     <ManagementPagination></ManagementPagination>
@@ -18,7 +18,7 @@ export default {
   components: { ParkingLotDisplayTable, ManagementHeader, ManagementPagination, CreateParkingLot },
   data () {
     return {
-      seletedOptions: [
+      selectedOptions: [
         { value: 'name', label: '名字' }
       ]
     }

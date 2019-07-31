@@ -43,7 +43,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch(GET_GRABBING_PARKING_LOTS, { employeeId: 1 })
+    this.$store.dispatch(GET_GRABBING_PARKING_LOTS, { employeeId: this.$store.state.loginInformation.id })
   },
   methods: {
     clickConfirmSelected () {
