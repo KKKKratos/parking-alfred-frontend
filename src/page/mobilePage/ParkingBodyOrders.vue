@@ -8,7 +8,7 @@
 
 <script>
 import ParkingBoyOrder from '../../components/common/ParkingBoyOrder'
-import { GET_PARKING_BOY_ORDERS } from '../../store/const/parking-boy-const'
+import { GET_ORDERS_BY_PARKING_BOY_ID } from '../../store/const/parking-boy-const'
 export default {
   name: 'parkingBoyOrders',
   components: { ParkingBoyOrder },
@@ -23,7 +23,7 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch(GET_PARKING_BOY_ORDERS)
+    this.$store.dispatch(GET_ORDERS_BY_PARKING_BOY_ID, this.$store.state.loginInformation.id)
   },
   methods: {
   }

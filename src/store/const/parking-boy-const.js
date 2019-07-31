@@ -6,7 +6,7 @@ export const UPDATE_TARGET_ORDER = 'parkingBoy/updateTargetOrder'
 export const GET_PARKING_BOY_ORDERS = 'parkingBoy/getParkingBoyOrders'
 export const UPDATE_PARKING_BOY_SELECTED_ORDER = 'parkingBoy/updateParkingBoySelectedOrder'
 export const SET_TARGET_ORDER_STATUS = 'parkingBoy/setTargetOrderStatus'
-
+export const GET_ORDERS_BY_PARKING_BOY_ID = 'parkingBoy/getOrdersByParkingBoyId'
 export const GET_PARKING_BOY_LIST_BY_NAME = 'parkingBoy/getParkingBoyListByName'
 export const MODIFY_PARKING_BOY_INFORMATION = 'parkingBoy/modifyParkingBoyInformation'
 export const UPDATE_PARKING_BOY_BY_STATUS = 'parkingBoy/updateParkingBoyByStatus'
