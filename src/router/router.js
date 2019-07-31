@@ -15,6 +15,7 @@ import EmployeeManagement from '../page/webPage/EmployeeManagement'
 import ParkingBoyManagement from '../page/webPage/ParkingBoyManagement'
 import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 import ParkingLotDashBoard from '../page/webPage/ParkingLotDashBoard'
+import CustomerRegist from '../page/CustomerRegist'
 
 Vue.use(VueRouter)
 
@@ -45,7 +46,7 @@ const routes = [
     redirect: '/employees-management'
   },
   { path: '/role-login', name: 'role-login', component: RoleLogin },
-  
+  { path: '/customer-regist', name: 'customer-regist', component: CustomerRegist }
 ]
 
 const router = new VueRouter({

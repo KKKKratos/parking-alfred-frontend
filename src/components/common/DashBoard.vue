@@ -20,12 +20,12 @@
     </div>
   </el-card>
 </template>
+
 <script>
 export default {
-  name: "DashBoard",
+  name: 'DashBoard',
   props: {
     parkingLot: Object
   }
-};
+}
 </script>
-

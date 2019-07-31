@@ -6,17 +6,17 @@
   </div>
 </template>
 <script>
-import DashBoard from "../../components/common/DashBoard";
+import DashBoard from '../../components/common/DashBoard'
 import { GET_PARKING_LOT_LIST } from '../../store/const/common-parking-lot-const'
 export default {
-  name: "ParkingLotDashBoard",
+  name: 'ParkingLotDashBoard',
   components: { DashBoard },
-  data() {
+  data () {
     return {
     }
   },
   mounted () {
-    this.$store.dispatch(GET_PARKING_LOT_LIST);
+    this.$store.dispatch(GET_PARKING_LOT_LIST)
   },
   computed: {
     parkingLotList () {
@@ -33,5 +33,3 @@ export default {
   margin-top: 20px;
 }
 </style>
-
-
