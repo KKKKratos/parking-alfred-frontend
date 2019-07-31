@@ -7,7 +7,7 @@
       <div style="float:left; width: 50%">
         <div>
           <div style="margin-bottom:20px">
-            <el-progress width="200" type="circle" :percentage="parseInt(this.parkingLot.occupied/this.parkingLot.capacity*100)"></el-progress>
+            <el-progress :width="200" type="circle" :percentage="parseInt(this.parkingLot.occupied/this.parkingLot.capacity*100)"></el-progress>
           </div>
           <div style="margin-bottom:20px">
             <span>停车情况</span>
