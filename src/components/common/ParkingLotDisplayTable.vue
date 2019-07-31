@@ -77,6 +77,12 @@ export default {
         this.isEdited[index] = true
         this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[1])
       } else {
+       
+        this.$confirm('此操作将修改该停车场，是否继续?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
         const parkingLot = { id: row.id, name: this.editTextByName, capacity: this.editTextByCapacity }
         this.$store.dispatch(UPDATE_PARKING_LOT, parkingLot)
         this.isEdited[index] = false
@@ -85,6 +91,15 @@ export default {
           type: 'success',
           message: '修改成功!'
         })
+      }).catch(() => {
+        this.isEdited[index] = false
+        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
+        this.$message({
+          type: 'info',
+          message: '已取消该操作！'
+        })
+      })
+        
       
       }
     }
