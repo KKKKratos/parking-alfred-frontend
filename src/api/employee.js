@@ -21,5 +21,5 @@ export const getParkingBoysByName = (data) => axios.get('/employees', { params: 
 export const updateParkingLotsOfBoy = (employeeId, parkingLotIdList) => axios.put(`/employees/${employeeId}/parking-lots`, parkingLotIdList)
 
 export const updateEmployee = (id, employee) => axios.put(`/employees/${id}`, employee)
-export const getOrdersByEmployeeId = (employeeId) => axios.get(`/employees/${employeeId}/orders`)
 
+export const getOrdersByEmployeeId = (employeeId) => axios.get(`/employees/${employeeId}/orders`)

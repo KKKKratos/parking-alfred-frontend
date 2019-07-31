@@ -15,6 +15,7 @@ export const WAIT_FOR_USER_CONFIRM = '待车主确认'
 export const UNDEFINED_STATUS = '未知'
 export const TABLE_BUTTON_TYPE = ['修改', '保存']
 export const EMPLOYEE_STATUS = ['上班', '请假', '迟到', '下班', '冻结']
+export const EMPLOYEE_ACCOUNT_STATUS = ['启用', '冻结']
 
 export const MOBILE_TAB_ITEM = [
   DEFAULT_MOBILE_BOY_TAB_ITEM,

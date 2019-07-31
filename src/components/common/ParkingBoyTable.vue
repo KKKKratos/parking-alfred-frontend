@@ -25,41 +25,24 @@
     <el-table-column prop="id" label="ID" min-width="100"></el-table-column>
     <el-table-column prop="name" label="姓名" min-width="150">
       <template slot-scope="scope">
-        <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByName"></el-input>
-        <span v-else>{{scope.row.name}}</span>
+        <span >{{scope.row.name}}</span>
       </template>
     </el-table-column>
     <el-table-column prop="telephone" label="电话号码" min-width="200">
       <template slot-scope="scope">
-        <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByTelephone"></el-input>
-        <span v-else>{{scope.row.telephone}}</span>
+        <span>{{scope.row.telephone}}</span>
       </template>
     </el-table-column>
     <el-table-column prop="status" label="状态" min-width="150">
       <template slot-scope="scope">
-        <el-select v-if="isEdited[scope.$index]" v-model="editSelectStatus" placeholder="请选择" size="small">
-          <el-option
-            v-for="item in statusSelected"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-            :disabled="item.disabled">
-          </el-option>
-        </el-select>
-        <span v-else>{{employeeStatus[scope.row.status - 1]}}</span>
-      </template>
-    </el-table-column>
-    <el-table-column label="操作" min-width="150">
-      <template slot-scope="scope">
-        <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)">{{editButtonName[scope.$index]}}</el-button>
-        <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">冻结</el-button>
+        <span>{{employeeStatus[scope.row.status - 1]}}</span>
       </template>
     </el-table-column>
   </el-table>
 </template>
 
 <script>
-import { TABLE_BUTTON_TYPE, EMPLOYEE_STATUS } from '../../config/const-values'
+import { EMPLOYEE_STATUS } from '../../config/const-values'
 import { GET_PARKING_LOT_LIST } from '../../store/const/common-parking-lot-const'
 import { UPDATE_PARKING_BOY_BY_PARKING_LOTS, GET_PARKING_BOY_LIST } from '../../store/const/parking-boy-const'
 export default {
@@ -68,16 +51,6 @@ export default {
     return {
       selectedParkingLots: [],
       transferData: [],
-      statusSelected: [
-        { value: 1, label: '上班' },
-        { value: 2, label: '迟到' },
-        { value: 3, label: '下班' }
-      ],
-      editTextByName: '',
-      editTextByTelephone: '',
-      editSelectStatus: '',
-      isEdited: [],
-      editButtonName: [],
       currentId: 0,
       lastRow: 0,
       employeeStatus: EMPLOYEE_STATUS
@@ -85,30 +58,10 @@ export default {
   },
   mounted () {
     this.$store.dispatch(GET_PARKING_BOY_LIST)
-      .then(() => {
-        const boyLength = this.$store.state.parkingBoy.parkingBoyList.length
-        for (let i = 0; i < boyLength; i++) {
-          this.isEdited.push(false)
-          this.editButtonName.push(TABLE_BUTTON_TYPE[0])
-        }
-      })
+      .then(() => {})
       .catch(() => {})
   },
   methods: {
-    handleEdit (index, row) {
-      if (this.editButtonName[index] === TABLE_BUTTON_TYPE[0]) {
-        this.editTextByName = row.name
-        this.editTextByTelephone = row.telephone
-        this.isEdited[index] = true
-        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[1])
-      } else {
-        this.isEdited[index] = false
-        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
-      }
-    },
-    handleDelete (index, row) {
-
-    },
     handleChange (value, direction, movedKeys) {
       this.$store.dispatch(UPDATE_PARKING_BOY_BY_PARKING_LOTS, { id: this.currentId, parkingLotIdList: value })
         .then(() => {
