@@ -45,6 +45,7 @@ const routes = [
     redirect: '/employees-management'
   },
   { path: '/role-login', name: 'role-login', component: RoleLogin }
+
 ]
 
 const router = new VueRouter({

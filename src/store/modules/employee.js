@@ -1,5 +1,5 @@
-import { GET_EMPLOYEES_LIST, CREATE_EMPLOYEE, CHANGE_CREATING_EMPLOYEE_DIALOG } from '../const/employee-const'
-import { getEmployeesByPage, getAllEmployees, createEmployee } from '../../api/employee'
+import { GET_EMPLOYEES_LIST, CREATE_EMPLOYEE, CHANGE_CREATING_EMPLOYEE_DIALOG, GET_EMPLOYEES_LIST_BY_NAME, GET_EMPLOYEES_LIST_BY_PAGE } from '../const/employee-const'
+import { getEmployeesByPage, getAllEmployees, createEmployee, getEmployeesByName } from '../../api/employee'
 import { employeeEnums } from '../../config/util'
 
 const state = {
@@ -28,19 +28,25 @@ const mutations = {
 
 const actions = {
   [GET_EMPLOYEES_LIST] ({ commit }, payload) {
-    if (payload !== undefined) {
-      getEmployeesByPage(payload.page)
-        .then(response => {
-          commit(GET_EMPLOYEES_LIST, response.data.data)
-        })
-        .catch(() => {})
-    } else {
-      getAllEmployees()
-        .then(response => {
-          commit(GET_EMPLOYEES_LIST, response.data.data)
-        })
-        .catch(() => {})
-    }
+    getAllEmployees()
+      .then(response => {
+        commit(GET_EMPLOYEES_LIST, response.data.data)
+      })
+      .catch(() => {})
+  },
+  [GET_EMPLOYEES_LIST_BY_PAGE] ({ commit }, payload) {
+    getEmployeesByPage(payload.page)
+      .then(response => {
+        commit(GET_EMPLOYEES_LIST, response.data.data)
+      })
+      .catch(() => {})
+  },
+  [GET_EMPLOYEES_LIST_BY_NAME] ({ commit }, payload) {
+    getEmployeesByName(payload.name)
+      .then(response => {
+        commit(GET_EMPLOYEES_LIST, response.data.data)
+      })
+      .catch(() => {})
   },
   [CREATE_EMPLOYEE] ({ commit }, payload) {
     return new Promise((resolve, reject) => {

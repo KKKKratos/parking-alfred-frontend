@@ -12,7 +12,7 @@
 </template>
 
 <script>
-import { GET_EMPLOYEES_LIST } from '../../store/const/employee-const'
+import { GET_EMPLOYEES_LIST_BY_PAGE } from '../../store/const/employee-const'
 export default {
   name: 'ManagementPagination',
   data () {
@@ -23,6 +23,10 @@ export default {
     count: function () {
       if (this.$route.name === 'employees-management') {
         return this.$store.state.employee.totalEmployees
+      } else if (this.$route.name === 'parking-lots-management') {
+        return this.$store.state.commonParkingLot.parkingLotTotalCount
+      } else if (this.$route.name === 'parking-boys-management') {
+        return this.$store.state.employee.totalEmployees
       } else {
         return 1
       }
@@ -30,13 +34,13 @@ export default {
   },
   methods: {
     handleCurrentChange (index) {
-      this.$store.dispatch(GET_EMPLOYEES_LIST, { page: index })
+      this.$store.dispatch(GET_EMPLOYEES_LIST_BY_PAGE, { page: index })
     },
     prevClick (index) {
-      this.$store.dispatch(GET_EMPLOYEES_LIST, { page: index })
+      this.$store.dispatch(GET_EMPLOYEES_LIST_BY_PAGE, { page: index })
     },
     nextClick (index) {
-      this.$store.dispatch(GET_EMPLOYEES_LIST, { page: index })
+      this.$store.dispatch(GET_EMPLOYEES_LIST_BY_PAGE, { page: index })
     }
   }
 }
