@@ -1,6 +1,6 @@
-import { GET_EMPLOYEES_LIST, CREATE_EMPLOYEE, CHANGE_CREATING_EMPLOYEE_DIALOG } from '../const/employee-const'
-import { getEmployeesByPage, getAllEmployees, createEmployee } from '../../api/employee'
-import { employeeEnums } from '../../config/util'
+import { GET_EMPLOYEES_LIST, CREATE_EMPLOYEE, CHANGE_CREATING_EMPLOYEE_DIALOG, UPDATE_EMPLOYEE } from '../const/employee-const'
+import { getEmployeesByPage, getAllEmployees, createEmployee, updateEmployee } from '../../api/employee'
+import { employeeEnums,employeeStatusEnum } from '../../config/util'
 
 const state = {
   employeesList: [],
@@ -9,7 +9,7 @@ const state = {
 }
 
 const mutations = {
-  [GET_EMPLOYEES_LIST] (state, payload) {
+  [GET_EMPLOYEES_LIST](state, payload) {
     const employeeList = payload.employees.map(employee => ({
       id: employee.id,
       mail: employee.mail,
@@ -21,28 +21,35 @@ const mutations = {
     state.employeesList = employeeList
     state.totalEmployees = payload.totalCount
   },
-  [CHANGE_CREATING_EMPLOYEE_DIALOG]  (state) {
+  [CHANGE_CREATING_EMPLOYEE_DIALOG](state) {
     state.isOpenCreateEmployeeDialog = !state.isOpenCreateEmployeeDialog
+  },
+  [UPDATE_EMPLOYEE](state, employee) {
+    state.employeesList.filter(item => (item.id === employee.id))[0].name = employee.name
+    state.employeesList.filter(item => (item.id === employee.id))[0].mail = employee.mail
+    state.employeesList.filter(item => (item.id === employee.id))[0].telephone = employee.telephone
+    state.employeesList.filter(item => (item.id === employee.id))[0].status = employee.status
+    state.employeesList.filter(item => (item.id === employee.id))[0].role = employee.role
   }
 }
 
 const actions = {
-  [GET_EMPLOYEES_LIST] ({ commit }, payload) {
+  [GET_EMPLOYEES_LIST]({ commit }, payload) {
     if (payload !== undefined) {
       getEmployeesByPage(payload.page)
         .then(response => {
           commit(GET_EMPLOYEES_LIST, response.data.data)
         })
-        .catch(() => {})
+        .catch(() => { })
     } else {
       getAllEmployees()
         .then(response => {
           commit(GET_EMPLOYEES_LIST, response.data.data)
         })
-        .catch(() => {})
+        .catch(() => { })
     }
   },
-  [CREATE_EMPLOYEE] ({ commit }, payload) {
+  [CREATE_EMPLOYEE]({ commit }, payload) {
     return new Promise((resolve, reject) => {
       createEmployee(payload.employee)
         .then(response => {
@@ -52,11 +59,24 @@ const actions = {
           reject(error)
         })
     })
+  },
+  [UPDATE_EMPLOYEE]({ commit }, employee) {
+    return new Promise((resolve, reject) => {
+      updateEmployee(employee.id, employee)
+        .then(response => {
+          commit(UPDATE_EMPLOYEE, response.data.data)
+        })
+        .catch(error => {
+          reject(error)
+        })
+    })
   }
 }
 
 const getters = {
-
+  getEmployees: state => {
+    return state.employeesList
+  }
 }
 
 export default {

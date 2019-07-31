@@ -6,3 +6,14 @@ export const employeeEnums = [
   ADMIN,
   CUSTOMER
 ]
+export const employeeRole = {
+  "Parking Boy" : 1,
+  "Manager" : 2,
+  "Admin" : 3,
+  "Customer" : 4
+}
+export const employeeStatus = {
+  "WORKING" : 1,
+  "FREEZED" : 5
+}
+
