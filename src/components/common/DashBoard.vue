@@ -20,6 +20,7 @@
     </div>
   </el-card>
 </template>
+
 <script>
 export default {
   name: 'DashBoard',
