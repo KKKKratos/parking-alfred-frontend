@@ -70,6 +70,7 @@ export default {
     cancelAssign (index, row) {
       this.isSelectOptionDisabled.splice(index, 1, false)
       this.isAssignDisabledArray.splice(index, 1, true)
+      this.selectedOption = ''
     }
   },
   mounted () {

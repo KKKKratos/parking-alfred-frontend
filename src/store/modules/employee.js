@@ -1,6 +1,5 @@
 import { GET_EMPLOYEES_LIST, CREATE_EMPLOYEE, CHANGE_CREATING_EMPLOYEE_DIALOG, GET_EMPLOYEES_LIST_BY_NAME, GET_EMPLOYEES_LIST_BY_PAGE, UPDATE_EMPLOYEE } from '../const/employee-const'
 import { getEmployeesByPage, getAllEmployees, createEmployee, getEmployeesByName, updateEmployee } from '../../api/employee'
-import { employeeEnums, employeeStatusEnum } from '../../config/util'
 
 const state = {
   employeesList: [],
@@ -9,22 +8,22 @@ const state = {
 }
 
 const mutations = {
-  [GET_EMPLOYEES_LIST](state, payload) {
+  [GET_EMPLOYEES_LIST] (state, payload) {
     const employeeList = payload.employees.map(employee => ({
       id: employee.id,
       mail: employee.mail,
       name: employee.name,
-      role: employeeEnums[employee.role - 1],
+      role: employee.role,
       status: employee.status,
       telephone: employee.telephone
     }))
     state.employeesList = employeeList
     state.totalEmployees = payload.totalCount
   },
-  [CHANGE_CREATING_EMPLOYEE_DIALOG](state) {
+  [CHANGE_CREATING_EMPLOYEE_DIALOG] (state) {
     state.isOpenCreateEmployeeDialog = !state.isOpenCreateEmployeeDialog
   },
-  [UPDATE_EMPLOYEE](state, employee) {
+  [UPDATE_EMPLOYEE] (state, employee) {
     state.employeesList.filter(item => (item.id === employee.id))[0].name = employee.name
     state.employeesList.filter(item => (item.id === employee.id))[0].mail = employee.mail
     state.employeesList.filter(item => (item.id === employee.id))[0].telephone = employee.telephone
@@ -34,12 +33,15 @@ const mutations = {
 }
 
 const actions = {
-  [GET_EMPLOYEES_LIST]({ commit }, payload) {
-    getAllEmployees()
-      .then(response => {
-        commit(GET_EMPLOYEES_LIST, response.data.data)
-      })
-      .catch(() => {})
+  [GET_EMPLOYEES_LIST] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      getAllEmployees()
+        .then(response => {
+          commit(GET_EMPLOYEES_LIST, response.data.data)
+          resolve(response)
+        })
+        .catch((error) => { reject(error) })
+    })
   },
   [GET_EMPLOYEES_LIST_BY_PAGE] ({ commit }, payload) {
     getEmployeesByPage(payload.page)
@@ -55,7 +57,7 @@ const actions = {
       })
       .catch(() => {})
   },
-  [CREATE_EMPLOYEE]({ commit }, payload) {
+  [CREATE_EMPLOYEE] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
       payload.employee.status = 1
       createEmployee(payload.employee)
@@ -67,11 +69,12 @@ const actions = {
         })
     })
   },
-  [UPDATE_EMPLOYEE]({ commit }, employee) {
+  [UPDATE_EMPLOYEE] ({ commit }, employee) {
     return new Promise((resolve, reject) => {
       updateEmployee(employee.id, employee)
         .then(response => {
           commit(UPDATE_EMPLOYEE, response.data.data)
+          resolve(response)
         })
         .catch(error => {
           reject(error)

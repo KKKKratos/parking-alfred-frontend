@@ -51,6 +51,7 @@ export default {
       this.$store.commit(UPDATE_TARGET_ORDER, { parkingLot: this.$store.state.parkingBoy.grabbingParkingLots[this.radioSelected] })
       const id = this.$store.state.parkingBoy.grabbingTargetOrder.id
       const order = this.$store.state.parkingBoy.grabbingTargetOrder
+      order.employee = { id: this.$store.state.loginInformation.id }
       this.$store.dispatch(UPDATE_TARGET_ORDER_BY_STATUS, { id: id, order: order })
         .then(() => {
           this.$message({
