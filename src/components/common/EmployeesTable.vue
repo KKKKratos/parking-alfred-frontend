@@ -93,13 +93,17 @@ export default {
   mounted () {
     this.$store.dispatch(GET_EMPLOYEES_LIST)
       .then(() => {
-        const employeeLength = this.$store.state.employee.employeesList.length
-        for (let i = 0; i < employeeLength; i++) {
-          this.isModifyButtonDisabledArray.push(false)
-          this.operateButtonNameArray.push('冻结')
+        this.$store.state.employee.employeesList.map(x => {
+          if (x.status !== 1) {
+            this.isModifyButtonDisabledArray.push(true)
+            this.operateButtonNameArray.push('解冻')
+          } else {
+            this.isModifyButtonDisabledArray.push(false)
+            this.operateButtonNameArray.push('冻结')
+          }
           this.isEdited.push(false)
           this.editButtonName.push(TABLE_BUTTON_TYPE[0])
-        }
+        })
       })
       .catch(() => {})
     this.statusOptions = this.employeeStatus.map(x => {
