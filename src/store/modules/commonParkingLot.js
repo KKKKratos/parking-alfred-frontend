@@ -47,6 +47,7 @@ const actions = {
   },
   [FREEZE_PARKING_LOT] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
+      payload.status = 2
       freezeparkinglot(payload)
         .then(response => {
           resolve(response)
@@ -58,6 +59,7 @@ const actions = {
   },
   [START_PARKING_LOT] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
+      payload.status = 1
       startparkinglot(payload)
         .then(response => {
           resolve(response)

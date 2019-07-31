@@ -1,7 +1,7 @@
 <template>
     <div style="height: 100%; text-align: left">
       <el-menu :default-active="activeMenu" style="height: 100%" :router="true" @select="selectMenuItem">
-        <el-menu-item index="employees-management" >
+        <el-menu-item index="employees-management" v-if="$store.state.loginInformation.role  === 3">
           <i class="el-icon-s-management"></i>
           <span slot="title">员工管理</span>
         </el-menu-item>
@@ -36,6 +36,9 @@ export default {
   methods: {
     selectMenuItem (index, indexPath) {
     }
+  },
+  mounted () {
+    console.log(this.$store.state.loginInformation)
   }
 }
 </script>
