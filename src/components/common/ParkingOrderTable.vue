@@ -54,11 +54,9 @@ export default {
         .then(() => {
           this.isAssignDisabledArray.splice(index, 1, false)
           this.isSelectOptionDisabled.splice(index, 1, true)
-          this.selectedOptions = this.$store.state.parkingBoy.parkingBoyList.map(x => {
-            if (x.status === 1) {
-              return { value: x.id, label: x.name }
-            }
-          })
+          this.selectedOptions = this.$store.state.parkingBoy.parkingBoyList
+            .filter(x => x.status === 1)
+            .map(x => { return { value: x.id, label: x.name } })
         })
         .catch(() => {})
     },
