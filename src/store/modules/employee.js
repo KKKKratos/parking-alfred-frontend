@@ -50,6 +50,7 @@ const actions = {
   },
   [CREATE_EMPLOYEE] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
+      payload.employee.status = 1
       createEmployee(payload.employee)
         .then(response => {
           resolve(response)

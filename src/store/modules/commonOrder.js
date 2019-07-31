@@ -1,5 +1,5 @@
-import { GET_ORDER_LIST, GET_ORDER_LIST_BY_CAR_NUMBER } from '../const/common-order-const'
-import { getAllOrders, getOrdersByCarNumber } from '../../api/order'
+import { GET_ORDER_LIST, GET_ORDER_LIST_BY_CAR_NUMBER, UPDATE_ORDER_BY_STATUS } from '../const/common-order-const'
+import { getAllOrders, getOrdersByCarNumber, updateOrderByStatus } from '../../api/order'
 
 const state = {
   orderList: []
@@ -8,6 +8,14 @@ const state = {
 const mutations = {
   [GET_ORDER_LIST] (state, payload) {
     state.orderList = payload
+  },
+  [UPDATE_ORDER_BY_STATUS] (state, payload) {
+    state.orderList = state.orderList.map(x => {
+      if (x.id === payload.id) {
+        x.status = payload.status
+      }
+      return x
+    })
   }
 }
 
@@ -27,6 +35,16 @@ const actions = {
       getOrdersByCarNumber(payload.carNumber)
         .then(response => {
           commit(GET_ORDER_LIST, response.data.data)
+          resolve(response)
+        })
+        .catch(error => reject(error))
+    })
+  },
+  [UPDATE_ORDER_BY_STATUS] ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      updateOrderByStatus(payload.order.id, payload.order)
+        .then(response => {
+          commit(UPDATE_ORDER_BY_STATUS, response.data.data)
           resolve(response)
         })
         .catch(error => reject(error))

@@ -35,6 +35,7 @@ const actions = {
   },
   [CREATE_PARKING_LOT] ({ commit }, payload) {
     return new Promise((resolve, reject) => {
+      payload.parkingLot.occupied = 0
       createParkingLot(payload.parkingLot)
         .then(response => {
           resolve(response)
