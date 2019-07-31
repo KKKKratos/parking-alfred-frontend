@@ -3,7 +3,7 @@
     <div class="create-button-div">
       <el-button v-if="isCreateButtonDisable" type="primary" size="small" style="width: 80px" @click="clickCreating">新建</el-button>
     </div>
-    <ManagementSearch></ManagementSearch>
+    <ManagementSearch :seletedOptions="seletedOptions" :search="search"></ManagementSearch>
   </div>
 </template>
 
@@ -14,6 +14,10 @@ import { CHANGE_CREATING_LOT_DIALOG } from '../../store/const/common-parking-lot
 export default {
   name: 'CreateButton',
   components: { ManagementSearch },
+  props: {
+    seletedOptions: Array,
+    search: Function
+  },
   methods: {
     clickCreating () {
       if (this.$route.name === 'employees-management') {

@@ -13,7 +13,7 @@
           <i class="el-icon-s-management"></i>
           <span slot="title">停车员管理</span>
         </el-menu-item>
-        <el-menu-item index="dashboard">
+        <el-menu-item index="parking-lot-dashboard">
           <i class="el-icon-s-management"></i>
           <span slot="title">停车场Dashboard</span>
         </el-menu-item>
