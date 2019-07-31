@@ -118,7 +118,7 @@ export default {
       }
     },
     handleEdit (index, row) {
-      if (this.editButtonName[index] === TABLE_BUTTON_TYPE[0]) {
+            if (this.editButtonName[index] === TABLE_BUTTON_TYPE[0]) {
         this.editTextByName = row.name
         this.editTextByCapacity = row.capacity
         this.isEdited[index] = true
@@ -128,6 +128,10 @@ export default {
         this.$store.dispatch(UPDATE_PARKING_LOT, parkingLot)
         this.isEdited[index] = false
         this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
+        this.$message({
+          type: 'success',
+          message: '修改成功!'
+        })
       }
     }
   }
