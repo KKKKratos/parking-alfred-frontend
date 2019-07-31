@@ -3,13 +3,15 @@ import { CREATE_PARKING_LOT, GET_PARKING_LOT_LIST, CHANGE_CREATING_LOT_DIALOG, F
 
 const state = {
   parkingLotList: [],
-  isOpenCreateParkingLotDialog: false
+  isOpenCreateParkingLotDialog: false,
+  parkingLotTotalCount: 0
 }
 
 const mutations = {
   [GET_PARKING_LOT_LIST] (state, items) {
     state.parkingLotList.splice(0)
-    state.parkingLotList.push(...items)
+    state.parkingLotList.push(...items.parkingLots)
+    state.parkingLotTotalCount = items.totalCount
   },
   [CHANGE_CREATING_LOT_DIALOG] (state) {
     state.isOpenCreateParkingLotDialog = !state.isOpenCreateParkingLotDialog
@@ -25,7 +27,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       getParkingLots(payload)
         .then(response => {
-          commit(GET_PARKING_LOT_LIST, response.data.data.parkingLots)
+          commit(GET_PARKING_LOT_LIST, response.data.data)
           resolve(response)
         })
         .catch((error) => { reject(error) })

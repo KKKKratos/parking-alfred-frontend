@@ -19,7 +19,8 @@ const state = {
   grabbingParkingLots: [],
   parkingBoyOrders: [],
   parkingBoyList: [],
-  parkingLotsOfBoy: []
+  parkingLotsOfBoy: [],
+  parkingBoyTotalCount: 0
 }
 
 const mutations = {
@@ -76,7 +77,8 @@ const mutations = {
     state.grabbingTargetOrder.reservationTime = date.getTime()
   },
   [GET_PARKING_BOY_LIST] (state, payload) {
-    state.parkingBoyList = payload.parkingBoyList
+    state.parkingBoyTotalCount = payload.parkingBoys.totalCount
+    state.parkingBoyList = payload.parkingBoys.employees
   },
   [UPDATE_PARKING_BOY_BY_PARKING_LOTS] (state, payload) {
     const index = state.parkingBoyList.findIndex(x => {
@@ -132,7 +134,7 @@ const actions = {
     return new Promise((resolve, reject) => {
       getParkingBoys()
         .then(response => {
-          commit(GET_PARKING_BOY_LIST, { parkingBoyList: response.data.data.employees })
+          commit(GET_PARKING_BOY_LIST, { parkingBoys: response.data.data })
           resolve(response)
         })
         .catch((error) => { reject(error) })

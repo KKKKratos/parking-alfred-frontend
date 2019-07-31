@@ -23,6 +23,11 @@ export default {
     count: function () {
       if (this.$route.name === 'employees-management') {
         return this.$store.state.employee.totalEmployees
+      } else if (this.$route.name === 'parking-lots-management') {
+        // return this.$store.state.commonParkingLot
+        return this.$store.state.commonParkingLot.parkingLotTotalCount
+      } else if (this.$route.name === 'parking-boys-management') {
+        return this.$store.state.employee.totalEmployees
       } else {
         return 1
       }
