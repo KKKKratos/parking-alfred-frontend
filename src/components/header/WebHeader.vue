@@ -1,7 +1,7 @@
 <template>
   <div style="width: 100%; text-align: left; height: 100%; color: white">
     <div style="float: left; margin-left: 20px; width: 80%">
-      <h2 style="margin: 0; ">Parking Lot Manage System</h2>
+      <h2 style="margin: 0; ">Parking Alfred</h2>
     </div>
     <div style="float: right; width: 15%; margin-top: 10px; height: 100%; text-align: left">
       <div style="float: left; margin-right: 10px">
