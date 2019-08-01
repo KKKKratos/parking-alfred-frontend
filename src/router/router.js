@@ -17,6 +17,7 @@ import CustomerOrderDetails from '../page/mobilePage/CustomerOrderDetails'
 import ParkingLotDashBoard from '../page/webPage/ParkingLotDashBoard'
 import CustomerRegist from '../page/CustomerRegist'
 import ParkingOrderManagement from '../page/webPage/ParkingOrdersManagement'
+import ParkingIncomeManagement from '../page/webPage/ParkingIncomeManagement'
 
 Vue.use(VueRouter)
 
@@ -43,7 +44,8 @@ const routes = [
       { path: '/parking-boys-management', name: 'parking-boys-management', component: ParkingBoyManagement },
       { path: '/parking-lots-management', name: 'parking-lots-management', component: ParkingLotsManagement },
       { path: '/parking-lot-dashboard', name: 'parking-lot-dashboard', component: ParkingLotDashBoard },
-      { path: '/parking-orders-management', name: 'parking-orders-management', component: ParkingOrderManagement }
+      { path: '/parking-orders-management', name: 'parking-orders-management', component: ParkingOrderManagement },
+      { path: '/parking-income-management', name: 'parking-income-management', component: ParkingIncomeManagement }
     ],
     redirect: '/employees-management'
   },

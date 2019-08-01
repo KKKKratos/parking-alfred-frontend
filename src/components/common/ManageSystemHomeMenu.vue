@@ -21,6 +21,10 @@
           <i class="el-icon-s-management"></i>
           <span slot="title">订单管理</span>
         </el-menu-item>
+        <el-menu-item index="parking-income-management">
+          <i class="el-icon-s-management"></i>
+          <span slot="title">收益管理</span>
+        </el-menu-item>
       </el-menu>
     </div>
 </template>
