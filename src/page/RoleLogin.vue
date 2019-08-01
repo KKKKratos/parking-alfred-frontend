@@ -5,14 +5,14 @@
       <div style="width: 300px; margin: 0 auto;">
         <el-form :label-position="labelPosition" label-width="40px" :model="formLabelAlign">
           <el-form-item label="邮箱" style="text-align: center">
-            <el-input v-model="formLabelAlign.email" placeholder="请输入邮箱"></el-input>
+            <el-input v-model="formLabelAlign.email" placeholder="请输入邮箱" id="email"></el-input>
           </el-form-item>
           <el-form-item label="密码">
-            <el-input v-model="formLabelAlign.password" placeholder="请输入密码" show-password></el-input>
+            <el-input v-model="formLabelAlign.password" placeholder="请输入密码" show-password id="password"></el-input>
           </el-form-item>
         </el-form>
       </div>
-      <el-button type="primary" @click="clickLogin">登录</el-button>
+      <el-button type="primary" @click="clickLogin" id="submit">登录</el-button>
       <el-button type="primary" @click="reset">重置</el-button>
       <p>
       <router-link  to="/customer-regist" style="text-color:blue;margin-right: -143px;">

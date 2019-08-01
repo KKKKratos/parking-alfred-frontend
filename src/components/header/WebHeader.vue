@@ -7,7 +7,7 @@
       <div style="float: left; margin-right: 10px">
         <el-avatar :size="40" :src="circleUrl"></el-avatar>
       </div>
-      {{$store.state.loginInformation.name}}
+      <span id="username">{{$store.state.loginInformation.name}}</span>
     </div>
   </div>
 </template>
