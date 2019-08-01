@@ -1,8 +1,10 @@
 <template>
   <div style="margin-top: 20px">
+    <mt-loadmore :top-method="refresh" ref="loadmore" style="height: 100vh">
       <div v-for="item in itemsShow" v-bind:key="item.key" style="margin-top: 10px">
         <OrderListItem :grabbingOrder="item"/>
       </div>
+    </mt-loadmore>
   </div>
 </template>
 
@@ -20,7 +22,15 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch(GET_GRABBING_ORDERS)
+    this.loadOrders()
+  },
+  methods: {
+    refresh: function () {
+      this.loadOrders().then(() => this.$refs.loadmore.onTopLoaded())
+    },
+    loadOrders: function () {
+      return this.$store.dispatch(GET_GRABBING_ORDERS)
+    }
   }
 }
 </script>
