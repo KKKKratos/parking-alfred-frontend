@@ -4,27 +4,27 @@
     :data="$store.state.employee.employeesList"
     <el-table-column prop="name" label="姓名" min-width="150">
       <template slot-scope="scope">
-        <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByName"></el-input>
+        <el-input v-if="$store.state.employee.isButtonEditedArray[scope.$index]" size="small" v-model="editTextByName"></el-input>
         <span v-else>{{scope.row.name}}</span>
       </template>
     </el-table-column>
     <el-table-column prop="mail" label="Email" min-width="250">
       <template slot-scope="scope">
-        <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByMail"></el-input>
+        <el-input v-if="$store.state.employee.isButtonEditedArray[scope.$index]" size="small" v-model="editTextByMail"></el-input>
         <span v-else>{{scope.row.mail}}</span>
       </template>
     </el-table-column>
 
     <el-table-column prop="telephone" label="电话号码" min-width="200">
       <template slot-scope="scope">
-        <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByTelephone"></el-input>
+        <el-input v-if="$store.state.employee.isButtonEditedArray[scope.$index]" size="small" v-model="editTextByTelephone"></el-input>
         <span v-else>{{scope.row.telephone}}</span>
       </template>
     </el-table-column>
 
     <el-table-column prop="role" label="角色" min-width="150">
       <template slot-scope="scope">
-        <el-select v-if="isEdited[scope.$index]" v-model="editTextByRole" placeholder="请选择" size="small">
+        <el-select v-if="$store.state.employee.isButtonEditedArray[scope.$index]" v-model="editTextByRole" placeholder="请选择" size="small">
           <el-option
             v-for="item in typeOptions"
             :key="item.value"
@@ -38,7 +38,7 @@
 
     <el-table-column prop="status" label="状态" min-width="150">
       <template slot-scope="scope">
-        <el-select v-if="isEdited[scope.$index]" v-model="editTextByStatus" placeholder="请选择" size="small">
+        <el-select v-if="$store.state.employee.isButtonEditedArray[scope.$index]" v-model="editTextByStatus" placeholder="请选择" size="small">
           <el-option
             v-for="item in statusOptions"
             :key="item.value"
@@ -56,13 +56,13 @@
           size="mini"
           type="primary"
           @click="handleEdit(scope.$index, scope.row)"
-          :disabled="isModifyButtonDisabledArray[scope.$index]"
-        >{{editButtonName[scope.$index]}}</el-button>
+          :disabled="$store.state.employee.isButtonDisabledArray[scope.$index]"
+        >{{$store.state.employee.modifyButtonNameArray[scope.$index]}}</el-button>
         <el-button
           size="mini"
           type="danger"
           @click="freeze(scope.$index, scope.row)"
-        >{{operateButtonNameArray[scope.$index]}}</el-button>
+        >{{$store.state.employee.operateButtonNameArray[scope.$index]}}</el-button>
       </template>
     </el-table-column>
   </el-table>
@@ -70,20 +70,16 @@
 
 <script>
 import { TABLE_BUTTON_TYPE, EMPLOYEE_STATUS, ROLE_TYPE } from '../../config/const-values'
-import { UPDATE_EMPLOYEE, GET_EMPLOYEES_LIST } from '../../store/const/employee-const'
+import { UPDATE_EMPLOYEE, GET_EMPLOYEES_LIST, INIT_BUTTON_STYLE, CHANGE_BUTTON_WHEN_FREEZE, CHANGE_BUTTON_WHEN_START, CHANGE_BUTTON_WHEN_EDIT, CHANGE_BUTTON_WHEN_SAVE } from '../../store/const/employee-const'
 export default {
   name: 'EmployeesTable',
   data: function () {
     return {
-      isModifyButtonDisabledArray: [],
-      operateButtonNameArray: [],
       editTextByName: '',
       editTextByMail: '',
       editTextByTelephone: '',
       editTextByRole: '',
       editTextByStatus: '',
-      isEdited: [],
-      editButtonName: [],
       employeeStatus: EMPLOYEE_STATUS,
       roleType: ROLE_TYPE,
       statusOptions: [],
@@ -94,15 +90,7 @@ export default {
     this.$store.dispatch(GET_EMPLOYEES_LIST)
       .then(() => {
         this.$store.state.employee.employeesList.map(x => {
-          if (x.status !== 1) {
-            this.isModifyButtonDisabledArray.push(true)
-            this.operateButtonNameArray.push('解冻')
-          } else {
-            this.isModifyButtonDisabledArray.push(false)
-            this.operateButtonNameArray.push('冻结')
-          }
-          this.isEdited.push(false)
-          this.editButtonName.push(TABLE_BUTTON_TYPE[0])
+          this.$store.commit(INIT_BUTTON_STYLE, { status: x.status })
         })
       })
       .catch(() => {})
@@ -115,7 +103,7 @@ export default {
   },
   methods: {
     freeze: function (index, row) {
-      if (this.operateButtonNameArray[index] === '冻结') {
+      if (this.$store.state.employee.operateButtonNameArray[index] === '冻结') {
         this.$confirm('此操作将冻结该员工，是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -125,8 +113,7 @@ export default {
             row.status = 5
             this.$store.dispatch(UPDATE_EMPLOYEE, row)
               .then(response => {
-                this.isModifyButtonDisabledArray.splice(index, 1, true)
-                this.operateButtonNameArray.splice(index, 1, '解冻')
+                this.$store.commit(CHANGE_BUTTON_WHEN_FREEZE, { index: index })
                 this.$message({
                   type: 'success',
                   message: '冻结成功!'
@@ -151,8 +138,7 @@ export default {
             this.$store
               .dispatch(UPDATE_EMPLOYEE, row)
               .then(response => {
-                this.isModifyButtonDisabledArray.splice(index, 1, false)
-                this.operateButtonNameArray.splice(index, 1, '冻结')
+                this.$store.commit(CHANGE_BUTTON_WHEN_START, { index: index })
                 this.$message({ type: 'success', message: '解冻成功!' })
               })
               .catch(() => {
@@ -167,14 +153,13 @@ export default {
     },
     handleEdit (index, row) {
       const self = this
-      if (this.editButtonName[index] === TABLE_BUTTON_TYPE[0]) {
+      if (this.$store.state.employee.modifyButtonNameArray[index] === TABLE_BUTTON_TYPE[0]) {
         this.editTextByName = row.name
         this.editTextByMail = row.mail
         this.editTextByTelephone = row.telephone
         this.editTextByRole = this.roleType[row.role - 1]
         this.editTextByStatus = this.employeeStatus[row.status - 1]
-        this.isEdited[index] = true
-        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[1])
+        this.$store.commit(CHANGE_BUTTON_WHEN_EDIT, { index: index })
       } else {
         const employee = {
           id: row.id,
@@ -185,8 +170,7 @@ export default {
           status: this.employeeStatus.findIndex(x => x === self.editTextByStatus) + 1
         }
         this.$store.dispatch(UPDATE_EMPLOYEE, employee)
-        this.isEdited[index] = false
-        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
+        this.$store.commit(CHANGE_BUTTON_WHEN_SAVE, { index: index })
       }
     }
   }

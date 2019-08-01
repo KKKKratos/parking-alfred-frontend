@@ -1,16 +1,16 @@
 <template>
   <div id="parkingLotTable">
-    <el-table stripe border :data="parkingLotList" style="min-width: 100%">
+    <el-table stripe border :data="parkingLotList" style="min-width: 100%" slot="append">
       <el-table-column prop="id" label="ID" min-width="100"></el-table-column>
       <el-table-column prop="name" label="名字" min-width="200">
         <template slot-scope="scope">
-          <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByName"></el-input>
+          <el-input v-if="$store.state.commonParkingLot.isButtonEditedArray[scope.$index]" size="small" v-model="editTextByName"></el-input>
           <span v-else>{{scope.row.name}}</span>
         </template>
       </el-table-column >
       <el-table-column prop="capacity" label="大小" min-width="200">
         <template slot-scope="scope">
-          <el-input v-if="isEdited[scope.$index]" size="small" v-model="editTextByCapacity"></el-input>
+          <el-input v-if="$store.state.commonParkingLot.isButtonEditedArray[scope.$index]" size="small" v-model="editTextByCapacity"></el-input>
           <span v-else>{{scope.row.capacity}}</span>
         </template>
       </el-table-column>
@@ -21,8 +21,13 @@
       </el-table-column>
       <el-table-column prop="operate" label="操作" min-width="200">
         <template slot-scope="scope">
-          <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)" :disabled="isModifyButtonDisabledArray[scope.$index]">{{editButtonName[scope.$index]}}</el-button>
-          <el-button size="mini" type="danger"  @click="freeze(scope.$index, scope.row)">{{operateButtonNameArray[scope.$index]}}</el-button>
+          <el-button size="mini" type="primary" @click="handleEdit(scope.$index, scope.row)"
+                     :disabled="$store.state.commonParkingLot.isButtonDisabledArray[scope.$index]">
+            {{$store.state.commonParkingLot.modifyButtonNameArray[scope.$index]}}
+          </el-button>
+          <el-button size="mini" type="danger"  @click="freeze(scope.$index, scope.row)">
+            {{$store.state.commonParkingLot.operateButtonNameArray[scope.$index]}}
+          </el-button>
         </template>
       </el-table-column>
     </el-table>
@@ -31,52 +36,25 @@
 
 <script>
 import { TABLE_BUTTON_TYPE, EMPLOYEE_ACCOUNT_STATUS } from '../../config/const-values'
-import { UPDATE_PARKING_LOT, GET_PARKING_LOT_LIST, FREEZE_PARKING_LOT, START_PARKING_LOT } from '../../store/const/common-parking-lot-const'
+import { UPDATE_PARKING_LOT, GET_PARKING_LOT_LIST, FREEZE_PARKING_LOT, START_PARKING_LOT, INIT_BUTTON_STYLE, CHANGE_BUTTON_WHEN_EDIT, CHANGE_BUTTON_WHEN_FREEZE, CHANGE_BUTTON_WHEN_START, CHANGE_BUTTON_WHEN_SAVE } from '../../store/const/common-parking-lot-const'
 export default {
   name: 'ParkingLotDisplayTable',
   data: function () {
     return {
-      isModifyButtonDisabledArray: [],
-      operateButtonNameArray: [],
       editTextByName: '',
       editTextByCapacity: '',
-      isEdited: [],
-      editButtonName: [],
-      employeeAccountType: EMPLOYEE_ACCOUNT_STATUS,
-      oldParkingLots: []
+      employeeAccountType: EMPLOYEE_ACCOUNT_STATUS
     }
   },
   mounted () {
+    const self = this
     this.$store.dispatch(GET_PARKING_LOT_LIST)
       .then(() => {
-        this.oldParkingLots = this.$store.state.commonParkingLot.parkingLotList
         this.$store.state.commonParkingLot.parkingLotList.map(x => {
-          if (x.status === 2) {
-            this.isModifyButtonDisabledArray.push(true)
-            this.operateButtonNameArray.push('启用')
-          } else {
-            this.isModifyButtonDisabledArray.push(false)
-            this.operateButtonNameArray.push('冻结')
-          }
-          this.isEdited.push(false)
-          this.editButtonName.push(TABLE_BUTTON_TYPE[0])
+          self.$store.commit(INIT_BUTTON_STYLE, { status: x.status })
           return x
         })
       }).catch(() => {})
-  },
-  updated () {
-    // if (this.oldParkingLots.length < this.$store.state.commonParkingLot.parkingLotList.length) {
-    //   const length = this.$store.state.commonParkingLot.parkingLotList.length
-    //   if (this.$store.state.commonParkingLot.parkingLotList[length - 1].status === 2) {
-    //     this.isModifyButtonDisabledArray.push(true)
-    //     this.operateButtonNameArray.push('启用')
-    //   } else {
-    //     this.isModifyButtonDisabledArray.push(false)
-    //     this.operateButtonNameArray.push('冻结')
-    //   }
-    //   this.isEdited.push(false)
-    //   this.editButtonName.push(TABLE_BUTTON_TYPE[0])
-    // }
   },
   computed: {
     parkingLotList () {
@@ -85,7 +63,7 @@ export default {
   },
   methods: {
     freeze: function (index, row) {
-      if (this.operateButtonNameArray[index] === '冻结') {
+      if (this.$store.state.commonParkingLot.operateButtonNameArray[index] === '冻结') {
         this.$confirm('此操作将冻结该停车场，是否继续?', '提示', {
           confirmButtonText: '确定',
           cancelButtonText: '取消',
@@ -93,8 +71,7 @@ export default {
         }).then(() => {
           this.$store.dispatch(FREEZE_PARKING_LOT, row)
             .then(() => {
-              this.isModifyButtonDisabledArray.splice(index, 1, true)
-              this.operateButtonNameArray.splice(index, 1, '启用')
+              this.$store.commit(CHANGE_BUTTON_WHEN_FREEZE, { index: index })
               this.$message({
                 type: 'success',
                 message: '冻结成功!'
@@ -115,8 +92,7 @@ export default {
         }).then(() => {
           this.$store.dispatch(START_PARKING_LOT, row)
             .then(() => {
-              this.isModifyButtonDisabledArray.splice(index, 1, false)
-              this.operateButtonNameArray.splice(index, 1, '冻结')
+              this.$store.commit(CHANGE_BUTTON_WHEN_START, { index: index })
               this.$message({ type: 'success', message: '启用成功!' })
             })
             .catch(() => {
@@ -130,20 +106,15 @@ export default {
       }
     },
     handleEdit (index, row) {
-      if (this.editButtonName[index] === TABLE_BUTTON_TYPE[0]) {
+      if (this.$store.state.commonParkingLot.modifyButtonNameArray[index] === TABLE_BUTTON_TYPE[0]) {
         this.editTextByName = row.name
         this.editTextByCapacity = row.capacity
-        this.isEdited[index] = true
-        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[1])
+        this.$store.commit(CHANGE_BUTTON_WHEN_EDIT, { index: index })
       } else {
         const parkingLot = { id: row.id, name: this.editTextByName, capacity: this.editTextByCapacity }
         this.$store.dispatch(UPDATE_PARKING_LOT, parkingLot)
-        this.isEdited[index] = false
-        this.editButtonName.splice(index, 1, TABLE_BUTTON_TYPE[0])
-        this.$message({
-          type: 'success',
-          message: '修改成功!'
-        })
+        this.$store.commit(CHANGE_BUTTON_WHEN_SAVE, { index: index })
+        this.$message({ type: 'success', message: '修改成功!' })
       }
     }
   }
