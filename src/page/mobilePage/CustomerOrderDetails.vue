@@ -10,6 +10,7 @@
         <p>车辆地址：{{$store.state.parkingBoy.grabbingTargetOrder.customerAddress}}</p>
         <p>预约时间：{{$store.state.parkingBoy.grabbingTargetOrder.reservationTime}}</p>
       </div>
+      <card />
     </el-card>
     <el-button class="grab-button" type="primary" @click="confirmFetchedCar" v-if="isWaittingForConfirm">确认取车</el-button>
     <el-button class="cancel-button" type="primary"  @click="turnToPageCustomerOrders">返回</el-button>
@@ -19,8 +20,13 @@
 import { PARK_CAR_ORDER, FETCH_CAR_ORDER, WAIT_FOR_RECEIVE, WAIT_FOR_CONFIRM, CONFIRM, WAIT_FOR_USER_CONFIRM, UNDEFINED_STATUS } from '../../config/const-values'
 import { UPDATE_CUSTOMER_ORDER } from '../../store/const/customer-const'
 import { SET_TARGET_ORDER_STATUS } from '../../store/const/parking-boy-const'
+import Card from '../../components/common/Card'
+
 export default {
   name: 'CustomerOderDetails',
+  components: {
+    Card
+  },
   data: function () {
     return {
       employeeId: '',
@@ -65,7 +71,8 @@ export default {
   background-color: #26a2ff;
   border:none;
   margin-left: 10px;
-  margin-top: 80px;
+  margin-top: 20px;
+  margin-bottom: 80px;
 }
 .clearfix:before,
 .clearfix:after {

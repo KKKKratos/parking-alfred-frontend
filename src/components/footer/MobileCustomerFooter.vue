@@ -1,5 +1,5 @@
 <template>
-  <div style="height: 60px">
+  <div class="footer">
     <mt-tabbar :value="selectedId">
       <mt-tab-item id="预约" @click.native="clickCreateOrderTab">
         <div>
@@ -64,5 +64,11 @@ export default {
 </script>
 
 <style scoped>
-
+.footer {
+  height: 60px;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
 </style>
