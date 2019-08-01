@@ -1,10 +1,10 @@
 <template>
   <div class="orders-div">
-    <div :style="{height: fullHeight + 'px'}">
+    <mt-loadmore :top-method="refresh" ref="loadmore" style="height: 100vh">
       <div v-for="item in $store.state.customer.customerOrders" :key="item.id">
         <CustomerOrderCard :customerOrder="item"></CustomerOrderCard>
       </div>
-    </div>
+    </mt-loadmore>
   </div>
 </template>
 
@@ -24,7 +24,15 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch(GET_CUSTOMER_ORDERS)
+    this.loadOrders()
+  },
+  methods: {
+    refresh: function () {
+      this.loadOrders().then(() => this.$refs.loadmore.onTopLoaded())
+    },
+    loadOrders: function () {
+      return this.$store.dispatch(GET_CUSTOMER_ORDERS)
+    }
   }
 }
 </script>

@@ -1,8 +1,10 @@
 <template>
   <div id ='item'>
-    <div id = 'parkingBoyOrders' v-for="(order, index) in orders" :key="index">
-      <ParkingBoyOrder :index="index"></ParkingBoyOrder>
-    </div>
+    <mt-loadmore :top-method="refresh" ref="loadmore" style="height: 100vh">
+      <div id='parkingBoyOrders' v-for="(order, index) in orders" :key="index">
+        <ParkingBoyOrder :index="index"></ParkingBoyOrder>
+      </div>
+    </mt-loadmore>
   </div>
 </template>
 
@@ -23,9 +25,15 @@ export default {
     }
   },
   mounted () {
-    this.$store.dispatch(GET_ORDERS_BY_PARKING_BOY_ID, this.$store.state.loginInformation.id)
+    this.loadOrders()
   },
   methods: {
+    refresh: function () {
+      this.loadOrders().then(() => this.$refs.loadmore.onTopLoaded())
+    },
+    loadOrders: function () {
+      return this.$store.dispatch(GET_ORDERS_BY_PARKING_BOY_ID, this.$store.state.loginInformation.id)
+    }
   }
 }
 </script>
