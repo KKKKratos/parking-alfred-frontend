@@ -1,10 +1,27 @@
 import { getParkingLots, createParkingLot, freezeparkinglot, startparkinglot, updateParkingLot } from '../../api/parkingLot'
-import { CREATE_PARKING_LOT, GET_PARKING_LOT_LIST, CHANGE_CREATING_LOT_DIALOG, FREEZE_PARKING_LOT, START_PARKING_LOT, UPDATE_PARKING_LOT } from '../const/common-parking-lot-const'
+import {
+  CREATE_PARKING_LOT,
+  GET_PARKING_LOT_LIST,
+  CHANGE_CREATING_LOT_DIALOG,
+  FREEZE_PARKING_LOT,
+  START_PARKING_LOT,
+  UPDATE_PARKING_LOT,
+  CHANGE_BUTTON_WHEN_START,
+  CHANGE_BUTTON_WHEN_EDIT,
+  INIT_BUTTON_STYLE,
+  CHANGE_BUTTON_WHEN_FREEZE,
+  CHANGE_BUTTON_WHEN_SAVE
+} from '../const/common-parking-lot-const'
+import { TABLE_BUTTON_TYPE } from '../../config/const-values'
 
 const state = {
   parkingLotList: [],
   isOpenCreateParkingLotDialog: false,
-  parkingLotTotalCount: 0
+  parkingLotTotalCount: 0,
+  modifyButtonNameArray: [],
+  operateButtonNameArray: [],
+  isButtonDisabledArray: [],
+  isButtonEditedArray: []
 }
 
 const mutations = {
@@ -19,6 +36,40 @@ const mutations = {
   [UPDATE_PARKING_LOT] (state, parkingLot) {
     state.parkingLotList.filter(item => (item.id === parkingLot.id))[0].name = parkingLot.name
     state.parkingLotList.filter(item => (item.id === parkingLot.id))[0].capacity = parkingLot.capacity
+  },
+  [INIT_BUTTON_STYLE] (state, payload) {
+    if (payload.status === 2) {
+      state.isButtonDisabledArray.push(true)
+      state.operateButtonNameArray.push('启用')
+    } else {
+      state.isButtonDisabledArray.push(false)
+      state.operateButtonNameArray.push('冻结')
+    }
+    state.isButtonEditedArray.push(false)
+    state.modifyButtonNameArray.push(TABLE_BUTTON_TYPE[0])
+  },
+  [CHANGE_BUTTON_WHEN_FREEZE] (state, payload) {
+    state.isButtonDisabledArray.splice(payload.index, 1, true)
+    state.operateButtonNameArray.splice(payload.index, 1, '启用')
+  },
+  [CHANGE_BUTTON_WHEN_START] (state, payload) {
+    state.isButtonDisabledArray.splice(payload.index, 1, false)
+    state.operateButtonNameArray.splice(payload.index, 1, '冻结')
+  },
+  [CHANGE_BUTTON_WHEN_EDIT] (state, payload) {
+    state.isButtonEditedArray.splice(payload.index, 1, true)
+    state.modifyButtonNameArray.splice(payload.index, 1, TABLE_BUTTON_TYPE[1])
+  },
+  [CHANGE_BUTTON_WHEN_SAVE] (state, payload) {
+    state.isButtonEditedArray.splice(payload.index, 1, false)
+    state.modifyButtonNameArray.splice(payload.index, 1, TABLE_BUTTON_TYPE[0])
+  },
+  [CREATE_PARKING_LOT] (state, payload) {
+    state.isButtonDisabledArray.push(false)
+    state.operateButtonNameArray.push('冻结')
+    state.isButtonEditedArray.push(false)
+    state.modifyButtonNameArray.push(TABLE_BUTTON_TYPE[0])
+    state.parkingLotList.push(payload)
   }
 }
 
@@ -38,6 +89,7 @@ const actions = {
       payload.parkingLot.occupied = 0
       createParkingLot(payload.parkingLot)
         .then(response => {
+          commit(CREATE_PARKING_LOT, response.data.data)
           resolve(response)
         })
         .catch(error => {
