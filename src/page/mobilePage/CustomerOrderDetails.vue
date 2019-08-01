@@ -10,7 +10,7 @@
         <p>车辆地址：{{$store.state.parkingBoy.grabbingTargetOrder.customerAddress}}</p>
         <p>预约时间：{{$store.state.parkingBoy.grabbingTargetOrder.reservationTime}}</p>
       </div>
-      <card />
+      <card v-if="this.$store.state.parkingBoy.grabbingTargetOrder.type === 1"/>
     </el-card>
     <el-button class="grab-button" type="primary" @click="confirmFetchedCar" v-if="isWaittingForConfirm">确认取车</el-button>
     <el-button class="cancel-button" type="primary"  @click="turnToPageCustomerOrders">返回</el-button>
