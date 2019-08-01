@@ -4,3 +4,9 @@ export const CHANGE_CREATING_LOT_DIALOG = 'commonParkingLot/changeCreatingLotDia
 export const FREEZE_PARKING_LOT = 'commonParkingLot/freezeparkinglot'
 export const UPDATE_PARKING_LOT = 'commonParkingLot/updateParkingLot'
 export const START_PARKING_LOT = 'commonParkingLot/startparkinglot'
+
+export const INIT_BUTTON_STYLE = 'commonParkingLot/initButtonStyle'
+export const CHANGE_BUTTON_WHEN_FREEZE = 'commonParkingLot/changeButtonWhenFreeze'
+export const CHANGE_BUTTON_WHEN_EDIT = 'commonParkingLot/changeButtonWhenEdit'
+export const CHANGE_BUTTON_WHEN_START = 'commonParkingLot/changeButtonWhenStart'
+export const CHANGE_BUTTON_WHEN_SAVE = 'commonParkingLot/changeButtonWhenSave'
