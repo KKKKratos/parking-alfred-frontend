@@ -1,5 +1,5 @@
 <template>
-  <div id="couponType" style="width: 600px;height:600px; position: absolute; margin-left: 600px;"></div>
+  <div id="couponType" style="width: 500px;height:500px; position: absolute; margin-left: 600px;"></div>
 </template>
 
 <script>
